@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>kindEditor学习 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="kindEditor图片上传-演示Demo 资源准备(\资源\前端相关\kindeditor) :  kindEditor-4.1.10  Demo工程搭建   Maven project–&amp;gt;kindEditor-image-upload(war) pom.xml">
+  <meta name="description" content="#kindEditor图片上传-演示Demo  需求分析 采用kindEditor插件，实现上传图片到服务器。   资源准备 kindEditor-4.1.10     下载地址：http://kindeditor.net/down.php   Demo工程搭建Maven project–&amp;gt;kindEditor-image(war) pom.xml &amp;lt;dependencies&amp;gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kindEditor学习">
 <meta property="og:url" content="http://yoursite.com/2017/11/13/kindEditor学习/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="kindEditor图片上传-演示Demo 资源准备(\资源\前端相关\kindeditor) :  kindEditor-4.1.10  Demo工程搭建   Maven project–&amp;gt;kindEditor-image-upload(war) pom.xml">
+<meta property="og:description" content="#kindEditor图片上传-演示Demo  需求分析 采用kindEditor插件，实现上传图片到服务器。   资源准备 kindEditor-4.1.10     下载地址：http://kindeditor.net/down.php   Demo工程搭建Maven project–&amp;gt;kindEditor-image(war) pom.xml &amp;lt;dependencies&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/FiJ9CxZ.png">
-<meta property="og:image" content="https://i.imgur.com/AttjVzD.png">
+<meta property="og:image" content="https://i.imgur.com/dqtTbbc.png">
+<meta property="og:image" content="https://i.imgur.com/VVWNRAJ.png">
 <meta property="og:image" content="https://i.imgur.com/PRYlUZZ.png">
 <meta property="og:image" content="https://i.imgur.com/wFKc7K2.png">
 <meta property="og:image" content="https://i.imgur.com/hsojA3Y.png">
-<meta property="og:updated_time" content="2017-11-14T13:51:10.954Z">
+<meta property="og:updated_time" content="2017-11-20T11:30:16.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kindEditor学习">
-<meta name="twitter:description" content="kindEditor图片上传-演示Demo 资源准备(\资源\前端相关\kindeditor) :  kindEditor-4.1.10  Demo工程搭建   Maven project–&amp;gt;kindEditor-image-upload(war) pom.xml">
-<meta name="twitter:image" content="https://i.imgur.com/FiJ9CxZ.png">
+<meta name="twitter:description" content="#kindEditor图片上传-演示Demo  需求分析 采用kindEditor插件，实现上传图片到服务器。   资源准备 kindEditor-4.1.10     下载地址：http://kindeditor.net/down.php   Demo工程搭建Maven project–&amp;gt;kindEditor-image(war) pom.xml &amp;lt;dependencies&amp;gt;">
+<meta name="twitter:image" content="https://i.imgur.com/dqtTbbc.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -178,15 +178,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="kindEditor图片上传-演示Demo"><a href="#kindEditor图片上传-演示Demo" class="headerlink" title="kindEditor图片上传-演示Demo"></a>kindEditor图片上传-演示Demo</h1><ul>
-<li><p>资源准备(\资源\前端相关\kindeditor) :  kindEditor-4.1.10</p>
-</li>
-<li><p>Demo工程搭建</p>
-</li>
+        <p>#kindEditor图片上传-演示Demo</p>
+<ul>
+<li>需求分析<ul>
+<li>采用kindEditor插件，实现上传图片到服务器。</li>
 </ul>
-<p>Maven project–&gt;kindEditor-image-upload(war)</p>
-<p>pom.xml<br><a id="more"></a><br>    <dependencies></dependencies></p>
-<pre><code>    &lt;!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload --&gt;
+</li>
+<li>资源准备</li>
+<li><pre><code>kindEditor-4.1.10    
+下载地址：http://kindeditor.net/down.php
+</code></pre></li>
+</ul>
+<h3 id="Demo工程搭建"><a href="#Demo工程搭建" class="headerlink" title="Demo工程搭建"></a>Demo工程搭建</h3><p>Maven project–&gt;kindEditor-image(war)</p>
+<p>pom.xml</p>
+<pre><code>&lt;dependencies&gt;
+    &lt;!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
         &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
@@ -220,7 +226,7 @@
             &lt;version&gt;2.2&lt;/version&gt;
             &lt;configuration&gt;
                 &lt;!-- 指定端口 --&gt;
-                &lt;port&gt;9999&lt;/port&gt;
+                &lt;port&gt;9998&lt;/port&gt;
                 &lt;!-- 请求路径 --&gt;
                 &lt;path&gt;/&lt;/path&gt;
             &lt;/configuration&gt;
@@ -242,20 +248,20 @@
     xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;
     version=&quot;2.5&quot;&gt;
 
-
 &lt;/web-app&gt;
 </code></pre><ul>
 <li>引入资源</li>
 </ul>
-<p><img src="https://i.imgur.com/FiJ9CxZ.png" alt=""></p>
+<p>本Demo使用java语言开发,所以就删除了一些没必要的文件。</p>
+<p><img src="https://i.imgur.com/dqtTbbc.png" alt=""></p>
 <p>最好改一下名称 为 kindeditor </p>
-<p><img src="https://i.imgur.com/AttjVzD.png" alt=""></p>
-<p>本Demo使用java语言开发,所以就删除了一些没必要的文件</p>
+<p><img src="https://i.imgur.com/VVWNRAJ.png" alt=""></p>
+<p>###功能实现</p>
 <ul>
 <li>创建kindEditor.html</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">	导入富文本编辑器</span><br><span class="line"></span><br><span class="line">	&lt;!-- 富文本编辑器 --&gt;</span><br><span class="line">	&lt;link rel=&quot;stylesheet&quot; href=&quot;kindeditor/themes/default/default.css&quot; /&gt;</span><br><span class="line">	&lt;script charset=&quot;utf-8&quot; src=&quot;kindeditor/kindeditor-min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;script charset=&quot;utf-8&quot; src=&quot;kindeditor/lang/zh_CN.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">```导入文本域</span><br><span class="line">	</span><br><span class="line">	&lt;form&gt;</span><br><span class="line">		&lt;textarea name=&quot;content&quot; style=&quot;width:800px;height:400px;visibility:hidden;&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">			&lt;p&gt;</span><br><span class="line">				&lt;input type=&quot;button&quot; name=&quot;getHtml&quot; value=&quot;取得HTML&quot; /&gt;</span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">```导入正文</span><br><span class="line"></span><br><span class="line">	&lt;!-- 正文区域 /--&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	var editor;</span><br><span class="line">	KindEditor.ready(function(K) &#123;</span><br><span class="line">		editor = K.create(&apos;textarea[name=&quot;content&quot;]&apos;, &#123;</span><br><span class="line">			allowFileManager : true</span><br><span class="line">		&#125;);</span><br><span class="line">		K(&apos;input[name=getHtml]&apos;).click(function(e) &#123;</span><br><span class="line">			alert(editor.html());</span><br><span class="line">		&#125;);</span><br><span class="line">		</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>页面展示效果</p>
+<p>启动服务，访问<a href="http://localhost:9998/kindEditor.html，页面展示效果" target="_blank" rel="external">http://localhost:9998/kindEditor.html，页面展示效果</a></p>
 <p><img src="https://i.imgur.com/PRYlUZZ.png" alt=""></p>
 <p>这时,图片上传是无法实现的,kindeditor单图上传默认使用php做上传</p>
 <p>打开/kindeditor/plugins/image/image.js<br><img src="https://i.imgur.com/wFKc7K2.png" alt=""></p>
@@ -265,7 +271,7 @@
 <p>运行服务,访问 <a href="http://localhost:9998/kindEditor.html" target="_blank" rel="external">http://localhost:9998/kindEditor.html</a></p>
 <h1 id="Demo效果"><a href="#Demo效果" class="headerlink" title="Demo效果"></a>Demo效果</h1><p><img src="https://i.imgur.com/hsojA3Y.png" alt=""></p>
 <p>#附录: json_simple-1.1.jar导入本地仓库</p>
-<pre><code>mvn install:install-file -Dfile=json_simple-1.1.jar -DgroupId=json.simple -DartifactId=json_simple -Dversion=1.1 -Dpackaging=jar
+<pre><code>mvn install:install-file -Dfile=json_simple-1.1.jar -DgroupId=json.simple -DartifactId=json_simple -Dversion=1.1 -Dpackaging=jarr
 </code></pre>
       
 
@@ -492,15 +498,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">

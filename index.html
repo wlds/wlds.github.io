@@ -331,17 +331,101 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="kindEditor图片上传-演示Demo"><a href="#kindEditor图片上传-演示Demo" class="headerlink" title="kindEditor图片上传-演示Demo"></a>kindEditor图片上传-演示Demo</h1><ul>
-<li><p>资源准备(\资源\前端相关\kindeditor) :  kindEditor-4.1.10</p>
-</li>
-<li><p>Demo工程搭建</p>
-</li>
+        <p>#kindEditor图片上传-演示Demo</p>
+<ul>
+<li>需求分析<ul>
+<li>采用kindEditor插件，实现上传图片到服务器。</li>
 </ul>
-<p>Maven project–&gt;kindEditor-image-upload(war)</p>
-<p>pom.xml<br>
-        
-          <a class="article-more-a" href="/2017/11/13/kindEditor学习/#more">more >></a>
-        
+</li>
+<li>资源准备</li>
+<li><pre><code>kindEditor-4.1.10    
+下载地址：http://kindeditor.net/down.php
+</code></pre></li>
+</ul>
+<h3 id="Demo工程搭建"><a href="#Demo工程搭建" class="headerlink" title="Demo工程搭建"></a>Demo工程搭建</h3><p>Maven project–&gt;kindEditor-image(war)</p>
+<p>pom.xml</p>
+<pre><code>&lt;dependencies&gt;
+    &lt;!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
+        &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
+        &lt;version&gt;1.3.1&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;json.simple&lt;/groupId&gt;
+        &lt;artifactId&gt;json_simple&lt;/artifactId&gt;
+        &lt;version&gt;1.1&lt;/version&gt;
+    &lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;!-- java编译插件 --&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.2&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;source&gt;1.8&lt;/source&gt;
+                &lt;target&gt;1.8&lt;/target&gt;
+                &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+            &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.2&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;!-- 指定端口 --&gt;
+                &lt;port&gt;9998&lt;/port&gt;
+                &lt;!-- 请求路径 --&gt;
+                &lt;path&gt;/&lt;/path&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+
+&lt;/build&gt;
+</code></pre><p><font style="color='red'">注意</font>:  </p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;json.simple&lt;/groupId&gt;
+    &lt;artifactId&gt;json_simple&lt;/artifactId&gt;
+    &lt;version&gt;1.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>依赖在中央仓库中没有,需要自己导入到本地仓库,详细看附录</p>
+<p>WEB-INF/web.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;
+    xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;
+    version=&quot;2.5&quot;&gt;
+
+&lt;/web-app&gt;
+</code></pre><ul>
+<li>引入资源</li>
+</ul>
+<p>本Demo使用java语言开发,所以就删除了一些没必要的文件。</p>
+<p><img src="https://i.imgur.com/dqtTbbc.png" alt=""></p>
+<p>最好改一下名称 为 kindeditor </p>
+<p><img src="https://i.imgur.com/VVWNRAJ.png" alt=""></p>
+<p>###功能实现</p>
+<ul>
+<li>创建kindEditor.html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">	导入富文本编辑器</span><br><span class="line"></span><br><span class="line">	&lt;!-- 富文本编辑器 --&gt;</span><br><span class="line">	&lt;link rel=&quot;stylesheet&quot; href=&quot;kindeditor/themes/default/default.css&quot; /&gt;</span><br><span class="line">	&lt;script charset=&quot;utf-8&quot; src=&quot;kindeditor/kindeditor-min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;script charset=&quot;utf-8&quot; src=&quot;kindeditor/lang/zh_CN.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">```导入文本域</span><br><span class="line">	</span><br><span class="line">	&lt;form&gt;</span><br><span class="line">		&lt;textarea name=&quot;content&quot; style=&quot;width:800px;height:400px;visibility:hidden;&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">			&lt;p&gt;</span><br><span class="line">				&lt;input type=&quot;button&quot; name=&quot;getHtml&quot; value=&quot;取得HTML&quot; /&gt;</span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">```导入正文</span><br><span class="line"></span><br><span class="line">	&lt;!-- 正文区域 /--&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	var editor;</span><br><span class="line">	KindEditor.ready(function(K) &#123;</span><br><span class="line">		editor = K.create(&apos;textarea[name=&quot;content&quot;]&apos;, &#123;</span><br><span class="line">			allowFileManager : true</span><br><span class="line">		&#125;);</span><br><span class="line">		K(&apos;input[name=getHtml]&apos;).click(function(e) &#123;</span><br><span class="line">			alert(editor.html());</span><br><span class="line">		&#125;);</span><br><span class="line">		</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>启动服务，访问<a href="http://localhost:9998/kindEditor.html，页面展示效果" target="_blank" rel="external">http://localhost:9998/kindEditor.html，页面展示效果</a></p>
+<p><img src="https://i.imgur.com/PRYlUZZ.png" alt=""></p>
+<p>这时,图片上传是无法实现的,kindeditor单图上传默认使用php做上传</p>
+<p>打开/kindeditor/plugins/image/image.js<br><img src="https://i.imgur.com/wFKc7K2.png" alt=""></p>
+<p>打开jsp/upload_json.jsp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%@ page import=&quot;java.util.*,java.io.*&quot;%&gt;</span><br><span class="line">&lt;%@ page import=&quot;java.text.SimpleDateFormat&quot;%&gt;</span><br><span class="line">&lt;%@ page import=&quot;org.apache.commons.fileupload.*&quot;%&gt;</span><br><span class="line">&lt;%@ page import=&quot;org.apache.commons.fileupload.disk.*&quot;%&gt;</span><br><span class="line">&lt;%@ page import=&quot;org.apache.commons.fileupload.servlet.*&quot;%&gt;</span><br><span class="line">&lt;%@ page import=&quot;org.json.simple.*&quot;%&gt;</span><br><span class="line">&lt;%</span><br><span class="line"></span><br><span class="line">//文件保存目录路径</span><br><span class="line">String savePath = pageContext.getServletContext().getRealPath(&quot;/&quot;) + &quot;attached/&quot;;</span><br><span class="line"></span><br><span class="line">//文件保存目录URL</span><br><span class="line">String saveUrl = request.getContextPath() + &quot;/attached/&quot;;</span><br><span class="line"></span><br><span class="line">System.out.print(&quot; &quot; + saveUrl);</span><br><span class="line"></span><br><span class="line">//定义允许上传的文件扩展名</span><br><span class="line">HashMap&lt;String, String&gt; extMap = new HashMap&lt;String, String&gt;();</span><br><span class="line">extMap.put(&quot;image&quot;, &quot;gif,jpg,jpeg,png,bmp&quot;);</span><br><span class="line">extMap.put(&quot;flash&quot;, &quot;swf,flv&quot;);</span><br><span class="line">extMap.put(&quot;media&quot;, &quot;swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb&quot;);</span><br><span class="line">extMap.put(&quot;file&quot;, &quot;doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2&quot;);</span><br><span class="line"></span><br><span class="line">//最大文件大小 5M</span><br><span class="line">long maxSize = 5000000;</span><br><span class="line"></span><br><span class="line">response.setContentType(&quot;text/html; charset=UTF-8&quot;);</span><br><span class="line"></span><br><span class="line">if (!ServletFileUpload.isMultipartContent(request)) &#123;</span><br><span class="line">	out.println(getError(&quot;请选择文件。&quot;));</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">//检查目录</span><br><span class="line">File uploadDir = new File(savePath);</span><br><span class="line">if (!uploadDir.isDirectory()) &#123;</span><br><span class="line">	out.println(getError(&quot;上传目录不存在。&quot;));</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">//检查目录写权限</span><br><span class="line">if (!uploadDir.canWrite()) &#123;</span><br><span class="line">	out.println(getError(&quot;上传目录没有写权限。&quot;));</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">String dirName = request.getParameter(&quot;dir&quot;);</span><br><span class="line">if (dirName == null) &#123;</span><br><span class="line">	dirName = &quot;image&quot;;</span><br><span class="line">&#125;</span><br><span class="line">if (!extMap.containsKey(dirName)) &#123;</span><br><span class="line">	out.println(getError(&quot;目录名不正确。&quot;));</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">//创建文件夹</span><br><span class="line">savePath += dirName + &quot;/&quot;;</span><br><span class="line">saveUrl += dirName + &quot;/&quot;;</span><br><span class="line">File saveDirFile = new File(savePath);</span><br><span class="line">if (!saveDirFile.exists()) &#123;</span><br><span class="line">	saveDirFile.mkdirs();</span><br><span class="line">&#125;</span><br><span class="line">SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyyMMdd&quot;);</span><br><span class="line">String ymd = sdf.format(new Date());</span><br><span class="line">savePath += ymd + &quot;/&quot;;</span><br><span class="line">saveUrl += ymd + &quot;/&quot;;</span><br><span class="line">File dirFile = new File(savePath);</span><br><span class="line">if (!dirFile.exists()) &#123;</span><br><span class="line">	dirFile.mkdirs();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FileItemFactory factory = new DiskFileItemFactory();</span><br><span class="line">ServletFileUpload upload = new ServletFileUpload(factory);</span><br><span class="line">upload.setHeaderEncoding(&quot;UTF-8&quot;);</span><br><span class="line">List items = upload.parseRequest(request);</span><br><span class="line">Iterator itr = items.iterator();</span><br><span class="line">while (itr.hasNext()) &#123;</span><br><span class="line">	FileItem item = (FileItem) itr.next();</span><br><span class="line">	String fileName = item.getName();</span><br><span class="line">	long fileSize = item.getSize();</span><br><span class="line">	if (!item.isFormField()) &#123;</span><br><span class="line">		//检查文件大小</span><br><span class="line">		if (item.getSize() &gt; maxSize) &#123;</span><br><span class="line">			out.println(getError(&quot;上传文件大小超过限制。&quot;));</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		//检查扩展名</span><br><span class="line">		String fileExt = fileName.substring(fileName.lastIndexOf(&quot;.&quot;) + 1).toLowerCase();</span><br><span class="line">		if (!Arrays.&lt;String&gt;asList(extMap.get(dirName).split(&quot;,&quot;)).contains(fileExt)) &#123;</span><br><span class="line">			out.println(getError(&quot;上传文件扩展名是不允许的扩展名。\n只允许&quot; + extMap.get(dirName) + &quot;格式。&quot;));</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		SimpleDateFormat df = new SimpleDateFormat(&quot;yyyyMMddHHmmss&quot;);</span><br><span class="line">		String newFileName = df.format(new Date()) + &quot;_&quot; + new Random().nextInt(1000) + &quot;.&quot; + fileExt;</span><br><span class="line">		try &#123;</span><br><span class="line">			File uploadedFile = new File(savePath, newFileName);</span><br><span class="line">			item.write(uploadedFile);</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			out.println(getError(&quot;上传文件失败。&quot;));</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		JSONObject obj = new JSONObject();</span><br><span class="line">		obj.put(&quot;error&quot;, 0);</span><br><span class="line">		obj.put(&quot;url&quot;, saveUrl + newFileName);</span><br><span class="line">		out.println(obj.toJSONString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%!private String getError(String message) &#123;</span><br><span class="line">	JSONObject obj = new JSONObject();</span><br><span class="line">	obj.put(&quot;error&quot;, 1);</span><br><span class="line">	obj.put(&quot;message&quot;, message);</span><br><span class="line">	return obj.toJSONString();</span><br><span class="line">&#125;%&gt;</span><br></pre></td></tr></table></figure>
+<p>在webapp下创建文件夹attached.</p>
+<p>运行服务,访问 <a href="http://localhost:9998/kindEditor.html" target="_blank" rel="external">http://localhost:9998/kindEditor.html</a></p>
+<h1 id="Demo效果"><a href="#Demo效果" class="headerlink" title="Demo效果"></a>Demo效果</h1><p><img src="https://i.imgur.com/hsojA3Y.png" alt=""></p>
+<p>#附录: json_simple-1.1.jar导入本地仓库</p>
+<pre><code>mvn install:install-file -Dfile=json_simple-1.1.jar -DgroupId=json.simple -DartifactId=json_simple -Dversion=1.1 -Dpackaging=jarr
+</code></pre>
       
 
       
@@ -718,15 +802,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
