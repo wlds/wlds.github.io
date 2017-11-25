@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: freemarker | wlds</title>
+  <title>Zookeeper集群简介 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wlds">
-<meta property="og:url" content="http://yoursite.com/tags/freemarker/index.html">
+  <meta name="description" content="## ###1.1 为什么搭建Zookeeper集群 大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
+<meta name="keywords" content="zookeeper,集群">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zookeeper集群简介">
+<meta property="og:url" content="http://yoursite.com/2017/11/25/zookeeper集群搭建/index.html">
 <meta property="og:site_name" content="wlds">
+<meta property="og:description" content="## ###1.1 为什么搭建Zookeeper集群 大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/BEN8aua.png">
+<meta property="og:image" content="https://i.imgur.com/saG53pO.png">
+<meta property="og:image" content="https://i.imgur.com/5QFGvCo.png">
+<meta property="og:updated_time" content="2017-11-25T08:26:58.778Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wlds">
+<meta name="twitter:title" content="Zookeeper集群简介">
+<meta name="twitter:description" content="## ###1.1 为什么搭建Zookeeper集群 大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
+<meta name="twitter:image" content="https://i.imgur.com/BEN8aua.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -148,60 +157,278 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-zookeeper集群搭建" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/13/freemarker/" class="archive-article-date">
-  	<time datetime="2017-11-13T07:44:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/13/freemarker/">freemarker</a>
+    <h1 class="article-title" itemprop="name">
+      Zookeeper集群简介
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/25/zookeeper集群搭建/" class="archive-article-date">
+  	<time datetime="2017-11-25T08:01:10.138Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##</p>
+<p>###1.1 为什么搭建Zookeeper集群</p>
+<p>大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。</p>
+<a id="more"></a>
+<p>zookeeper作为注册中心，服务器和客户端都要访问，如果有大量的并发，肯定会有等待。所以可以通过zookeeper集群解决。</p>
+<p>###1.2 了解Leader选举</p>
+<ul>
+<li><p>Zookeeper的启动过程中leader选举是非常重要而且最复杂的一个环节。那么什么是leader选举呢？zookeeper为什么需要leader选举呢？zookeeper的leader选举的过程又是什么样子的？</p>
+</li>
+<li><p>首先我们来看看什么是leader选举。其实这个很好理解，leader选举就像总统选举一样，每人一票，获得多数票的人就当选为总统了。在zookeeper集群中也是一样，每个节点都会投票，如果某个节点获得超过半数以上的节点的投票，则该节点就是leader节点了。</p>
+</li>
+<li><p>以一个简单的例子来说明整个选举的过程.</p>
+<ul>
+<li><p>假设有五台服务器组成的zookeeper集群,它们的id从1-5,同时它们都是最新启动的,也就是没有历史数据,在存放数据量这一点上,都是一样的.假设这些服务器依序启动,来看看会发生什么 。</p>
+</li>
+<li><p>服务器1启动,此时只有它一台服务器启动了,它发出去的报没有任何响应,所以它的选举状态一直是LOOKING状态</p>
+</li>
+<li><p>服务器2启动,它与最开始启动的服务器1进行通信,互相交换自己的选举结果,由于两者都没有历史数据,所以id值较大的服务器2胜出,但是由于没有达到超过半数以上的服务器都同意选举它(这个例子中的半数以上是3),所以服务器1,2还是继续保持LOOKING状态.</p>
+</li>
+<li><p>服务器3启动,根据前面的理论分析,服务器3成为服务器1,2,3中的老大,而与上面不同的是,此时有三台服务器选举了它,所以它成为了这次选举的leader.</p>
+</li>
+<li><p>服务器4启动,根据前面的分析,理论上服务器4应该是服务器1,2,3,4中最大的,但是由于前面已经有半数以上的服务器选举了服务器3,所以它只能接收当小弟的命了.</p>
+</li>
+<li><p>服务器5启动,同4一样,当小弟</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>#二丶 搭建Zookeeper集群</p>
+<p>##</p>
+<p>###2.1 准备工作</p>
+<p>重新部署一台虚拟机作为我们搭建集群的测试服务器。</p>
+<p>（1）安装JDK  【此步骤省略】。</p>
+<p>（2）Zookeeper压缩包上传到服务器</p>
+<p>（3）将Zookeeper解压 ，创建data目录 ，将 conf下zoo_sample.cfg 文件改名为 zoo.cfg</p>
+<p>（4）建立/usr/local/zookeeper-cluster目录，将解压后的Zookeeper复制到以下三个目录</p>
+<pre><code>/usr/local/zookeeper-cluster/zookeeper-1
+
+/usr/local/zookeeper-cluster/zookeeper-2
+
+/usr/local/zookeeper-cluster/zookeeper-3
+</code></pre><p>(5) 配置每一个Zookeeper 的dataDir（cfg） clientPort 分别为2181 2182 2183</p>
+<pre><code>修改/usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg
+
+clientPort=2181
+
+dataDir=/usr/local/zookeeper-cluster/zookeeper-1/data
+
+修改/usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg
+
+clientPort=2182
+
+dataDir=/usr/local/zookeeper-cluster/zookeeper-2/data
+
+修改/usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg
+
+clientPort=2183
+
+dataDir=/usr/local/zookeeper-cluster/zookeeper-3/data
+</code></pre><p>###2.2 配置集群</p>
+<p>在每个zookeeper的 data 目录下创建一个 myid 文件，内容分别是1、2、3 。这个文件就是记录每个服务器的ID<br>    ——-知识点小贴士——</p>
+<pre><code>如果你要创建的文本文件内容比较简单，我们可以通过echo 命令快速创建文件
+
+格式为：
+
+echo 内容 &gt;文件名
+
+例如我们为第一个zookeeper指定ID为1，则输入命令 echo 1 &gt; myid
+</code></pre><p>（2）在每一个zookeeper 的 zoo.cfg配置客户端访问端口（clientPort）和集群服务器IP列表。</p>
+<p>集群服务器IP列表如下</p>
+<pre><code>server.1=192.168.25.140:2881:3881
+
+server.2=192.168.25.140:2882:3882
+
+server.3=192.168.25.140:2883:3883
+</code></pre><p>2.3 启动</p>
+<p>启动集群就是分别启动每个实例。</p>
+<pre><code>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh start
+
+/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh start
+
+/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh start
+</code></pre><p>启动后我们查询一下每个实例的运行状态</p>
+<p>先查询第一个服务</p>
+<p>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status</p>
+<p><img src="https://i.imgur.com/BEN8aua.png" alt=""></p>
+<p>Mode为follower表示是跟随者（从）</p>
+<p>再查询第二个服务Mod 为leader表示是领导者（主）</p>
+<p><img src="https://i.imgur.com/saG53pO.png" alt=""></p>
+<p>查询第三个为跟随者（从）</p>
+<p><img src="https://i.imgur.com/5QFGvCo.png" alt=""></p>
+<p>##</p>
+<h1 id="Dubbox连接zookeeper集群"><a href="#Dubbox连接zookeeper集群" class="headerlink" title="Dubbox连接zookeeper集群"></a>Dubbox连接zookeeper集群</h1><p>修改服务提供者和服务调用者的spring 配置文件</p>
+<pre><code>&lt;!-- 指定注册中心地址 --&gt;
+&lt;dubbo:registry
+    protocol=&quot;zookeeper&quot; address=&quot;192.168.25.140:2181,192.168.25.140:2182,192.168.25.140:2183&quot;&gt;
+&lt;/dubbo:registry&gt;
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">freemarker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/zookeeper//" class="article-tag-list-link color5">zookeeper</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/25/zookeeper集群搭建/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/11/25/solr安装与配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">solr的安装与配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -224,9 +451,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

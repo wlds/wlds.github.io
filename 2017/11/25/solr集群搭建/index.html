@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: freemarker | wlds</title>
+  <title>solr集群搭建 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wlds">
-<meta property="og:url" content="http://yoursite.com/tags/freemarker/index.html">
+  <meta name="description" content="## 1. SolrCloud简介1.1 什么是SolrCloudSolrCloud(solr 云)是 Solr 提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用 SolrCloud。当一个系统的索引数据量少的时候是不需要使用 SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用 SolrCloud 来满足这些需求。">
+<meta name="keywords" content="solr,集群">
+<meta property="og:type" content="article">
+<meta property="og:title" content="solr集群搭建">
+<meta property="og:url" content="http://yoursite.com/2017/11/25/solr集群搭建/index.html">
 <meta property="og:site_name" content="wlds">
+<meta property="og:description" content="## 1. SolrCloud简介1.1 什么是SolrCloudSolrCloud(solr 云)是 Solr 提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用 SolrCloud。当一个系统的索引数据量少的时候是不需要使用 SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用 SolrCloud 来满足这些需求。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/K7gur8q.png">
+<meta property="og:image" content="https://i.imgur.com/vZrsNKB.png">
+<meta property="og:image" content="https://i.imgur.com/T7Yi9jY.png">
+<meta property="og:image" content="https://i.imgur.com/0MnLQjc.png">
+<meta property="og:image" content="https://i.imgur.com/ctzCFdc.png">
+<meta property="og:updated_time" content="2017-11-25T08:26:50.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wlds">
+<meta name="twitter:title" content="solr集群搭建">
+<meta name="twitter:description" content="## 1. SolrCloud简介1.1 什么是SolrCloudSolrCloud(solr 云)是 Solr 提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用 SolrCloud。当一个系统的索引数据量少的时候是不需要使用 SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用 SolrCloud 来满足这些需求。">
+<meta name="twitter:image" content="https://i.imgur.com/K7gur8q.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -148,60 +159,322 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-solr集群搭建" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/13/freemarker/" class="archive-article-date">
-  	<time datetime="2017-11-13T07:44:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/13/freemarker/">freemarker</a>
+    <h1 class="article-title" itemprop="name">
+      solr集群搭建
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/25/solr集群搭建/" class="archive-article-date">
+  	<time datetime="2017-11-25T07:41:16.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##</p>
+<h3 id="1-SolrCloud简介"><a href="#1-SolrCloud简介" class="headerlink" title="1. SolrCloud简介"></a>1. SolrCloud简介</h3><h4 id="1-1-什么是SolrCloud"><a href="#1-1-什么是SolrCloud" class="headerlink" title="1.1 什么是SolrCloud"></a>1.1 什么是SolrCloud</h4><p>SolrCloud(solr 云)是 Solr 提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用 SolrCloud。当一个系统的索引数据量少的时候是不需要使用 SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用 SolrCloud 来满足这些需求。</p>
+<a id="more"></a>
+<p>SolrCloud 是基于 Solr 和Zookeeper的分布式搜索方案，它的主要思想是使用 Zookeeper作为集群的配置信息中心。</p>
+<p>它有几个特色功能：</p>
+<p>1）集中式的配置信息</p>
+<p>2）自动容错</p>
+<p>3）近实时搜索</p>
+<p>4）查询时自动负载均衡</p>
+<p>####1.2 SolrCloud系统架构</p>
+<p><img src="https://i.imgur.com/K7gur8q.png" alt=""></p>
+<p>【1】物理结构</p>
+<p>三个 Solr 实例（ 每个实例包括两个 Core），组成一个 SolrCloud。</p>
+<p>【2】逻辑结构</p>
+<p>索引集合包括两个 Shard（shard1 和 shard2），shard1 和 shard2 分别由三个 Core 组成，其中一个 Leader 两个 Replication，Leader 是由 zookeeper 选举产生，zookeeper 控制每个shard上三个 Core 的索引数据一致，解决高可用问题。</p>
+<p>用户发起索引请求分别从 shard1 和 shard2 上获取，解决高并发问题。</p>
+<p>（1）Collection  </p>
+<p>Collection 在 SolrCloud 集群中是一个逻辑意义上的完整的索引结构。它常常被划分为一个或多个 Shard（分片），它们使用相同的配置信息。</p>
+<p>比如：针对商品信息搜索可以创建一个 collection。</p>
+<p>collection=shard1+shard2+….+shardX</p>
+<p>（2） Core </p>
+<p>每个 Core 是 Solr 中一个独立运行单位，提供 索引和搜索服务。一个 shard 需要由一个Core 或多个 Core 组成。由于 collection 由多个 shard 组成所以 collection 一般由多个 core 组成。</p>
+<p>（3）Master 或 Slave</p>
+<p>Master 是 master-slave 结构中的主结点（通常说主服务器），Slave 是 master-slave 结构中的从结点（通常说从服务器或备服务器）。同一个 Shard 下 master 和 slave 存储的数据是一致的，这是为了达到高可用目的。</p>
+<p>（4）Shard</p>
+<p>Collection 的逻辑分片。每个 Shard 被化成一个或者多个 replication，通过选举确定哪个是 Leader。</p>
+<h3 id="2-搭建SolrCloud"><a href="#2-搭建SolrCloud" class="headerlink" title="2. 搭建SolrCloud"></a>2. 搭建SolrCloud</h3><h4 id="2-1-搭建要求"><a href="#2-1-搭建要求" class="headerlink" title="2.1 搭建要求"></a>2.1 搭建要求</h4><p><img src="https://i.imgur.com/vZrsNKB.png" alt=""></p>
+<p>Zookeeper 作为集群的管理工具</p>
+<p>1、集群管理：容错、负载均衡。</p>
+<p>2、配置文件的集中管理</p>
+<p>3、集群的入口</p>
+<p>需要实现 zookeeper 高可用，需要搭建zookeeper集群。建议是奇数节点。需要三个 zookeeper 服务器。</p>
+<p>搭建 solr 集群需要 7 台服务器（搭建伪分布式，建议虚拟机的内存 1G 以上）：</p>
+<p>需要三个 zookeeper 节点</p>
+<p>需要四个 tomcat 节点。</p>
+<h4 id="2-2-准备工作"><a href="#2-2-准备工作" class="headerlink" title="2.2 准备工作"></a>2.2 准备工作</h4><p>######环境准备</p>
+<ul>
+<li><p>CentOS-6.5-i386-bin-DVD1.iso</p>
+</li>
+<li><p>jdk-7u72-linux-i586.tar.gz</p>
+</li>
+<li><p>apache-tomcat-7.0.47.tar.gz</p>
+</li>
+<li><p>zookeeper-3.4.6.tar.gz</p>
+</li>
+<li><p>solr-4.10.3.tgz</p>
+</li>
+</ul>
+<h6 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h6><p>（1）搭建Zookeeper集群（具体请参照zookeeper集群搭建）</p>
+<p>（2）将已经部署完solr(具体参照solr安装与配置) 的tomcat的上传到linux</p>
+<p>（3）在linux中创建文件夹 /usr/local/solr-cloud  创建4个tomcat实例</p>
+<pre><code>[root@localhost ~]# mkdir /usr/local/solr-cloud
+[root@localhost ~]# cp -r tomcat-solr /usr/local/solr-cloud/tomcat-1
+[root@localhost ~]# cp -r tomcat-solr /usr/local/solr-cloud/tomcat-2
+[root@localhost ~]# cp -r tomcat-solr /usr/local/solr-cloud/tomcat-3
+[root@localhost ~]# cp -r tomcat-solr /usr/local/solr-cloud/tomcat-4
+</code></pre><p>（4）将本地的solrhome上传到linux</p>
+<p>（5）在linux中创建文件夹 /usr/local/solrhomes ,将solrhome复制4份</p>
+<pre><code>[root@localhost ~]# mkdir /usr/local/solrhomes
+[root@localhost ~]# cp -r solrhome /usr/local/solrhomes/solrhome-1
+[root@localhost ~]# cp -r solrhome /usr/local/solrhomes/solrhome-2
+[root@localhost ~]# cp -r solrhome /usr/local/solrhomes/solrhome-3
+[root@localhost ~]# cp -r solrhome /usr/local/solrhomes/solrhome-4
+</code></pre><p>（6）修改每个solr的 web.xml 文件, 关联solrhome</p>
+<pre><code>&lt;env-entry&gt;
+   &lt;env-entry-name&gt;solr/home&lt;/env-entry-name&gt;
+   &lt;env-entry-value&gt;/usr/local/solrhomes/solrhome-1&lt;/env-entry-value&gt;
+   &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+&lt;/env-entry&gt;
+</code></pre><p>（7）修改每个tomcat的原运行端口8085 8080 8009  ，分别为</p>
+<pre><code>8185  8180  8109 
+8285  8280  8209 
+8385  8380  8309 
+8485  8480  8409 
+</code></pre><p><span></span></p>
+<pre><code>            ------  知识点小贴士  ------
+
+8005端口    是用来关闭TOMCAT服务的端口。　　
+8080端口    负责建立HTTP连接。在通过浏览器访问Tomcat服务器的Web应用时，使用的就是这个连接器。
+8009端口    负责和其他的HTTP服务器建立连接。在把Tomcat与其他HTTP服务器集成时，就需要用到这个连接器。
+</code></pre><h3 id="2-3-配置集群"><a href="#2-3-配置集群" class="headerlink" title="2.3 配置集群"></a>2.3 配置集群</h3><p>（1）修改每个 tomcat实例 bin 目录下的 catalina.sh 文件</p>
+<p>把此配置添加到catalina.sh中( 第234行 ) ：</p>
+<pre><code>JAVA_OPTS=&quot;-DzkHost=192.168.25.140:2181,192.168.25.140:2182,192.168.25.140:2183&quot;
+</code></pre><p>JAVA_OPTS ,顾名思义,是用来设置JVM相关运行参数的变量 .  此配置用于在tomcat启动时找到 zookeeper集群。</p>
+<p>（2）配置 solrCloud 相关的配置。每个 solrhome 下都有一个 solr.xml，把其中的 ip 及端口号配置好（是对应的tomcat的IP和端口）。</p>
+<p>solrhomes/solrhome-1/solr.xml</p>
+<pre><code>&lt;solrcloud&gt;
+      &lt;str name=&quot;host&quot;&gt;192.168.25.140&lt;/str&gt;
+      &lt;int name=&quot;hostPort&quot;&gt;8180&lt;/int&gt;
+      &lt;str name=&quot;hostContext&quot;&gt;${hostContext:solr}&lt;/str&gt;
+      &lt;int name=&quot;zkClientTimeout&quot;&gt;${zkClientTimeout:30000}&lt;/int&gt;
+      &lt;bool name=&quot;genericCoreNodeNames&quot;&gt;${genericCoreNodeNames:true}&lt;/bool&gt;
+&lt;/solrcloud&gt;
+</code></pre><p>solrhomes/solrhome-2/solr.xml</p>
+<pre><code>&lt;solrcloud&gt;
+      &lt;str name=&quot;host&quot;&gt;192.168.25.140&lt;/str&gt;
+      &lt;int name=&quot;hostPort&quot;&gt;8280&lt;/int&gt;
+      &lt;str name=&quot;hostContext&quot;&gt;${hostContext:solr}&lt;/str&gt;
+      &lt;int name=&quot;zkClientTimeout&quot;&gt;${zkClientTimeout:30000}&lt;/int&gt;
+      &lt;bool name=&quot;genericCoreNodeNames&quot;&gt;${genericCoreNodeNames:true}&lt;/bool&gt;
+&lt;/solrcloud&gt;
+</code></pre><p>… </p>
+<p>（3）让 zookeeper 统一管理配置文件。需要把 solrhome下collection1/conf 目录上传到<br>zookeeper。上传任意 solrhome 中的配置文件即可。</p>
+<p>我们需要使用solr给我们提供的工具上传配置文件：</p>
+<p>solr-4.10.3/example/scripts/cloud-scripts/zkcli.sh</p>
+<p>将solr-4.10.3压缩包上传到linux，解压，然后进入solr-4.10.3/example/scripts/cloud-scripts目录 ，执行下列命令</p>
+<pre><code>./zkcli.sh -zkhost 192.168.25.140:2181,192.168.25.140:2182,192.168.25.140:2183 -cmd upconfig -confdir /usr/local/solrhomes/solrhome-1/collection1/conf -confname myconf
+</code></pre><p>参数解释</p>
+<p>-zkhost  ：指定zookeeper地址列表</p>
+<p>-cmd    ：指定命令。upconfig 为上传配置的命令</p>
+<p>-confdir  : 配置文件所在目录</p>
+<p>-confname : 配置名称</p>
+<h3 id="2-4-启动集群"><a href="#2-4-启动集群" class="headerlink" title="2.4 启动集群"></a>2.4 启动集群</h3><p>（1）启动每个 tomcat 实例。要保证 zookeeper 集群是启动状态。</p>
+<p>如果你想让某个文件夹下都可以执行，使用以下命令实现</p>
+<pre><code>chmod -R 777 solr-cloud
+</code></pre><p>（2）访问集群</p>
+<p>地址栏输入 <a href="http://192.168.25.140:8180/solr" target="_blank" rel="external">http://192.168.25.140:8180/solr</a>   ，可以看到Solr集群版的界面</p>
+<p><img src="https://i.imgur.com/T7Yi9jY.png" alt=""></p>
+<h1 id="分片配置"><a href="#分片配置" class="headerlink" title="分片配置"></a>分片配置</h1><p>（1）创建新的 Collection 进行分片处理。</p>
+<p>在浏览器输入以下地址，可以按照我们的要求  创建新的Collection </p>
+<pre><code>http://192.168.25.140:8180/solr/admin/collections?action=CREATE&amp;name=collection2&amp;numShards=2&amp;replicationFactor=2
+</code></pre><p>参数：</p>
+<ul>
+<li>name:将被创建的集合的名字</li>
+<li>numShards:集合创建时需要创建逻辑碎片的个数</li>
+<li>replicationFactor:分片的副本数。</li>
+</ul>
+<p>看到这个提示表示成功</p>
+<p><img src="https://i.imgur.com/0MnLQjc.png" alt=""></p>
+<p><img src="https://i.imgur.com/ctzCFdc.png" alt=""></p>
+<p>（2）删除不用的 Collection。执行以下命令</p>
+<pre><code>http://192.168.25.140:8480/solr/admin/collections?action=DELETE&amp;name=collection1
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">freemarker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/solr//" class="article-tag-list-link color5">solr</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/25/solr集群搭建/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/11/25/solr安装与配置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          solr的安装与配置
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/11/20/angular倒计时/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">angular倒计时简单实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -224,9 +497,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
