@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>solr的安装与配置 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#  ###1) 什么是solr  大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。  这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。">
+  <meta name="description" content="1) 什么是solr 大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。  这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。">
 <meta name="keywords" content="solr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="solr的安装与配置">
 <meta property="og:url" content="http://yoursite.com/2017/11/25/solr安装与配置/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="#  ###1) 什么是solr  大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。  这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。">
+<meta property="og:description" content="1) 什么是solr 大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。  这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/NbCCTip.png">
-<meta property="og:updated_time" content="2017-11-25T08:26:42.733Z">
+<meta property="og:updated_time" content="2017-11-25T08:31:07.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="solr的安装与配置">
-<meta name="twitter:description" content="#  ###1) 什么是solr  大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。  这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。">
+<meta name="twitter:description" content="1) 什么是solr 大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。  这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。">
 <meta name="twitter:image" content="https://i.imgur.com/NbCCTip.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
@@ -175,9 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p># </p>
-<p>###1) 什么是solr</p>
-<ul>
+        <h3 id="1-什么是solr"><a href="#1-什么是solr" class="headerlink" title="1) 什么是solr"></a>1) 什么是solr</h3><ul>
 <li><p>大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。</p>
 </li>
 <li><p>这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。</p>
@@ -192,7 +190,7 @@
 <li><p>Solr可以和Hadoop一起使用。由于Hadoop处理大量数据，Solr帮助我们从这么大的源中找到所需的信息。不仅限于搜索，Solr也可以用于存储目的。像其他NoSQL数据库一样，它是一种非关系数据存储和处理技术。<br>总之，Solr是一个可扩展的，可部署，搜索/存储引擎，优化搜索大量以文本为中心的数据。</p>
 </li>
 </ul>
-<p>###2) Solr安装<br>1：安装 Tomcat，解压缩即可。</p>
+<h3 id="2-Solr安装"><a href="#2-Solr安装" class="headerlink" title="2) Solr安装"></a>2) Solr安装</h3><p>1：安装 Tomcat，解压缩即可。</p>
 <p>2：解压 solr。</p>
 <p>3：把 solr 下的dist目录solr-4.10.3.war部署到 Tomcat\webapps下(去掉版本号)。</p>
 <p>4：启动 Tomcat解压缩 war 包</p>
@@ -207,8 +205,7 @@
 </code></pre><p>8：启动 Tomcat</p>
 <pre><code>http://IP:8080/solr/
 </code></pre><p> <img src="https://i.imgur.com/NbCCTip.png" alt=""></p>
-<p>###3) 中文分析器IK Analyzer</p>
-<p>IK Analyzer 是一个开源的，基亍 java 语言开发的轻量级的中文分词工具包。从 2006年 12 月推出 1.0 版开始， IKAnalyzer 已经推出了 4 个大版本。最初，它是以开源项目Luence 为应用主体的，结合词典分词和文法分析算法的中文分词组件。从 3.0 版本开始，IK 发展为面向 Java 的公用分词组件，独立亍 Lucene 项目，同时提供了对 Lucene 的默认优化实现。在 2012 版本中，IK 实现了简单的分词歧义排除算法，标志着 IK 分词器从单纯的词典分词向模拟语义分词衍化。</p>
+<h3 id="3-中文分析器IK-Analyzer"><a href="#3-中文分析器IK-Analyzer" class="headerlink" title="3) 中文分析器IK Analyzer"></a>3) 中文分析器IK Analyzer</h3><p>IK Analyzer 是一个开源的，基亍 java 语言开发的轻量级的中文分词工具包。从 2006年 12 月推出 1.0 版开始， IKAnalyzer 已经推出了 4 个大版本。最初，它是以开源项目Luence 为应用主体的，结合词典分词和文法分析算法的中文分词组件。从 3.0 版本开始，IK 发展为面向 Java 的公用分词组件，独立亍 Lucene 项目，同时提供了对 Lucene 的默认优化实现。在 2012 版本中，IK 实现了简单的分词歧义排除算法，标志着 IK 分词器从单纯的词典分词向模拟语义分词衍化。</p>
 <h4 id="IK-Analyzer配置"><a href="#IK-Analyzer配置" class="headerlink" title="IK Analyzer配置"></a>IK Analyzer配置</h4><p>步骤：</p>
 <p>1、把IKAnalyzer2012FF_u1.jar 添加到 solr 工程的 lib 目录下</p>
 <p>2、创建WEB-INF/classes文件夹  把扩展词典、停用词词典、配置文件放到 solr 工程的 WEB-INF/classes 目录下。</p>
@@ -216,8 +213,7 @@
 <pre><code>&lt;fieldType name=&quot;text_ik&quot; class=&quot;solr.TextField&quot;&gt;
      &lt;analyzer class=&quot;org.wltea.analyzer.lucene.IKAnalyzer&quot;/&gt;
 &lt;/fieldType&gt;
-</code></pre><p>###4) 配置域</p>
-<p>域相当于数据库的表字段，用户存放数据，因此用户根据业务需要去定义相关的Field（域），一般来说，每一种对应着一种数据，用户对同一种数据进行相同的操作。</p>
+</code></pre><h3 id="4-配置域"><a href="#4-配置域" class="headerlink" title="4) 配置域"></a>4) 配置域</h3><p>域相当于数据库的表字段，用户存放数据，因此用户根据业务需要去定义相关的Field（域），一般来说，每一种对应着一种数据，用户对同一种数据进行相同的操作。</p>
 <pre><code>域的常用属性：
 
 * name：指定域的名称
@@ -487,11 +483,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,11 +495,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集群</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
             
             <div class="clearfix"></div>

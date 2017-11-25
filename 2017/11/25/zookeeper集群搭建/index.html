@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Zookeeper集群简介 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="## ###1.1 为什么搭建Zookeeper集群 大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
-<meta name="keywords" content="zookeeper,集群">
+  <meta name="description" content="1.1 为什么搭建Zookeeper集群大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
+<meta name="keywords" content="集群,zookeeper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zookeeper集群简介">
 <meta property="og:url" content="http://yoursite.com/2017/11/25/zookeeper集群搭建/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="## ###1.1 为什么搭建Zookeeper集群 大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
+<meta property="og:description" content="1.1 为什么搭建Zookeeper集群大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/BEN8aua.png">
 <meta property="og:image" content="https://i.imgur.com/saG53pO.png">
 <meta property="og:image" content="https://i.imgur.com/5QFGvCo.png">
-<meta property="og:updated_time" content="2017-11-25T08:26:58.778Z">
+<meta property="og:updated_time" content="2017-11-25T08:31:42.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zookeeper集群简介">
-<meta name="twitter:description" content="## ###1.1 为什么搭建Zookeeper集群 大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
+<meta name="twitter:description" content="1.1 为什么搭建Zookeeper集群大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
 <meta name="twitter:image" content="https://i.imgur.com/BEN8aua.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
@@ -177,13 +177,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##</p>
-<p>###1.1 为什么搭建Zookeeper集群</p>
-<p>大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。</p>
+        <h3 id="1-1-为什么搭建Zookeeper集群"><a href="#1-1-为什么搭建Zookeeper集群" class="headerlink" title="1.1 为什么搭建Zookeeper集群"></a>1.1 为什么搭建Zookeeper集群</h3><p>大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。</p>
 <a id="more"></a>
 <p>zookeeper作为注册中心，服务器和客户端都要访问，如果有大量的并发，肯定会有等待。所以可以通过zookeeper集群解决。</p>
-<p>###1.2 了解Leader选举</p>
-<ul>
+<h3 id="1-2-了解Leader选举"><a href="#1-2-了解Leader选举" class="headerlink" title="1.2 了解Leader选举"></a>1.2 了解Leader选举</h3><ul>
 <li><p>Zookeeper的启动过程中leader选举是非常重要而且最复杂的一个环节。那么什么是leader选举呢？zookeeper为什么需要leader选举呢？zookeeper的leader选举的过程又是什么样子的？</p>
 </li>
 <li><p>首先我们来看看什么是leader选举。其实这个很好理解，leader选举就像总统选举一样，每人一票，获得多数票的人就当选为总统了。在zookeeper集群中也是一样，每个节点都会投票，如果某个节点获得超过半数以上的节点的投票，则该节点就是leader节点了。</p>
@@ -205,10 +202,7 @@
 </ul>
 </li>
 </ul>
-<p>#二丶 搭建Zookeeper集群</p>
-<p>##</p>
-<p>###2.1 准备工作</p>
-<p>重新部署一台虚拟机作为我们搭建集群的测试服务器。</p>
+<h1 id="搭建Zookeeper集群"><a href="#搭建Zookeeper集群" class="headerlink" title="搭建Zookeeper集群"></a>搭建Zookeeper集群</h1><h3 id="2-1-准备工作"><a href="#2-1-准备工作" class="headerlink" title="2.1 准备工作"></a>2.1 准备工作</h3><p>重新部署一台虚拟机作为我们搭建集群的测试服务器。</p>
 <p>（1）安装JDK  【此步骤省略】。</p>
 <p>（2）Zookeeper压缩包上传到服务器</p>
 <p>（3）将Zookeeper解压 ，创建data目录 ，将 conf下zoo_sample.cfg 文件改名为 zoo.cfg</p>
@@ -236,8 +230,7 @@ dataDir=/usr/local/zookeeper-cluster/zookeeper-2/data
 clientPort=2183
 
 dataDir=/usr/local/zookeeper-cluster/zookeeper-3/data
-</code></pre><p>###2.2 配置集群</p>
-<p>在每个zookeeper的 data 目录下创建一个 myid 文件，内容分别是1、2、3 。这个文件就是记录每个服务器的ID<br>    ——-知识点小贴士——</p>
+</code></pre><h3 id="2-2-配置集群"><a href="#2-2-配置集群" class="headerlink" title="2.2 配置集群"></a>2.2 配置集群</h3><p>在每个zookeeper的 data 目录下创建一个 myid 文件，内容分别是1、2、3 。这个文件就是记录每个服务器的ID<br>    ——-知识点小贴士——</p>
 <pre><code>如果你要创建的文本文件内容比较简单，我们可以通过echo 命令快速创建文件
 
 格式为：
@@ -268,7 +261,6 @@ server.3=192.168.25.140:2883:3883
 <p><img src="https://i.imgur.com/saG53pO.png" alt=""></p>
 <p>查询第三个为跟随者（从）</p>
 <p><img src="https://i.imgur.com/5QFGvCo.png" alt=""></p>
-<p>##</p>
 <h1 id="Dubbox连接zookeeper集群"><a href="#Dubbox连接zookeeper集群" class="headerlink" title="Dubbox连接zookeeper集群"></a>Dubbox连接zookeeper集群</h1><p>修改服务提供者和服务调用者的spring 配置文件</p>
 <pre><code>&lt;!-- 指定注册中心地址 --&gt;
 &lt;dubbo:registry
@@ -308,11 +300,11 @@ server.3=192.168.25.140:2883:3883
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
         		</li>
       		
 		</ul>
@@ -525,11 +517,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +529,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集群</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
             
             <div class="clearfix"></div>

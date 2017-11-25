@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.imgur.com/T7Yi9jY.png">
 <meta property="og:image" content="https://i.imgur.com/0MnLQjc.png">
 <meta property="og:image" content="https://i.imgur.com/ctzCFdc.png">
-<meta property="og:updated_time" content="2017-11-25T08:26:50.682Z">
+<meta property="og:updated_time" content="2017-11-25T08:30:50.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="solr集群搭建">
 <meta name="twitter:description" content="## 1. SolrCloud简介1.1 什么是SolrCloudSolrCloud(solr 云)是 Solr 提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用 SolrCloud。当一个系统的索引数据量少的时候是不需要使用 SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用 SolrCloud 来满足这些需求。">
@@ -188,8 +188,7 @@
 <p>2）自动容错</p>
 <p>3）近实时搜索</p>
 <p>4）查询时自动负载均衡</p>
-<p>####1.2 SolrCloud系统架构</p>
-<p><img src="https://i.imgur.com/K7gur8q.png" alt=""></p>
+<h4 id="1-2-SolrCloud系统架构"><a href="#1-2-SolrCloud系统架构" class="headerlink" title="1.2 SolrCloud系统架构"></a>1.2 SolrCloud系统架构</h4><p><img src="https://i.imgur.com/K7gur8q.png" alt=""></p>
 <p>【1】物理结构</p>
 <p>三个 Solr 实例（ 每个实例包括两个 Core），组成一个 SolrCloud。</p>
 <p>【2】逻辑结构</p>
@@ -214,8 +213,7 @@
 <p>搭建 solr 集群需要 7 台服务器（搭建伪分布式，建议虚拟机的内存 1G 以上）：</p>
 <p>需要三个 zookeeper 节点</p>
 <p>需要四个 tomcat 节点。</p>
-<h4 id="2-2-准备工作"><a href="#2-2-准备工作" class="headerlink" title="2.2 准备工作"></a>2.2 准备工作</h4><p>######环境准备</p>
-<ul>
+<h4 id="2-2-准备工作"><a href="#2-2-准备工作" class="headerlink" title="2.2 准备工作"></a>2.2 准备工作</h4><h6 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h6><ul>
 <li><p>CentOS-6.5-i386-bin-DVD1.iso</p>
 </li>
 <li><p>jdk-7u72-linux-i586.tar.gz</p>
@@ -571,11 +569,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,11 +581,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集群</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
             
             <div class="clearfix"></div>
