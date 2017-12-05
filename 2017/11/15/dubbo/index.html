@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Dubbo学习 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是dubbo? 分布式服务框架">
+  <meta name="description" content="1. 什么是dubbo? 一款远程分布式服务调用框架,提高性能和透明化的RPC远程服务调用方案,SOA服务治理方案  RPC: 远程过程调用协议 SOA: 面向服务架构     功能 基于接口的远程呼叫 容错机制 负载均衡 自动服务注册和发现  dubbo使用 环境依赖 &amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt">
 <meta name="keywords" content="dubbo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dubbo学习">
 <meta property="og:url" content="http://yoursite.com/2017/11/15/dubbo/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="什么是dubbo? 分布式服务框架">
+<meta property="og:description" content="1. 什么是dubbo? 一款远程分布式服务调用框架,提高性能和透明化的RPC远程服务调用方案,SOA服务治理方案  RPC: 远程过程调用协议 SOA: 面向服务架构     功能 基于接口的远程呼叫 容错机制 负载均衡 自动服务注册和发现  dubbo使用 环境依赖 &amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-15T13:01:15.102Z">
+<meta property="og:image" content="https://i.imgur.com/yROEVXF.png">
+<meta property="og:updated_time" content="2017-12-05T07:42:54.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dubbo学习">
-<meta name="twitter:description" content="什么是dubbo? 分布式服务框架">
+<meta name="twitter:description" content="1. 什么是dubbo? 一款远程分布式服务调用框架,提高性能和透明化的RPC远程服务调用方案,SOA服务治理方案  RPC: 远程过程调用协议 SOA: 面向服务架构     功能 基于接口的远程呼叫 容错机制 负载均衡 自动服务注册和发现  dubbo使用 环境依赖 &amp;lt;dependency&amp;gt;     &amp;lt;groupId&amp;gt;com.alibaba&amp;lt;/groupId&amp;gt">
+<meta name="twitter:image" content="https://i.imgur.com/yROEVXF.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -173,11 +175,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>什么是dubbo?<ul>
-<li>分布式服务框架</li>
+        <h3 id="1-什么是dubbo"><a href="#1-什么是dubbo" class="headerlink" title="1. 什么是dubbo?"></a>1. 什么是dubbo?</h3><ul>
+<li><p>一款远程分布式服务调用框架,提高性能和透明化的RPC远程服务调用方案,SOA服务治理方案</p>
+<ul>
+<li>RPC: 远程过程调用协议</li>
+<li>SOA: 面向服务架构</li>
 </ul>
 </li>
+</ul>
+<p><img src="https://i.imgur.com/yROEVXF.png" alt=""></p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>基于接口的远程呼叫</li>
+<li>容错机制</li>
+<li>负载均衡</li>
+<li>自动服务注册和发现</li>
+</ul>
+<h3 id="dubbo使用"><a href="#dubbo使用" class="headerlink" title="dubbo使用"></a>dubbo使用</h3><ul>
+<li><p>环境依赖</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+        &lt;artifactId&gt;dubbo&lt;/artifactId&gt;
+    &lt;version&gt;2.5.7&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></li>
 </ul>
 
       
@@ -416,11 +436,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -428,15 +444,23 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -445,10 +469,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>
