@@ -6,24 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Zookeeper集群简介 | wlds</title>
+  <title>hadoop编译 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.1 为什么搭建Zookeeper集群大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
-<meta name="keywords" content="集群,zookeeper">
+  <meta name="description" content="一、准备的资料源码根目录下有个BUILDINT.txt，打开即可看见里面关于编译hadoop的一些环境要求　 　  64位linux系统CentOS 6.7。 JDK 1.7+。 maven-3.2.5。 一个项目管理综合工具, 使用标准的目录结构和默认构建生命周期 protobuf 2.5.0  google的一种数据交换的格式，它独立于语言，独立于平台 hadoop-2.x.x-src">
+<meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zookeeper集群简介">
-<meta property="og:url" content="http://yoursite.com/2017/11/25/zookeeper集群搭建/index.html">
+<meta property="og:title" content="hadoop编译">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/hadoop编译/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="1.1 为什么搭建Zookeeper集群大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
+<meta property="og:description" content="一、准备的资料源码根目录下有个BUILDINT.txt，打开即可看见里面关于编译hadoop的一些环境要求　 　  64位linux系统CentOS 6.7。 JDK 1.7+。 maven-3.2.5。 一个项目管理综合工具, 使用标准的目录结构和默认构建生命周期 protobuf 2.5.0  google的一种数据交换的格式，它独立于语言，独立于平台 hadoop-2.x.x-src">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/BEN8aua.png">
-<meta property="og:image" content="https://i.imgur.com/saG53pO.png">
-<meta property="og:image" content="https://i.imgur.com/5QFGvCo.png">
-<meta property="og:updated_time" content="2017-11-25T08:31:42.955Z">
+<meta property="og:image" content="https://i.imgur.com/nJO6Yqi.png">
+<meta property="og:updated_time" content="2017-12-05T07:15:21.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zookeeper集群简介">
-<meta name="twitter:description" content="1.1 为什么搭建Zookeeper集群大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。">
-<meta name="twitter:image" content="https://i.imgur.com/BEN8aua.png">
+<meta name="twitter:title" content="hadoop编译">
+<meta name="twitter:description" content="一、准备的资料源码根目录下有个BUILDINT.txt，打开即可看见里面关于编译hadoop的一些环境要求　 　  64位linux系统CentOS 6.7。 JDK 1.7+。 maven-3.2.5。 一个项目管理综合工具, 使用标准的目录结构和默认构建生命周期 protobuf 2.5.0  google的一种数据交换的格式，它独立于语言，独立于平台 hadoop-2.x.x-src">
+<meta name="twitter:image" content="https://i.imgur.com/nJO6Yqi.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -157,116 +155,105 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-zookeeper集群搭建" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hadoop编译" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Zookeeper集群简介
+      hadoop编译
     </h1>
   
 
         
-        <a href="/2017/11/25/zookeeper集群搭建/" class="archive-article-date">
-  	<time datetime="2017-11-25T08:01:10.138Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
+        <a href="/2017/12/05/hadoop编译/" class="archive-article-date">
+  	<time datetime="2017-12-05T07:05:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-1-为什么搭建Zookeeper集群"><a href="#1-1-为什么搭建Zookeeper集群" class="headerlink" title="1.1 为什么搭建Zookeeper集群"></a>1.1 为什么搭建Zookeeper集群</h3><p>大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。</p>
-<a id="more"></a>
-<p>zookeeper作为注册中心，服务器和客户端都要访问，如果有大量的并发，肯定会有等待。所以可以通过zookeeper集群解决。</p>
-<h3 id="1-2-了解Leader选举"><a href="#1-2-了解Leader选举" class="headerlink" title="1.2 了解Leader选举"></a>1.2 了解Leader选举</h3><ul>
-<li><p>Zookeeper的启动过程中leader选举是非常重要而且最复杂的一个环节。那么什么是leader选举呢？zookeeper为什么需要leader选举呢？zookeeper的leader选举的过程又是什么样子的？</p>
-</li>
-<li><p>首先我们来看看什么是leader选举。其实这个很好理解，leader选举就像总统选举一样，每人一票，获得多数票的人就当选为总统了。在zookeeper集群中也是一样，每个节点都会投票，如果某个节点获得超过半数以上的节点的投票，则该节点就是leader节点了。</p>
-</li>
-<li><p>以一个简单的例子来说明整个选举的过程.</p>
+        <h3 id="一、准备的资料"><a href="#一、准备的资料" class="headerlink" title="一、准备的资料"></a>一、准备的资料</h3><p>源码根目录下有个BUILDINT.txt，打开即可看见里面关于编译hadoop的一些环境要求　
+　</p>
 <ul>
-<li><p>假设有五台服务器组成的zookeeper集群,它们的id从1-5,同时它们都是最新启动的,也就是没有历史数据,在存放数据量这一点上,都是一样的.假设这些服务器依序启动,来看看会发生什么 。</p>
-</li>
-<li><p>服务器1启动,此时只有它一台服务器启动了,它发出去的报没有任何响应,所以它的选举状态一直是LOOKING状态</p>
-</li>
-<li><p>服务器2启动,它与最开始启动的服务器1进行通信,互相交换自己的选举结果,由于两者都没有历史数据,所以id值较大的服务器2胜出,但是由于没有达到超过半数以上的服务器都同意选举它(这个例子中的半数以上是3),所以服务器1,2还是继续保持LOOKING状态.</p>
-</li>
-<li><p>服务器3启动,根据前面的理论分析,服务器3成为服务器1,2,3中的老大,而与上面不同的是,此时有三台服务器选举了它,所以它成为了这次选举的leader.</p>
-</li>
-<li><p>服务器4启动,根据前面的分析,理论上服务器4应该是服务器1,2,3,4中最大的,但是由于前面已经有半数以上的服务器选举了服务器3,所以它只能接收当小弟的命了.</p>
-</li>
-<li><p>服务器5启动,同4一样,当小弟</p>
-</li>
+<li>64位linux系统CentOS 6.7。</li>
+<li>JDK 1.7+。</li>
+<li>maven-3.2.5。 一个项目管理综合工具, 使用标准的目录结构和默认构建生命周期</li>
+<li>protobuf 2.5.0  google的一种数据交换的格式，它独立于语言，独立于平台</li>
+<li>hadoop-2.x.x-src 　　 </li>
+<li>ant-1.9.7　　将软件编译、测试、部署等步骤联系在一起加以自动化的一个工具<a id="more"></a>
+　 这些文件，需要上传到linux系统中，我使用的是SSH来进行上传的，直接上传到了 /root 目录下。同时由于安装过程中需要在线下载东西，古需要保持linux系统的网络畅通。</li>
 </ul>
-</li>
-</ul>
-<h1 id="搭建Zookeeper集群"><a href="#搭建Zookeeper集群" class="headerlink" title="搭建Zookeeper集群"></a>搭建Zookeeper集群</h1><h3 id="2-1-准备工作"><a href="#2-1-准备工作" class="headerlink" title="2.1 准备工作"></a>2.1 准备工作</h3><p>重新部署一台虚拟机作为我们搭建集群的测试服务器。</p>
-<p>（1）安装JDK  【此步骤省略】。</p>
-<p>（2）Zookeeper压缩包上传到服务器</p>
-<p>（3）将Zookeeper解压 ，创建data目录 ，将 conf下zoo_sample.cfg 文件改名为 zoo.cfg</p>
-<p>（4）建立/usr/local/zookeeper-cluster目录，将解压后的Zookeeper复制到以下三个目录</p>
-<pre><code>/usr/local/zookeeper-cluster/zookeeper-1
+<p>###二、安装JDK<br>　　<br>JDK的安装百度一下有很多文章，我使用的是 jdk-7u71-linux-x64.tar.gz。在oracle的官网上也能够下载。jdk的安装在linux下就是一个加压缩的过程。 </p>
+<pre><code> 1      cd  /root
+ 2      tar -zxvf jdk-7u71-linux-x64.tar.gz
+ 3      配置环境变量：vim /etc/profile
+ 4      输入命令进入编辑模式：i
+ 5      在文件最后添加：export JAVA_HOME=/root/jdk1.7.0_71
+ 6                              export PATH=.:$PATH:$JAVA_HOME/bin
+ 7      保存退出（按下Esc，输入冒号，输入wq回车）
+ 8      使环境变量生效：source  /etc/profile
+ 9      检测安装是否成功：
+10           java  -version
+11           javac  -version 
+</code></pre><p>###三、安装maven<br>　　<br>这个和安装jdk是一样的，安装成后同样需要配置环境变量
+　　</p>
+<pre><code>export MAVEN_HOME=/usr/mvn/apache-maven-3.2.5
+export PATH=.:$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
+</code></pre><p>同样，输入命令使配置文件生效　　</p>
+<pre><code>source /etc/profile
+</code></pre><p>检测是否安装成功：　</p>
+<pre><code>mvn  -version
+</code></pre><p> 能够看到关于maven的一些信息，包括所使用的jdk</p>
+<p>###四、安装protobuf<br>　　<br>   这一步比较关键，protobuf最好是提前下载然后上传上去。安装protobuf前，需要安装一些其他的东西</p>
+<pre><code>yum  install  gcc    安装c++
+yum  install  gcc-c++          然后会两次提示输入 y（yes/no）
+yum install  make          
+</code></pre><p>  接下来便是安装protobuf，同样是一个解压缩的过程</p>
+<pre><code>cd  /root
+tar -zxvf protobuf-2.5.0.tar.gz
+</code></pre><p>   然后进入到安装目录中，以此输入一下命令：　</p>
+<pre><code>1  cd  /protobuf-2.5.0
+2  ./ configure
+3  make
+4  make  install
+</code></pre><p>   我在进行上面第二个命令，对configure进行预编译时报错，查看异常后，是c++没有安装成功，便再一次执行了：yum install  gcc-c++ 命令，OK<br>   make  命令执行的时间比较长，最后一个命令的执行安装，如果出现错误，重新来过即可</p>
+<p>   测试   </p>
+<pre><code>protoc  --version
+</code></pre><p>###五、安装CMake</p>
+<p>　   CMake 需要2.6以上的版本，在安装的时候会提示输入 y/N，同时由于安装这个组件是需要联网的，故根据网速不同，安装的进度也不一样</p>
+<pre><code>1     yum  install  cmake         
+2     yum  install  openssl-devel    
+3     yum  install  ncurses-devel
+</code></pre><p>###六、ant 安装   </p>
+<pre><code>tar zxvf  apache-ant-1.9.4-bin.tar.gz
+</code></pre><p>   配置环境变量</p>
+<pre><code>export ANT_HOME=/root/apache-ant-1.9.4
+export PATH=.:$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:$ANT_HOME/bin
+</code></pre><p>   生效以及测试　　</p>
+<pre><code>1  source /etc/profile
+2  ant  -version
+</code></pre><p>###七、编译hadoop<br>  1、解压hadoop源码包　　<br>　　<br>     tar -zxvf hadoop-2.5.2-src.tar.gz</p>
+<p>   进入文件夹里面，里面有一个文件BUILDINT.txt，打开即可看见里面关于编译hadoop的一些环境要求　</p>
+<pre><code>1   cd /root/hadoop-2.5.2-src/
+2   cd hadoop-2.5.2-src
+3 
+4   vim  BUILDINT.txt
+5  
+</code></pre><p>   2、编译hadoop</p>
+<p>   进入解压后的原文件中，即上面查看BUILDING.txt文件目录，然后输入一下命令即可</p>
+<pre><code>mvn package -Pdist,native -DskipTests -Dtar
+</code></pre><p>   或者是下面的命令　</p>
+<pre><code>mvn  package -DeskipTests -Pdist,native
+</code></pre><p>   3、等带编译结果</p>
+<p>编译完成后会有提示，SUCCESS / FAILURE。如下</p>
+<p><img src="https://i.imgur.com/nJO6Yqi.png" alt=""></p>
+<p>如果编译失败，向上滚动，变能够查看什么地方出错了。</p>
+<p>   4、查看编译结果　</p>
+<p>　　   同样在刚刚进行编译的那个目录下，有一个 hadoop-dist文件夹，进入里面的target文件夹，然后就可以看到编译成功64位的hadoop文件，解压后的在 hadoop-2.5.2 这个文件夹中，同时还生成了一个压缩包：hadoop-2.5.2-tar.gz 这个压缩包可以拷贝到别的机器上进行安装 </p>
 
-/usr/local/zookeeper-cluster/zookeeper-2
-
-/usr/local/zookeeper-cluster/zookeeper-3
-</code></pre><p>(5) 配置每一个Zookeeper 的dataDir（cfg） clientPort 分别为2181 2182 2183</p>
-<pre><code>修改/usr/local/zookeeper-cluster/zookeeper-1/conf/zoo.cfg
-
-clientPort=2181
-
-dataDir=/usr/local/zookeeper-cluster/zookeeper-1/data
-
-修改/usr/local/zookeeper-cluster/zookeeper-2/conf/zoo.cfg
-
-clientPort=2182
-
-dataDir=/usr/local/zookeeper-cluster/zookeeper-2/data
-
-修改/usr/local/zookeeper-cluster/zookeeper-3/conf/zoo.cfg
-
-clientPort=2183
-
-dataDir=/usr/local/zookeeper-cluster/zookeeper-3/data
-</code></pre><h3 id="2-2-配置集群"><a href="#2-2-配置集群" class="headerlink" title="2.2 配置集群"></a>2.2 配置集群</h3><p>在每个zookeeper的 data 目录下创建一个 myid 文件，内容分别是1、2、3 。这个文件就是记录每个服务器的ID<br>    ——-知识点小贴士——</p>
-<pre><code>如果你要创建的文本文件内容比较简单，我们可以通过echo 命令快速创建文件
-
-格式为：
-
-echo 内容 &gt;文件名
-
-例如我们为第一个zookeeper指定ID为1，则输入命令 echo 1 &gt; myid
-</code></pre><p>（2）在每一个zookeeper 的 zoo.cfg配置客户端访问端口（clientPort）和集群服务器IP列表。</p>
-<p>集群服务器IP列表如下</p>
-<pre><code>server.1=192.168.25.140:2881:3881
-
-server.2=192.168.25.140:2882:3882
-
-server.3=192.168.25.140:2883:3883
-</code></pre><p>2.3 启动</p>
-<p>启动集群就是分别启动每个实例。</p>
-<pre><code>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh start
-
-/usr/local/zookeeper-cluster/zookeeper-2/bin/zkServer.sh start
-
-/usr/local/zookeeper-cluster/zookeeper-3/bin/zkServer.sh start
-</code></pre><p>启动后我们查询一下每个实例的运行状态</p>
-<p>先查询第一个服务</p>
-<p>/usr/local/zookeeper-cluster/zookeeper-1/bin/zkServer.sh status</p>
-<p><img src="https://i.imgur.com/BEN8aua.png" alt=""></p>
-<p>Mode为follower表示是跟随者（从）</p>
-<p>再查询第二个服务Mod 为leader表示是领导者（主）</p>
-<p><img src="https://i.imgur.com/saG53pO.png" alt=""></p>
-<p>查询第三个为跟随者（从）</p>
-<p><img src="https://i.imgur.com/5QFGvCo.png" alt=""></p>
-<h1 id="Dubbox连接zookeeper集群"><a href="#Dubbox连接zookeeper集群" class="headerlink" title="Dubbox连接zookeeper集群"></a>Dubbox连接zookeeper集群</h1><p>修改服务提供者和服务调用者的spring 配置文件</p>
-<pre><code>&lt;!-- 指定注册中心地址 --&gt;
-&lt;dubbo:registry
-    protocol=&quot;zookeeper&quot; address=&quot;192.168.25.140:2181,192.168.25.140:2182,192.168.25.140:2183&quot;&gt;
-&lt;/dubbo:registry&gt;
-</code></pre>
       
 
       
@@ -300,28 +287,13 @@ server.3=192.168.25.140:2883:3883
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/zookeeper//" class="article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -371,7 +343,7 @@ server.3=192.168.25.140:2883:3883
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/25/zookeeper集群搭建/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/05/hadoop编译/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -385,18 +357,9 @@ server.3=192.168.25.140:2883:3883
   
 <nav id="article-nav">
   
-    <a href="/2017/12/05/hadoop编译/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hadoop编译
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/25/solr安装与配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">solr的安装与配置</div>
+    <a href="/2017/11/25/zookeeper集群搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Zookeeper集群简介</div>
       <i class="icon-circle-right"></i>
     </a>
   

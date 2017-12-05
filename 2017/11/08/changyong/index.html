@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="wlds">
 <meta property="og:description" content="Windows常用操作查看端口进程：    netstat -ano | findstr “8086” 强制杀死进程：    tskill pid 根据进程id查询进程信息:    tasklist | findstr pid">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-13T08:00:34.459Z">
+<meta property="og:updated_time" content="2017-11-30T11:59:40.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用命令">
 <meta name="twitter:description" content="Windows常用操作查看端口进程：    netstat -ano | findstr “8086” 强制杀死进程：    tskill pid 根据进程id查询进程信息:    tasklist | findstr pid">
@@ -225,6 +225,13 @@
 <p>查看linux版本：    lsb_release -a</p>
 <p>查看linux位数:    getconf LONG_BIT</p>
 <p>列出本机所有java进程的pid:    jps</p>
+<h3 id="OpenSSH的使用"><a href="#OpenSSH的使用" class="headerlink" title="OpenSSH的使用"></a>OpenSSH的使用</h3><p>OpenSSH 是 SSH 协议的免费开源实现</p>
+<p>使用示例:  配置在node-1 至 node-2及其的免密登录</p>
+<p>a) 在node-1 机器上</p>
+<p> ssh-keygen -t rsa [dsa] 按四下回车</p>
+<p>b) 将公钥拷贝给node-2机器</p>
+<p>ssh-copy-id node-2</p>
+<p>首次连接后需要输入用户名密码,验证成功后 后续免密登录</p>
 
       
 
@@ -457,19 +464,23 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,11 +492,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>
