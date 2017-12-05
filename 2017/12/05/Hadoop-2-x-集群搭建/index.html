@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wlds">
 <meta property="og:description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-05T08:24:48.481Z">
+<meta property="og:updated_time" content="2017-12-05T08:43:36.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop 2.x 集群搭建">
 <meta name="twitter:description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
@@ -179,7 +179,8 @@
 <li><p>第一种：通过Linux图形界面进行修改(桌面版本Centos)</p>
 <p>  进入Linux图形界面 -&gt; 右键点击右上方的两个小电脑 -&gt; 点击Edit connections</p>
 <pre><code>-&gt; 选中当前网络System eth0 -&gt; 点击edit按钮 -&gt; 选择IPv4 -&gt; method选择为manual -&gt;
-</code></pre><p>点击add按钮 -&gt; 添加IP：192.168.1.101 子网掩码：255.255.255.0 网关：192.168.1.1 -&gt; apply</p>
+</code></pre><a id="more"></a>
+<p>点击add按钮 -&gt; 添加IP：192.168.1.101 子网掩码：255.255.255.0 网关：192.168.1.1 -&gt; apply</p>
 </li>
 <li><p>第二种：修改配置文件方式</p>
 </li>
@@ -260,10 +261,14 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 #刷新配置
 source /etc/profile
 </code></pre><hr>
-<p>3.安装hadoop2.7.4<br>    上传hadoop的安装包到服务器<br>     hadoop-2.7.4-with-centos-6.7.tar.gz<br>     解压安装包<br>     tar zxvf hadoop-2.7.4-with-centos-6.7.tar.gz</p>
-<pre><code>注意：hadoop2.x的配置文件目录：$HADOOP_HOME/etc/hadoop
-</code></pre><hr>
-<p>3.1配置hadoop</p>
+<p>###3.安装hadoop2.7.4</p>
+<p>上传hadoop的安装包到服务器</p>
+<pre><code>hadoop-2.7.4-with-centos-6.7.tar.gz
+</code></pre><p>解压安装包</p>
+<pre><code>tar zxvf hadoop-2.7.4-with-centos-6.7.tar.gz
+</code></pre><p>注意：hadoop2.x的配置文件目录：$HADOOP_HOME/etc/hadoop</p>
+<hr>
+<p>####3.1配置hadoop</p>
 <p>第一个：hadoop-env.sh</p>
 <p>vi hadoop-env.sh</p>
 <h2 id="export-JAVA-HOME-root-apps-jdk1-8-0-65"><a href="#export-JAVA-HOME-root-apps-jdk1-8-0-65" class="headerlink" title="export JAVA_HOME=/root/apps/jdk1.8.0_65"></a>export JAVA_HOME=/root/apps/jdk1.8.0_65</h2><p>第二个：core-site.xml</p>
@@ -327,7 +332,7 @@ source /etc/profile
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>img/aaa.jpg<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>/favicon.png<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     
@@ -562,15 +567,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集群</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
