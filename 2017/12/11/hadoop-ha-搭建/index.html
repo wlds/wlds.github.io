@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>mysql-linux-安装 | wlds</title>
+  <title>hadoop ha 搭建 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一丶 yum在线安装mysql yum install mysql mysql-server mysql-devel  完成后，用  /etc/init.d/mysqld start    启动mysql 启动mysql控制台：     mysql">
-<meta name="keywords" content="mysql">
+  <meta name="description" content="准备工作1.修改Linux主机名 2.修改IP 3.修改主机名和IP的映射关系 /etc/hosts ---------注意--------- 如果你们公司是租用的服务器或是使用的云主机（如华为用主机、阿里云主机等） /etc/hosts里面要配置的是内网IP地址和主机名的映射关系 4.关闭防火墙">
+<meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql-linux-安装">
-<meta property="og:url" content="http://yoursite.com/2017/12/11/mysql-linux-安装/index.html">
+<meta property="og:title" content="hadoop ha 搭建">
+<meta property="og:url" content="http://yoursite.com/2017/12/11/hadoop-ha-搭建/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="一丶 yum在线安装mysql yum install mysql mysql-server mysql-devel  完成后，用  /etc/init.d/mysqld start    启动mysql 启动mysql控制台：     mysql">
+<meta property="og:description" content="准备工作1.修改Linux主机名 2.修改IP 3.修改主机名和IP的映射关系 /etc/hosts ---------注意--------- 如果你们公司是租用的服务器或是使用的云主机（如华为用主机、阿里云主机等） /etc/hosts里面要配置的是内网IP地址和主机名的映射关系 4.关闭防火墙">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-11T06:41:43.429Z">
+<meta property="og:updated_time" content="2017-12-11T08:30:54.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql-linux-安装">
-<meta name="twitter:description" content="一丶 yum在线安装mysql yum install mysql mysql-server mysql-devel  完成后，用  /etc/init.d/mysqld start    启动mysql 启动mysql控制台：     mysql">
+<meta name="twitter:title" content="hadoop ha 搭建">
+<meta name="twitter:description" content="准备工作1.修改Linux主机名 2.修改IP 3.修改主机名和IP的映射关系 /etc/hosts ---------注意--------- 如果你们公司是租用的服务器或是使用的云主机（如华为用主机、阿里云主机等） /etc/hosts里面要配置的是内网IP地址和主机名的映射关系 4.关闭防火墙">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -153,63 +153,327 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mysql-linux-安装" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hadoop-ha-搭建" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      mysql-linux-安装
+      hadoop ha 搭建
     </h1>
   
 
         
-        <a href="/2017/12/11/mysql-linux-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:34:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
+        <a href="/2017/12/11/hadoop-ha-搭建/" class="archive-article-date">
+  	<time datetime="2017-12-11T08:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一丶-yum在线安装"><a href="#一丶-yum在线安装" class="headerlink" title="一丶 yum在线安装"></a>一丶 yum在线安装</h3><p>mysql</p>
-<pre><code>yum install mysql mysql-server mysql-devel 
-</code></pre><p>完成后，用  /etc/init.d/mysqld start    启动mysql</p>
-<p>启动mysql控制台： </p>
-<p>   mysql<br><a id="more"></a><br>    mysql&gt;; USE mysql;<br>    mysql&gt;; UPDATE user SET Password=PASSWORD(‘123456’) WHERE user=’root’;<br>    mysql&gt;; FLUSH PRIVILEGES; </p>
-<p>   允许远程登录 </p>
-<pre><code>mysql -u root -p 
-Enter Password: &lt;your new password&gt; 
-mysql&gt;GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;123456&apos; WITH GRANT OPTION; 
-</code></pre><p>   完成后就能远程管理mysql了。</p>
-<p>   mysql服务名字   </p>
-<pre><code>service  mysqld start
-</code></pre><p>   GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘123456’ WITH GRANT OPTION; </p>
-<p>设置mysql服务开机启动</p>
-<pre><code>chkconfig on mysqld
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.修改Linux主机名</p>
+<p>2.修改IP</p>
+<p>3.修改主机名和IP的映射关系 /etc/hosts</p>
+<pre><code>---------注意---------
+如果你们公司是租用的服务器或是使用的云主机（如华为用主机、阿里云主机等）
+/etc/hosts里面要配置的是内网IP地址和主机名的映射关系
+</code></pre><p>4.关闭防火墙<br><a id="more"></a><br>5.ssh免登陆</p>
+<p>6.安装JDK，配置环境变量等</p>
+<p>集群部署节点角色的规划（7节点）</p>
+<pre><code>------------------
+server01   namenode   zkfc
+server02   namenode   zkfc
+server03   resourcemanager
+server04   resourcemanager
+server05   datanode   nodemanager      zookeeper     journal node
+server06   datanode   nodemanager      zookeeper     journal node 
+server07   datanode   nodemanager      zookeeper     journal node 
 
-chkconfig --list mysqld  ## 查看mysql服务是否开始启动
-</code></pre><p>###二丶 本地安装</p>
-<p>查看系统之前是否已安装MySQL</p>
-<pre><code>rpm -qa | grep mysql
-</code></pre><p>有的话，卸载</p>
-<pre><code>rpm -e mysql-libs-5.1.66-2.el6_3.i686 --nodeps
-</code></pre><p>离线安装mysql rpm</p>
-<pre><code>rpm -ivh MySQL-server-5.5.28-1.linux2.6.x86_64.rpm --nodeps --force
-rpm -ivh MySQL-client-5.5.28-1.linux2.6.x86_64.rpm 
+------------------
+</code></pre><p>集群部署节点角色的规划（3节点）</p>
+<pre><code>------------------
+server01   namenode    resourcemanager  zkfc   nodemanager  datanode   zookeeper   journal node
+server02   namenode    resourcemanager  zkfc   nodemanager  datanode   zookeeper   journal node
+server03   datanode    nodemanager     zookeeper    journal node
+------------------
+</code></pre><p>###安装步骤：</p>
+<p>1.安装配置zooekeeper集群</p>
+<pre><code>1.1解压
+    tar -zxvf zookeeper-3.4.5.tar.gz -C /home/hadoop/app/
+1.2修改配置
+    cd /home/hadoop/app/zookeeper-3.4.5/conf/
+    cp zoo_sample.cfg zoo.cfg
+    vim zoo.cfg
+    修改：dataDir=/home/hadoop/app/zookeeper-3.4.5/tmp
+    在最后添加：
+    server.1=hadoop05:2888:3888
+    server.2=hadoop06:2888:3888
+    server.3=hadoop07:2888:3888
+    保存退出
+    然后创建一个tmp文件夹
+    mkdir /home/hadoop/app/zookeeper-3.4.5/tmp
+    echo 1 &gt; /home/hadoop/app/zookeeper-3.4.5/tmp/myid
+1.3将配置好的zookeeper拷贝到其他节点(首先分别在hadoop06、hadoop07根目录下创建一个hadoop目录：mkdir /hadoop)
+    scp -r /home/hadoop/app/zookeeper-3.4.5/ hadoop06:/home/hadoop/app/
+    scp -r /home/hadoop/app/zookeeper-3.4.5/ hadoop07:/home/hadoop/app/
 
-（-ivh ：安装显示安装进度--install--verbose--hash）
-</code></pre><p>启动mysql </p>
-<pre><code>service mysql start
-</code></pre><p>MySQL安全配置向导 </p>
-<pre><code>mysql_secure_installation
+    注意：修改hadoop06、hadoop07对应/hadoop/zookeeper-3.4.5/tmp/myid内容
+    hadoop06：
+        echo 2 &gt; /home/hadoop/app/zookeeper-3.4.5/tmp/myid
+    hadoop07：
+        echo 3 &gt; /home/hadoop/app/zookeeper-3.4.5/tmp/myid
+</code></pre><p>2.安装配置hadoop集群</p>
+<pre><code>2.1解压
+    tar -zxvf hadoop-2.6.4.tar.gz -C /home/hadoop/app/
+2.2配置HDFS（hadoop2.0所有的配置文件都在$HADOOP_HOME/etc/hadoop目录下）
+    #将hadoop添加到环境变量中
+    vim /etc/profile
+    export JAVA_HOME=/usr/java/jdk1.7.0_55
+    export HADOOP_HOME=/hadoop/hadoop-2.6.4
+    export PATH=$PATH:$JAVA_HOME/cluster1n:$HADOOP_HOME/cluster1n
 
-（注意：删除匿名用户，允许用户远程连接）
+    #hadoop2.0的配置文件全部在$HADOOP_HOME/etc/hadoop下
+    cd /home/hadoop/app/hadoop-2.6.4/etc/hadoop
 
-登陆mysql
-mysql -u root -p
-</code></pre>
+    2.2.1修改hadoop-env.sh
+    export JAVA_HOME=/home/hadoop/app/jdk1.7.0_55
+</code></pre><p>###############################################################################</p>
+<p>2.2.2修改core-site.xml</p>
+<configuration><br><!-- 集群名称在这里指定！该值来自于hdfs-site.xml中的配置 --><br><property><br><name>fs.defaultFS</name><br><value>hdfs://cluster1</value><br></property><br><!-- 这里的路径默认是NameNode、DataNode、JournalNode等存放数据的公共目录 --><br><property><br><name>hadoop.tmp.dir</name><br><value>/root/apps/hadoop/tmp</value><br></property><br><br><!-- ZooKeeper集群的地址和端口。注意，数量一定是奇数，且不少于三个节点--><br><property><br><name>ha.zookeeper.quorum</name><br><value>hadoop05:2181,hadoop06:2181,hadoop07:2181</value><br></property><br></configuration>
+
+<p>###############################################################################</p>
+<p>2.2.3修改hdfs-site.xml</p>
+<pre><code>&lt;configuration&gt;
+    &lt;!--指定hdfs的nameservice为cluster1，需要和core-site.xml中的保持一致 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.nameservices&lt;/name&gt;
+        &lt;value&gt;cluster1&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- cluster1下面有两个NameNode，分别是nn1，nn2 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.ha.namenodes.cluster1&lt;/name&gt;
+        &lt;value&gt;nn1,nn2&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- nn1的RPC通信地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.rpc-address.cluster1.nn1&lt;/name&gt;
+        &lt;value&gt;mini1:9000&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- nn1的http通信地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.http-address.cluster1.nn1&lt;/name&gt;
+        &lt;value&gt;hadoop00:50070&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- nn2的RPC通信地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.rpc-address.cluster1.nn2&lt;/name&gt;
+        &lt;value&gt;hadoop01:9000&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- nn2的http通信地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.http-address.cluster1.nn2&lt;/name&gt;
+        &lt;value&gt;hadoop01:50070&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 指定NameNode的edits元数据在JournalNode上的存放位置 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.shared.edits.dir&lt;/name&gt;
+        &lt;value&gt;qjournal://hadoop05:8485;hadoop06:8485;hadoop07:8485/cluster1&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 指定JournalNode在本地磁盘存放数据的位置 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.journalnode.edits.dir&lt;/name&gt;
+        &lt;value&gt;/home/hadoop/app/hdpdata/journaldata&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 开启NameNode失败自动切换 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.ha.automatic-failover.enabled&lt;/name&gt;
+        &lt;value&gt;true&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 指定该集群出故障时，哪个实现类负责执行故障切换 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.client.failover.proxy.provider.cluster1&lt;/name&gt;
+        &lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 配置隔离机制方法，多个机制用换行分割，即每个机制暂用一行--&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt;
+        &lt;value&gt;
+            sshfence
+        &lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 使用sshfence隔离机制时需要ssh免登陆 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.ha.fencing.ssh.private-key-files&lt;/name&gt;
+        &lt;value&gt;/home/hadoop/.ssh/id_rsa&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 配置sshfence隔离机制超时时间 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.ha.fencing.ssh.connect-timeout&lt;/name&gt;
+        &lt;value&gt;30000&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>###############################################################################</p>
+<p>2.2.4修改mapred-site.xml</p>
+<pre><code>&lt;configuration&gt;
+    &lt;!-- 指定mr框架为yarn方式 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+        &lt;value&gt;yarn&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;    
+</code></pre><p>###############################################################################</p>
+<p>2.2.5修改yarn-site.xml</p>
+<pre><code>&lt;configuration&gt;
+    &lt;!-- 开启RM高可用 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.ha.enabled&lt;/name&gt;
+        &lt;value&gt;true&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 指定RM的cluster id --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.cluster-id&lt;/name&gt;
+        &lt;value&gt;yrc&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 指定RM的名字 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.ha.rm-ids&lt;/name&gt;
+        &lt;value&gt;rm1,rm2&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 分别指定RM的地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.hostname.rm1&lt;/name&gt;
+        &lt;value&gt;hadoop03&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.hostname.rm2&lt;/name&gt;
+        &lt;value&gt;hadoop04&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;!-- 指定zk集群地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.zk-address&lt;/name&gt;
+        &lt;value&gt;hadoop05:2181,hadoop06:2181,hadoop07:2181&lt;/value&gt;
+    &lt;/property&gt;
+
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>2.2.6修改slaves(slaves是指定子节点的位置，因为要在hadoop01上启动HDFS、在hadoop03启动yarn，所以hadoop01上的slaves文件指定的是datanode的位置，hadoop03上的slaves文件指定的是nodemanager的位置)</p>
+<pre><code>hadoop05
+hadoop06
+hadoop07
+</code></pre><p>2.2.7配置免密码登陆</p>
+<pre><code>#首先要配置hadoop00到hadoop01、hadoop02、hadoop03、hadoop04、hadoop05、hadoop06、hadoop07的免密码登陆
+
+#在hadoop01上生产一对钥匙
+ssh-keygen -t rsa
+
+#将公钥拷贝到其他节点，包括自己
+ssh-coyp-id hadoop00
+ssh-coyp-id hadoop01
+ssh-coyp-id hadoop02
+ssh-coyp-id hadoop03
+ssh-coyp-id hadoop04
+ssh-coyp-id hadoop05
+ssh-coyp-id hadoop06
+ssh-coyp-id hadoop07
+
+#配置hadoop02到hadoop04、hadoop05、hadoop06、hadoop07的免密码登陆
+#在hadoop02上生产一对钥匙
+ssh-keygen -t rsa
+
+#将公钥拷贝到其他节点
+ssh-coyp-id hadoop03                
+ssh-coyp-id hadoop04
+ssh-coyp-id hadoop05
+ssh-coyp-id hadoop06
+ssh-coyp-id hadoop07
+
+#注意：两个namenode之间要配置ssh免密码登陆，别忘了配置hadoop01到hadoop00的免登陆
+</code></pre><p>在hadoop01上生产一对钥匙</p>
+<pre><code>ssh-keygen -t rsa
+ssh-coyp-id -i hadoop00                
+</code></pre><p>2.4将配置好的hadoop拷贝到其他节点</p>
+<pre><code>scp -r /hadoop/ hadoop02:/
+scp -r /hadoop/ hadoop03:/
+scp -r /hadoop/hadoop-2.6.4/ hadoop@hadoop04:/hadoop/
+scp -r /hadoop/hadoop-2.6.4/ hadoop@hadoop05:/hadoop/
+scp -r /hadoop/hadoop-2.6.4/ hadoop@hadoop06:/hadoop/
+scp -r /hadoop/hadoop-2.6.4/ hadoop@hadoop07:/hadoop/
+</code></pre><p>###注意：严格按照下面的步骤!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>2.5启动zookeeper集群（分别在hadoop05、hadoop06、tcast07上启动zk）</p>
+<pre><code>cd /hadoop/zookeeper-3.4.5/cluster1n/
+./zkServer.sh start
+#查看状态：一个leader，两个follower
+./zkServer.sh status
+</code></pre><p>2.6手动启动journalnode（分别在在hadoop05、hadoop06、hadoop07上执行）</p>
+<pre><code>cd /hadoop/hadoop-2.6.4
+scluster1n/hadoop-daemon.sh start journalnode
+#运行jps命令检验，hadoop05、hadoop06、hadoop07上多了JournalNode进程
+</code></pre><p>2.7格式化namenode</p>
+<pre><code>#在hadoop00上执行命令:
+hdfs namenode -format
+#格式化后会在根据core-site.xml中的hadoop.tmp.dir配置生成个文件，这里我配置的是/hadoop/hadoop-2.6.4/tmp，然后将/hadoop/hadoop-2.6.4/tmp拷贝到hadoop02的/hadoop/hadoop-2.6.4/下。
+scp -r tmp/ hadoop02:/home/hadoop/app/hadoop-2.6.4/
+##也可以这样，建议hdfs namenode -bootstrapStandby
+</code></pre><p>2.8格式化ZKFC(在hadoop00上执行即可)</p>
+<pre><code>hdfs zkfc -formatZK
+</code></pre><p>2.9启动HDFS(在hadoop00上执行)</p>
+<pre><code>scluster1n/start-dfs.sh
+</code></pre><p>2.10启动YARN(#####注意#####：是在hadoop02上执行start-yarn.sh，把namenode和resourcemanager分开是因为性能问题，因为他们都要占用大量资源，所以把他们分开了，他们分开了就要分别在不同的机器上启动)</p>
+<pre><code>scluster1n/start-yarn.sh
+</code></pre><p>到此，hadoop-2.6.4配置完毕，可以统计浏览器访问:</p>
+<pre><code>http://hadoop00:50070
+NameNode &apos;hadoop01:9000&apos; (active)
+http://hadoop01:50070
+NameNode &apos;hadoop02:9000&apos; (standby)
+</code></pre><p>验证HDFS HA</p>
+<pre><code>首先向hdfs上传一个文件
+hadoop fs -put /etc/profile /profile
+hadoop fs -ls /
+然后再kill掉active的NameNode
+kill -9 &lt;pid of NN&gt;
+通过浏览器访问：http://192.168.1.202:50070
+NameNode &apos;hadoop02:9000&apos; (active)
+这个时候hadoop02上的NameNode变成了active
+在执行命令：
+hadoop fs -ls /
+-rw-r--r--   3 root supergroup       1926 2014-02-06 15:36 /profile
+刚才上传的文件依然存在！！！
+手动启动那个挂掉的NameNode
+scluster1n/hadoop-daemon.sh start namenode
+通过浏览器访问：http://192.168.1.201:50070
+NameNode &apos;hadoop01:9000&apos; (standby)
+</code></pre><p>验证YARN：</p>
+<pre><code>运行一下hadoop提供的demo中的WordCount程序：
+hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.4.1.jar wordcount /profile /out
+</code></pre><p>OK，大功告成！！！</p>
+<p>测试集群工作状态的一些指令 ：</p>
+<p>cluster1n/hdfs dfsadmin -report     查看hdfs的各节点状态信息</p>
+<p>cluster1n/hdfs haadmin -getServiceState nn1         获取一个namenode节点的HA状态</p>
+<p>scluster1n/hadoop-daemon.sh start namenode  单独启动一个namenode进程</p>
+<p>./hadoop-daemon.sh start zkfc   单独启动一个zkfc进程</p>
+
       
 
       
@@ -248,7 +512,7 @@ mysql -u root -p
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
         		</li>
       		
 		</ul>
@@ -304,7 +568,7 @@ mysql -u root -p
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/11/mysql-linux-安装/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/11/hadoop-ha-搭建/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -318,18 +582,9 @@ mysql -u root -p
   
 <nav id="article-nav">
   
-    <a href="/2017/12/11/hadoop-ha-搭建/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hadoop ha 搭建
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/11/hive基础学习-安装/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hive基础学习--安装</div>
+    <a href="/2017/12/11/mysql-linux-安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql-linux-安装</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -356,7 +611,7 @@ mysql -u root -p
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一丶-yum在线安装"><span class="toc-number">1.</span> <span class="toc-text">一丶 yum在线安装</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li></ol>
                     </div>
                 </span>
             </div>
