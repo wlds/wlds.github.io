@@ -172,84 +172,9 @@
       
         <p>###Hive  ?  把一张表与已经处理的结构化数据产生映射关系</p>
 <h3 id="1-基于hadoop数据仓库的工具"><a href="#1-基于hadoop数据仓库的工具" class="headerlink" title="1 基于hadoop数据仓库的工具"></a>1 基于hadoop数据仓库的工具</h3><h3 id="2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序"><a href="#2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序" class="headerlink" title="2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序"></a>2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序</h3><p>映射关系</p>
-<h3 id="3-hive-表-hdfs上的一组结构化数据产生映射关系"><a href="#3-hive-表-hdfs上的一组结构化数据产生映射关系" class="headerlink" title="3 hive  表:hdfs上的一组结构化数据产生映射关系"></a>3 hive  表:hdfs上的一组结构化数据产生映射关系</h3><p>  表:对应路径 /user/hive/warehouse   默认路径</p>
-<p>  数据库 —&gt; 文件夹</p>
-<p>  表—&gt;子文件夹</p>
-<p> 注意: </p>
-<p>1) .表的字段个数和类型跟结构化数据中的字段个数和类型一致</p>
-<p>2) .建表时,指定本次映射的结构化数据中的分隔符</p>
-<h4 id="3-1-内部表、外部表"><a href="#3-1-内部表、外部表" class="headerlink" title="3.1 内部表、外部表"></a>3.1 内部表、外部表</h4><p>建内部表</p>
-<pre><code>create table student(Sno int,Sname string,Sex string,Sage int,Sdept string) row format delimited fields terminated by &apos;,&apos;;
-
-create table source_table(id int,name string) row format delimited fields terminated by &apos;,&apos;; 
-</code></pre><p>建外部表</p>
-<pre><code>create external table student_ext(Sno int,Sname string,Sex string,Sage int,Sdept string) row format delimited fields terminated by &apos;,&apos; location &apos;/stu&apos;;
-</code></pre><p>内、外部表加载数据：</p>
-<pre><code>load data local inpath &apos;/root/hivedata/students.txt&apos; overwrite into table student;
-
-load data inpath &apos;/stu&apos; into table student_ext;
-</code></pre><p>location 外部表指定表数据加载位置</p>
-<p>####3.2 ROW FORMAT DELIMITED（指定分隔符） </p>
-<pre><code>create table day_table (id int, content string) partitioned by (dt string) row format delimited fields terminated by &apos;,&apos;;   ---指定分隔符创建分区表
-</code></pre><p>复杂类型的数据表指定分隔符</p>
-<pre><code>create table complex_array(name string,work_locations array&lt;string&gt;) ROW FORMAT DELIMITED FIELDS TERMINATED BY &apos;\t&apos; COLLECTION ITEMS TERMINATED BY &apos;,&apos;;
-</code></pre><p>数据如下：</p>
-<pre><code>zhangsan   beijing,shanghai,tianjin,hangzhou
-wangwu   shanghai,chengdu,wuhan,haerbin
-</code></pre><p>建表语句</p>
-<pre><code>create table t_map(id int,name string,hobby map&lt;string,string&gt;)
-row format delimited 
-fields terminated by &apos;,&apos;
-collection items terminated by &apos;-&apos;
-map keys terminated by &apos;:&apos; ;
-</code></pre><p>数据：</p>
-<pre><code>1,zhangsan,唱歌:非常喜欢-跳舞:喜欢-游泳:一般般
-2,lisi,打游戏:非常喜欢-篮球:不喜欢
-</code></pre><h3 id="4-分区-PARTITIONED"><a href="#4-分区-PARTITIONED" class="headerlink" title="4 分区(PARTITIONED):"></a>4 分区(PARTITIONED):</h3><pre><code>本地模式
-set hive.exec.mode.local.auto=true;
-</code></pre><ul>
-<li><p>hive中的分区字段,不能是表中已经存在的字段</p>
-</li>
-<li><p>分区字段是一个虚拟的字段,不存放任何数据,值来自装载分区表时指定的    目录层面</p>
-</li>
-</ul>
-<p>分区建表分为2种，一种是单分区，也就是说在表文件夹目录下只有一级文件夹目录。另外一种是多分区，表文件夹下出现多文件夹嵌套模式。</p>
-<h6 id="单分区建表语句："><a href="#单分区建表语句：" class="headerlink" title="单分区建表语句："></a>单分区建表语句：</h6><pre><code>create table day_table (id int, content string) partitioned by (dt string);
-</code></pre><p>单分区表，按天分区，在表结构中存在id，content，dt三列。</p>
-<p>######双分区建表语句：</p>
-<pre><code>create table day_hour_table (id int, content string) partitioned by (dt string, hour string);
-</code></pre><p>双分区表，按天和小时分区，在表结构中新增加了dt和hour两列。</p>
-<p> 导入数据</p>
-<pre><code>LOAD DATA local INPATH &apos;/root/hivedata/dat_table.txt&apos; INTO TABLE day_table partition(dt=&apos;2017-07-07&apos;);
-
-LOAD DATA local INPATH &apos;/root/hivedata/dat_table.txt&apos; INTO TABLE day_hour_table PARTITION(dt=&apos;2017-07-07&apos;, hour=&apos;08&apos;);
-</code></pre><p> 基于分区的查询：</p>
-<pre><code>SELECT day_table.* FROM day_table WHERE day_table.dt = &apos;2017-07-07&apos;;
-</code></pre><p>  查看分区：</p>
-<pre><code>show partitions day_hour_table;  
-</code></pre><p> 总的说来partition就是辅助查询，缩小查询范围，加快数据的检索速度和对数据按照一定的规格和条件进行管理。</p>
-<p>###5 分桶(CLUSTERED): </p>
-<ol>
-<li><p>hive中的分桶字段,必须是表中已经存在的字段</p>
-</li>
-<li><p>分桶表的数据插入,  insert + select 方式</p>
-<p> 分桶一定要执行mr,对应mr中的partitioner                文件层面</p>
-<p> 桶默认关闭*</p>
-</li>
-</ol>
-<p>`#指定开启分桶</p>
-<pre><code>set hive.enforce.bucketing = true;
-set mapreduce.job.reduces=4;    
-</code></pre><p>动态分区</p>
-<p> 开启动态分区</p>
-<pre><code>set hive.exec.dynamic.partition=true;    #是否开启动态分区功能，默认false关闭。
-
-set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默认strict，表示必须指定至少一个分区为静态分区，nonstrict模式表示允许所有的分区字段都可以使用动态分区。
-</code></pre><p>cluster by(字段) :     分组+排序(按照分组字段排序)    正序</p>
-<p>sort by(字段 asc|desc) : 只排序 (自定义字段排序)</p>
-<p>distribute by(字段) : 只分组</p>
-<p>order by(字段)  全局排序  只有一个reducer</p>
-
+        
+          <a class="article-more-a" href="/2017/12/11/Hive基础学习/#more">more >></a>
+        
       
 
       
@@ -262,11 +187,11 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
         		</li>
       		
 		</ul>
@@ -692,11 +617,11 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
         		</li>
       		
 		</ul>
@@ -947,11 +872,11 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
         		</li>
       		
 		</ul>
@@ -1161,15 +1086,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1181,11 +1098,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1193,11 +1118,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
             
             <div class="clearfix"></div>

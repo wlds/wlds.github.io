@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hive基础学习----建表 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系 3 hive  表:hdfs上的一组结构化数据产生映射关系  表:对应路径 /user/hive/warehouse   默认路径   数据库 —&amp;gt; 文件夹   表—&amp;gt;子文件夹  注意:  1)">
-<meta name="keywords" content="hive,hadoop">
+  <meta name="description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系">
+<meta name="keywords" content="hadoop,hive">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hive基础学习----建表">
 <meta property="og:url" content="http://yoursite.com/2017/12/11/Hive基础学习/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系 3 hive  表:hdfs上的一组结构化数据产生映射关系  表:对应路径 /user/hive/warehouse   默认路径   数据库 —&amp;gt; 文件夹   表—&amp;gt;子文件夹  注意:  1)">
+<meta property="og:description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-11T03:41:29.065Z">
+<meta property="og:updated_time" content="2017-12-11T03:45:36.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hive基础学习----建表">
-<meta name="twitter:description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系 3 hive  表:hdfs上的一组结构化数据产生映射关系  表:对应路径 /user/hive/warehouse   默认路径   数据库 —&amp;gt; 文件夹   表—&amp;gt;子文件夹  注意:  1)">
+<meta name="twitter:description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -175,6 +175,7 @@
       
         <p>###Hive  ?  把一张表与已经处理的结构化数据产生映射关系</p>
 <h3 id="1-基于hadoop数据仓库的工具"><a href="#1-基于hadoop数据仓库的工具" class="headerlink" title="1 基于hadoop数据仓库的工具"></a>1 基于hadoop数据仓库的工具</h3><h3 id="2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序"><a href="#2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序" class="headerlink" title="2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序"></a>2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序</h3><p>映射关系</p>
+<a id="more"></a>
 <h3 id="3-hive-表-hdfs上的一组结构化数据产生映射关系"><a href="#3-hive-表-hdfs上的一组结构化数据产生映射关系" class="headerlink" title="3 hive  表:hdfs上的一组结构化数据产生映射关系"></a>3 hive  表:hdfs上的一组结构化数据产生映射关系</h3><p>  表:对应路径 /user/hive/warehouse   默认路径</p>
 <p>  数据库 —&gt; 文件夹</p>
 <p>  表—&gt;子文件夹</p>
@@ -286,11 +287,11 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
         		</li>
       		
 		</ul>
@@ -484,15 +485,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,11 +497,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">solr</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,11 +517,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color5">solr</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
             
             <div class="clearfix"></div>
