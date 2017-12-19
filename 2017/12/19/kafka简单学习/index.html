@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>wlds</title>
+  <title>kafka简单学习 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wlds">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1. 什么是Kafka? Apache Kafka是一个开源的消息系统,由Scala写成. Kafka是一个分布式消息队列, 生产者消费者的功能,类似与 JMS特性. Kafka对消息保存时根据Topic进行归类 Kafka由多个实例构成,每个实例为一个broker 无论Kafka集群,producer,comsumer都依赖zookeeper来保存meta信息,保证系统的可用性.">
+<meta name="keywords" content="kafka,实时计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka简单学习">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/kafka简单学习/index.html">
 <meta property="og:site_name" content="wlds">
+<meta property="og:description" content="1. 什么是Kafka? Apache Kafka是一个开源的消息系统,由Scala写成. Kafka是一个分布式消息队列, 生产者消费者的功能,类似与 JMS特性. Kafka对消息保存时根据Topic进行归类 Kafka由多个实例构成,每个实例为一个broker 无论Kafka集群,producer,comsumer都依赖zookeeper来保存meta信息,保证系统的可用性.">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-19T13:50:23.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wlds">
+<meta name="twitter:title" content="kafka简单学习">
+<meta name="twitter:description" content="1. 什么是Kafka? Apache Kafka是一个开源的消息系统,由Scala写成. Kafka是一个分布式消息队列, 生产者消费者的功能,类似与 JMS特性. Kafka对消息保存时根据Topic进行归类 Kafka由多个实例构成,每个实例为一个broker 无论Kafka集群,producer,comsumer都依赖zookeeper来保存meta信息,保证系统的可用性.">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -148,16 +153,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-kafka简单学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-kafka简单学习" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/19/kafka简单学习/">kafka简单学习</a>
+    <h1 class="article-title" itemprop="name">
+      kafka简单学习
     </h1>
   
 
@@ -177,11 +180,200 @@
 <li>Kafka由多个实例构成,每个实例为一个broker</li>
 <li>无论Kafka集群,producer,comsumer都依赖zookeeper来保存meta信息,保证系统的可用性.</li>
 </ul>
-        
-          <a class="article-more-a" href="/2017/12/19/kafka简单学习/#more">more >></a>
-        
+<a id="more"></a>
+<p>优点:</p>
+<ol>
+<li>提供Pub/Sub方式的海量消息处理。</li>
+<li>以高容错的方式存储海量数据流。</li>
+<li>保证数据流的顺序</li>
+</ol>
+<h3 id="2-JMS-java-message-system"><a href="#2-JMS-java-message-system" class="headerlink" title="2. JMS(java message system )"></a>2. JMS(java message system )</h3><ul>
+<li>作用:用来 异构系统,集成通信,缓解系统瓶颈.. 通过生产消费模式(生产者,服务端,消费者)</li>
+<li>点对点模式</li>
+<li>发布/订阅模式</li>
+</ul>
+<h3 id="3-消息队列"><a href="#3-消息队列" class="headerlink" title="3. 消息队列"></a>3. 消息队列</h3><p>为什么需要使用消息队列?</p>
+<ul>
+<li>解耦 异步 并行</li>
+<li>ack 数据发出到得到反馈</li>
+</ul>
+<p>例: 当用户在支付宝注册账号时,可能系统需要对当前用户发送一下消息 –&gt;发新手红包–&gt;准备账号–&gt;进行合法验证–&gt;通知SNS.这时候是十分消耗时间的,可以是用消息队列,当用户发送注册请求时,直接反馈注册成功,在用户浏览旗下产品时,异步并行完成上述事情.</p>
+<h3 id="4-Kafka核心组件"><a href="#4-Kafka核心组件" class="headerlink" title="4. Kafka核心组件"></a>4. Kafka核心组件</h3><ul>
+<li><p>broker: Kafka集群包含一个或多个服务器,其中服务器被叫做broker,broker不维护数据的消费状态,提高性能.直接使用硬盘进行存储</p>
+<ul>
+<li><h3 id="Kafka为什么那么快？"><a href="#Kafka为什么那么快？" class="headerlink" title="Kafka为什么那么快？"></a>Kafka为什么那么快？</h3><p>两个技术：</p>
+<ul>
+<li>pagecache:数据生产放入pagecache、数据读取从pagecache从读取，<strong>针对实时消费的情况</strong>。</li>
+<li>sendfile：直接在系统层面将数据发送出去，减少应用层面的数据拷贝，提高效率<strong>针对消费历史数据的情况</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Producer: 消息生产者</li>
+<li>consumer: 消息消费者</li>
+</ul>
+<ul>
+<li>Topic : 消息根据Topic进行归类(不同的Topic可以分开存储,逻辑上一个Topic消息虽然保存于一个或多个broker中,但用户只需要指定消息的Topic即可生产或消费数据,且不必担心数据的存储)</li>
+<li>Partition: 分区/分片</li>
+<li>Consumer Group: 每个consumer属于一个 CG</li>
+<li>zookeeper: 依赖集群保存meta信息</li>
+</ul>
+<h3 id="5-Kafka集群部署"><a href="#5-Kafka集群部署" class="headerlink" title="5. Kafka集群部署"></a>5. Kafka集群部署</h3><ul>
+<li>5.1 环境准备<ul>
+<li>zk集群</li>
+<li>关闭防火墙<br>chkconfig iptables off &amp;&amp; setenforce 0</li>
+<li>创建用户<br>groupadd realtime &amp;&amp; useradd realtime &amp;&amp; usermod -a -G realtime realtime</li>
+<li>创建工作目录并赋权<br>mkdir /export<br>mkdir /export/servers<br>chmod 755 -R /export</li>
+<li>切换到 realtime 用户下<br>su realtime</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>5.2Kafka集群部署</p>
+<ul>
+<li><p>下载安装包</p>
+<ul>
+<li>下载地址：<a href="http://kafka.apache.org/downloads.html" target="_blank" rel="external">http://kafka.apache.org/downloads.html</a><br>在 linux 中使用 wget 命令下载安装包<br>wget <a href="http://mirrors.shuosc.org/apache/kafka/1.0.0/kafka_2.11-1.0.0.tgz" target="_blank" rel="external">http://mirrors.shuosc.org/apache/kafka/1.0.0/kafka_2.11-1.0.0.tgz</a></li>
+</ul>
+</li>
+<li><p>解压</p>
+<ul>
+<li>tar -zxvf kafka_2.11-1.0.0.tgz -C /export/servers/<br>cd /export/servers/<br>mv kafka_2.11-1.0.0 kafka</li>
+</ul>
+</li>
+<li><p>修改配置文件</p>
+<ul>
+<li><p>cp /export/servers/kafka/config/server.properties<br>/export/servers/kafka/config/server.properties.bak<br>vi /export/servers/kafka/config/server.properties</p>
+</li>
+<li><p>输入以下内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>broker 的全局唯一编号，不能重复</span><br><span class="line">broker.id=0</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>用来监听链接的端口，producer 或 consumer 将在此端口建立连接</span><br><span class="line">port=9092</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>处理网络请求的线程数量</span><br><span class="line">num.network.threads=3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>用来处理磁盘 IO 的线程数量</span><br><span class="line">num.io.threads=8</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>发送套接字的缓冲区大小</span><br><span class="line">socket.send.buffer.bytes=102400</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>接受套接字的缓冲区大小</span><br><span class="line">socket.receive.buffer.bytes=102400</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>请求套接字的缓冲区大小</span><br><span class="line">socket.request.max.bytes=104857600</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>kafka 运行日志存放的路径</span><br><span class="line">log.dirs=/export/servers/logs/kafka</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>topic 在当前 broker 上的分片个数</span><br><span class="line">num.partitions=2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>用来恢复和清理 data 下数据的线程数量</span><br><span class="line">num.recovery.threads.per.data.dir=1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>segment 文件保留的最长时间，超时将被删除</span><br><span class="line">log.retention.hours=168</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>滚动生成新的 segment 文件的最大时间</span><br><span class="line">log.roll.hours=168</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>日志文件中每个 segment 的大小，默认为 1G</span><br><span class="line">log.segment.bytes=1073741824</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>周期性检查文件大小的时间</span><br><span class="line">log.retention.check.interval.ms=300000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>日志清理是否打开</span><br><span class="line">log.cleaner.enable=true</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>broker 需要使用 zookeeper 保存 meta 数据</span><br><span class="line">zookeeper.connect=192.168.52.106:2181,192.168.52.107:2181,192.168.52.108:2181</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>zookeeper 链接超时时间</span><br><span class="line">zookeeper.connection.timeout.ms=6000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>partion buffer 中，消息的条数达到阈值，将触发 flush 到磁盘</span><br><span class="line">log.flush.interval.messages=10000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>消息 buffer 的时间，达到阈值，将触发 flush 到磁盘</span><br><span class="line">log.flush.interval.ms=3000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>删除 topic 需要 server.properties 中设置 delete.topic.enable=true 否则只是标记删除</span><br><span class="line">delete.topic.enable=true</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>此处的 host.name 为本机 IP(重要),如果不改,则客户端会抛出:Producer connection to localhost:9092 unsuccessful 错误!</span><br><span class="line">host.name=kafka01</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>分发安装包</p>
+<p>​    cp -r /export/servers/kafka kafka02:/export/servers<br>​    然后分别在各机器上创建软连</p>
+<p>​    cd /export/servers/<br>​    scp -r /export/servers/kafka kafka03:/export/servers</p>
+<p>​    然后分别在各机器上创建软连<br>​    cd /export/servers/</p>
+<p>​    <strong>依次修改各服务器上配置文件的的 broker.id ，分别是 0,1,2  不得重复。</strong></p>
+</li>
+<li><p>启动集群</p>
+<ul>
+<li>依次在各节点上启动 kafka<br>nohup /export/servers/kafka/bin/kafka-server-start.sh<br>/export/servers/kafka/config/server.properties &gt;/dev/null 2&gt;&amp;1 &amp;<br>输出错误日志到黑洞<br>command &gt;/dev/null 2&gt;&amp;1 &amp;</li>
+</ul>
+</li>
+<li><p>Kafka常用操作命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- 查看当前服务器中的所有 topic</span><br><span class="line">  bin/kafka-topics.sh --list --zookeeper zk01:2181</span><br><span class="line">  </span><br><span class="line">- 创建 topic</span><br><span class="line">  bin/kafka-topics.sh --create --zookeeper zk01:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line">  </span><br><span class="line">-  删除 topic</span><br><span class="line">  bin/kafka-topics.sh --delete --zookeeper zk01:2181 --topic test</span><br><span class="line">  需要 server.properties 中设置 delete.topic.enable=true 否则只是标记删除或者直接重启。</span><br><span class="line">  </span><br><span class="line">- 通过 shell 命令发送消息</span><br><span class="line">  bin/kafka-console-producer.sh --broker-list kafka01:9092 --topic test</span><br><span class="line">  </span><br><span class="line">-  通过 shell 消费消息</span><br><span class="line">  bin/kafka-console-consumer.sh --zookeeper zk01:2181 --from-beginning --topic test</span><br><span class="line">  </span><br><span class="line">-  查看消费位置</span><br><span class="line">  bin/kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper zk01:2181 --group</span><br><span class="line">  testGroup</span><br><span class="line">  </span><br><span class="line">- 查看某个 Topic 的详情</span><br><span class="line">  bin/kafka-topics.sh --topic test --describe --zookeeper zk01:2181</span><br><span class="line">  </span><br><span class="line">- 对分区数进行修改</span><br><span class="line">  bin/kafka-topics.sh --zookeeper zk01 --alter --partitions 2 --topic test</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-Kafka-JAVA-API"><a href="#6-Kafka-JAVA-API" class="headerlink" title="6. Kafka JAVA API"></a>6. Kafka JAVA API</h3><p>​    略/…</p>
+<h3 id="7-Kafka文件存储机制"><a href="#7-Kafka文件存储机制" class="headerlink" title="7. Kafka文件存储机制"></a>7. Kafka文件存储机制</h3><ul>
+<li>7.1 Kafka文件存储基本结构<ul>
+<li>在kafka文件存储中,同一个topic下有多个不同partition,每个partition为一个目录,partition的命名规则为 topic+ 名称 +有序序号,第一个partition序号从0开始,序号的最大值为partitions数量减1</li>
+<li>每个partiton(目录) 相当于一个巨型文件被平均分配到多个大小相等的segment 数据文件中. 每个段segment file消息数量不一定相等,这种特性方便old segment file被删除,默认保留七天数据.</li>
+<li>每个partition 只需要支持顺序读写就可以,segment文件的生命周期由服务端配置参数决定.<ul>
+<li>顺序有序性讨论?<ul>
+<li>一个partition的数据是否有序? 间隔有序不连续</li>
+<li>针对一个topic中的数据,只能做到partition内部有序,不能做到全局有序.特别是在加入到消费者.</li>
+<li>如何保证消费者消费数据全局有序?  伪命题: 只有一个情况才能保证全局有序,只有一个partition</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>7.2 Kafka Partition Segment<ul>
+<li>组成: 由两大部分组成 两个文件一一对应,后缀 “.index”,”.log” 分表表示为segment的索引文件和数据文件<ul>
+<li>index file</li>
+<li>data file</li>
+</ul>
+</li>
+<li>命名规则: partion全局的第一个segment从0开始,,后续每个segment的文件名为上一个segment文件最后一条消息的offset值.数值最大为64为long大小,19位数字字符长度,没有数字用0补充.</li>
+<li>索引文件存储大量元数据,数据文件存储大量消息,索引文件中的元数据指向对应数据文件中message的物理偏移量</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kafka常见问题"><a href="#Kafka常见问题" class="headerlink" title="Kafka常见问题"></a>Kafka常见问题</h2><h3 id="Kafka是什么"><a href="#Kafka是什么" class="headerlink" title="Kafka是什么?"></a>Kafka是什么?</h3><ul>
+<li>分布式消息队列,类似与JMS,典型的生产者消费者模式</li>
+<li>生产者生产的消息存储在kafka集群中,集群由多个broker组成</li>
+<li>kafka的元数据保存在zookeeper中</li>
+</ul>
+<h3 id="针对topic为什么要进行分区"><a href="#针对topic为什么要进行分区" class="headerlink" title="针对topic为什么要进行分区?"></a>针对topic为什么要进行分区?</h3><ul>
+<li>一般情况下,正对海量数据,会将数据切分成多个块,存储在不同的机器上</li>
+<li>如果一个topic的数据量特别大,应该提前划分好分区的个数</li>
+<li>producer根据分区数进行数据分发(分发策略 partitioner)</li>
+</ul>
+<h3 id="针对一个分区-为什么要添加副本"><a href="#针对一个分区-为什么要添加副本" class="headerlink" title="针对一个分区,为什么要添加副本?"></a>针对一个分区,为什么要添加副本?</h3><ul>
+<li>保证数据完整性(容错)</li>
+<li>添加副本的个数?<ul>
+<li>添加副本,因为数据要同步到不同的机器上,有大量的网络传输和磁盘占用.</li>
+<li>根据业务需求对数据容错性,可以将副本数设置为N=2</li>
+</ul>
+</li>
+</ul>
+<h3 id="一个分区在broker是以目录的形式存放的-为什么分区下会设置segment段"><a href="#一个分区在broker是以目录的形式存放的-为什么分区下会设置segment段" class="headerlink" title="一个分区在broker是以目录的形式存放的,为什么分区下会设置segment段?"></a>一个分区在broker是以目录的形式存放的,为什么分区下会设置segment段?</h3><ul>
+<li>消息队列系统,一般都是实时的,只能短时间保存数据.</li>
+<li>broker需要对分片的数据进行删除,按照一定的数据量来存储数据,方便根据数据最后修改时间进行删除.</li>
+</ul>
+<h3 id="Producer数据生产不丢失问题"><a href="#Producer数据生产不丢失问题" class="headerlink" title="Producer数据生产不丢失问题"></a>Producer数据生产不丢失问题</h3><ul>
+<li>ACK(Acknowledgement) 确认字符. 数据发出到得到反馈</li>
+<li>数据生产环节不丢失<ul>
+<li>同步模式<ul>
+<li>数据发送的三种状态<ul>
+<li>0: 只管发送,不需要反馈</li>
+<li>1: 只要leader接收到数据,就任务成功</li>
+<li>-1: 所有副本收到,任务成功</li>
+</ul>
+</li>
+<li>将数据发送模式设置为-1 是最妥当的,但是考虑到所有副本收到所需要的时间过长,面对海量数据,效率会大大降低</li>
+<li>一般做法将状态设置成1,提高效率,但是会有风险</li>
+</ul>
+</li>
+<li>异步模式<ul>
+<li>生产的数据不会立即发送给broker,而是在produer端有个容器(队列)来临时存储缓存数据</li>
+<li>针对容器,阻塞设置,如果设置为0,则是立即丢弃数据,如果为-1,就永久阻塞<ul>
+<li>当设置为-1时,如果将机器KILL,会立即清空消息队列中的数据,导致数据丢失</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励就是对我最大的帮助<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/aaa.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -201,16 +393,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/19/kafka简单学习/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/19/kafka简单学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/11/hadoop-ha-搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hadoop ha 搭建</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -225,784 +476,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hadoop-ha-搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/hadoop-ha-搭建/">hadoop ha 搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/hadoop-ha-搭建/" class="archive-article-date">
-  	<time datetime="2017-12-11T08:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.修改Linux主机名</p>
-<p>2.修改IP</p>
-<p>3.修改主机名和IP的映射关系 /etc/hosts</p>
-<pre><code>---------注意---------
-如果你们公司是租用的服务器或是使用的云主机（如华为用主机、阿里云主机等）
-/etc/hosts里面要配置的是内网IP地址和主机名的映射关系
-</code></pre><p>4.关闭防火墙<br>
-        
-          <a class="article-more-a" href="/2017/12/11/hadoop-ha-搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/hadoop-ha-搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是Kafka"><span class="toc-number">1.</span> <span class="toc-text">1. 什么是Kafka?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-JMS-java-message-system"><span class="toc-number">2.</span> <span class="toc-text">2. JMS(java message system )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-消息队列"><span class="toc-number">3.</span> <span class="toc-text">3. 消息队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kafka核心组件"><span class="toc-number">4.</span> <span class="toc-text">4. Kafka核心组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka为什么那么快？"><span class="toc-number">5.</span> <span class="toc-text">Kafka为什么那么快？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Kafka集群部署"><span class="toc-number">6.</span> <span class="toc-text">5. Kafka集群部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Kafka-JAVA-API"><span class="toc-number">7.</span> <span class="toc-text">6. Kafka JAVA API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Kafka文件存储机制"><span class="toc-number">8.</span> <span class="toc-text">7. Kafka文件存储机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka常见问题"><span class="toc-number"></span> <span class="toc-text">Kafka常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka是什么"><span class="toc-number">1.</span> <span class="toc-text">Kafka是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#针对topic为什么要进行分区"><span class="toc-number">2.</span> <span class="toc-text">针对topic为什么要进行分区?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#针对一个分区-为什么要添加副本"><span class="toc-number">3.</span> <span class="toc-text">针对一个分区,为什么要添加副本?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个分区在broker是以目录的形式存放的-为什么分区下会设置segment段"><span class="toc-number">4.</span> <span class="toc-text">一个分区在broker是以目录的形式存放的,为什么分区下会设置segment段?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Producer数据生产不丢失问题"><span class="toc-number">5.</span> <span class="toc-text">Producer数据生产不丢失问题</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-mysql-linux-安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/mysql-linux-安装/">mysql-linux-安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/mysql-linux-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:34:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一丶-yum在线安装"><a href="#一丶-yum在线安装" class="headerlink" title="一丶 yum在线安装"></a>一丶 yum在线安装</h3><p>mysql</p>
-<pre><code>yum install mysql mysql-server mysql-devel 
-</code></pre><p>完成后，用  /etc/init.d/mysqld start    启动mysql</p>
-<p>启动mysql控制台： </p>
-<p>   mysql<br>
-        
-          <a class="article-more-a" href="/2017/12/11/mysql-linux-安装/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/mysql-linux-安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hive基础学习-安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/hive基础学习-安装/">hive基础学习--安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/hive基础学习-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:31:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="1-上传tar包"><a href="#1-上传tar包" class="headerlink" title="1.上传tar包"></a>1.上传tar包</h4><pre><code>apache-hive-1.2.1-bin.tar.gz
-</code></pre><p>####2.解压<br>    tar -zxvf hive-1.2.1.tar.gz</p>
-<p>####3.安装mysql数据库</p>
-<p>   推荐yum 在线安装- 详细见 mysql-linux-安装<br>
-        
-          <a class="article-more-a" href="/2017/12/11/hive基础学习-安装/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/hive基础学习-安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hive基础学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/Hive基础学习/">Hive基础学习----建表</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/Hive基础学习/" class="archive-article-date">
-  	<time datetime="2017-12-11T03:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###Hive  ?  把一张表与已经处理的结构化数据产生映射关系</p>
-<h3 id="1-基于hadoop数据仓库的工具"><a href="#1-基于hadoop数据仓库的工具" class="headerlink" title="1 基于hadoop数据仓库的工具"></a>1 基于hadoop数据仓库的工具</h3><h3 id="2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序"><a href="#2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序" class="headerlink" title="2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序"></a>2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序</h3><p>映射关系</p>
-        
-          <a class="article-more-a" href="/2017/12/11/Hive基础学习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/Hive基础学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hadoop-2-x-集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/05/Hadoop-2-x-集群搭建/">Hadoop 2.x 集群搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/05/Hadoop-2-x-集群搭建/" class="archive-article-date">
-  	<time datetime="2017-12-05T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###1.准备Linux环境</p>
-<p>1.0 配置好各虚拟机的网络（采用NAT联网模式）</p>
-<ul>
-<li><p>第一种：通过Linux图形界面进行修改(桌面版本Centos)</p>
-<p>  进入Linux图形界面 -&gt; 右键点击右上方的两个小电脑 -&gt; 点击Edit connections</p>
-<pre><code>-&gt; 选中当前网络System eth0 -&gt; 点击edit按钮 -&gt; 选择IPv4 -&gt; method选择为manual -&gt;
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/12/05/Hadoop-2-x-集群搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/05/Hadoop-2-x-集群搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hadoop编译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/05/hadoop编译/">hadoop编译</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/05/hadoop编译/" class="archive-article-date">
-  	<time datetime="2017-12-05T07:05:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、准备的资料"><a href="#一、准备的资料" class="headerlink" title="一、准备的资料"></a>一、准备的资料</h3><p>源码根目录下有个BUILDINT.txt，打开即可看见里面关于编译hadoop的一些环境要求　
-　</p>
-<ul>
-<li>64位linux系统CentOS 6.7。</li>
-<li>JDK 1.7+。</li>
-<li>maven-3.2.5。 一个项目管理综合工具, 使用标准的目录结构和默认构建生命周期</li>
-<li>protobuf 2.5.0  google的一种数据交换的格式，它独立于语言，独立于平台</li>
-<li>hadoop-2.x.x-src 　　 </li>
-<li>ant-1.9.7　　将软件编译、测试、部署等步骤联系在一起加以自动化的一个工具
-        
-          <a class="article-more-a" href="/2017/12/05/hadoop编译/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/05/hadoop编译/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-zookeeper集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/zookeeper集群搭建/">Zookeeper集群简介</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/25/zookeeper集群搭建/" class="archive-article-date">
-  	<time datetime="2017-11-25T08:01:10.138Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-1-为什么搭建Zookeeper集群"><a href="#1-1-为什么搭建Zookeeper集群" class="headerlink" title="1.1 为什么搭建Zookeeper集群"></a>1.1 为什么搭建Zookeeper集群</h3><p>大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。</p>
-        
-          <a class="article-more-a" href="/2017/11/25/zookeeper集群搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/zookeeper//" class="article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/25/zookeeper集群搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-solr安装与配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/solr安装与配置/">solr的安装与配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/25/solr安装与配置/" class="archive-article-date">
-  	<time datetime="2017-11-25T07:42:54.398Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-什么是solr"><a href="#1-什么是solr" class="headerlink" title="1) 什么是solr"></a>1) 什么是solr</h3><ul>
-<li><p>大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。</p>
-</li>
-<li><p>这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/11/25/solr安装与配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/solr//" class="article-tag-list-link color5">solr</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/25/solr安装与配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-solr集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/solr集群搭建/">solr集群搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/25/solr集群搭建/" class="archive-article-date">
-  	<time datetime="2017-11-25T07:41:16.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##</p>
-<h3 id="1-SolrCloud简介"><a href="#1-SolrCloud简介" class="headerlink" title="1. SolrCloud简介"></a>1. SolrCloud简介</h3><h4 id="1-1-什么是SolrCloud"><a href="#1-1-什么是SolrCloud" class="headerlink" title="1.1 什么是SolrCloud"></a>1.1 什么是SolrCloud</h4><p>SolrCloud(solr 云)是 Solr 提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用 SolrCloud。当一个系统的索引数据量少的时候是不需要使用 SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用 SolrCloud 来满足这些需求。</p>
-        
-          <a class="article-more-a" href="/2017/11/25/solr集群搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/solr//" class="article-tag-list-link color5">solr</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/25/solr集群搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1025,8 +524,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
