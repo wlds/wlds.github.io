@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | wlds</title>
+  <title>storm学习 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wlds">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1. 什么是storm 一款开源的分布式,高容错的实时框架.用来处理实时数据. 特点:   低延迟: 实时系统,延迟一定要底. 高性能 分布式 可扩展 容错  数据的输入 Spout—&amp;gt; 数据计算 Bolt1 …—&amp;gt; 数据输出 BoltN —&amp;gt; 数据计算 BlotN+1 —&amp;gt; 数据输出 BlotN….">
+<meta name="keywords" content="storm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="storm学习">
+<meta property="og:url" content="http://yoursite.com/2017/12/22/storm学习/index.html">
 <meta property="og:site_name" content="wlds">
+<meta property="og:description" content="1. 什么是storm 一款开源的分布式,高容错的实时框架.用来处理实时数据. 特点:   低延迟: 实时系统,延迟一定要底. 高性能 分布式 可扩展 容错  数据的输入 Spout—&amp;gt; 数据计算 Bolt1 …—&amp;gt; 数据输出 BoltN —&amp;gt; 数据计算 BlotN+1 —&amp;gt; 数据输出 BlotN….">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/aTwvuRJ.png">
+<meta property="og:image" content="https://i.imgur.com/pJwGW3k.png">
+<meta property="og:updated_time" content="2017-12-22T13:27:10.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wlds">
+<meta name="twitter:title" content="storm学习">
+<meta name="twitter:description" content="1. 什么是storm 一款开源的分布式,高容错的实时框架.用来处理实时数据. 特点:   低延迟: 实时系统,延迟一定要底. 高性能 分布式 可扩展 容错  数据的输入 Spout—&amp;gt; 数据计算 Bolt1 …—&amp;gt; 数据输出 BoltN —&amp;gt; 数据计算 BlotN+1 —&amp;gt; 数据输出 BlotN….">
+<meta name="twitter:image" content="https://i.imgur.com/aTwvuRJ.png">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -148,36 +156,153 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-storm学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      storm学习
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/22/storm学习/" class="archive-article-date">
+
+        
+        <a href="/2017/12/22/storm学习/" class="archive-article-date">
   	<time datetime="2017-12-22T13:23:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/22/storm学习/">storm学习</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-什么是storm"><a href="#1-什么是storm" class="headerlink" title="1. 什么是storm"></a>1. 什么是storm</h3><ul>
+<li><p>一款开源的分布式,高容错的实时框架.用来处理实时数据.</p>
+<p>特点: </p>
+<ul>
+<li>低延迟: 实时系统,延迟一定要底.</li>
+<li>高性能</li>
+<li>分布式</li>
+<li>可扩展</li>
+<li>容错</li>
+</ul>
+<p>数据的输入 Spout—&gt; 数据计算 Bolt1 …—&gt; 数据输出 BoltN —&gt; 数据计算 BlotN+1 —&gt; 数据输出 BlotN….</p>
+<a id="more"></a>
+</li>
+</ul>
+<h4 id="1-1-什么是离线数据"><a href="#1-1-什么是离线数据" class="headerlink" title="1.1 什么是离线数据?"></a>1.1 什么是离线数据?</h4><p>​       离线计算：批量获取数据、批量传输数据、<strong>周期性</strong>批量计算数据、数据展示</p>
+<p>​       代表技术：Sqoop批量导入数据、HDFS批量存储数据、MapReduce批量计算数据、Hive批量计算数据、<em>*</em>任务调度</p>
+<p>日常业务：</p>
+<p>1，hivesql</p>
+<p>2、调度平台</p>
+<p>3、Hadoop集群运维</p>
+<p>4、数据清洗（脚本语言）</p>
+<p>5、元数据管理</p>
+<p>6、数据稽查</p>
+<p>7、数据仓库模型架构</p>
+<h4 id="1-2-什么是流式计算"><a href="#1-2-什么是流式计算" class="headerlink" title="1.2 什么是流式计算?"></a>1.2 什么是流式计算?</h4><p>流式计算: 数据实时产生,数据实时传输,数据实时计算,实时展示.</p>
+<p>代表技术：Flume实时获取数据、Kafka/<strong>metaq</strong>实时数据存储、<strong>Storm/JStorm</strong>实时数据计算、Redis实时<strong>结果</strong>缓存、持久化存储(mysql)。</p>
+<p>​       一句话总结：将源源不断产生的数据实时收集并实时计算，尽可能快的得到计算结果，用来支持决策。</p>
+<h4 id="1-3-离线计算与实时计算的区别"><a href="#1-3-离线计算与实时计算的区别" class="headerlink" title="1.3 离线计算与实时计算的区别"></a>1.3 离线计算与实时计算的区别</h4><p>最大的区别：实时收集、实时计算、实时展示</p>
+<p>离线计算，一次计算很多条数据</p>
+<p>实时计算，数据被一条一条的计算</p>
+<h3 id="2-storm的核心组件"><a href="#2-storm的核心组件" class="headerlink" title="2. storm的核心组件"></a>2. storm的核心组件</h3><h4 id="2-1-storm架构"><a href="#2-1-storm架构" class="headerlink" title="2.1 storm架构"></a>2.1 storm架构</h4><p>​    <img src="https://i.imgur.com/aTwvuRJ.png" alt=""></p>
+<ul>
+<li>Nimbus: 负责资源分配和任务调度</li>
+<li>Supervisor: 负责接收nimbus分配的任务,启动和停止属于自己管理的worker进程.</li>
+<li>Worker: 运行具体处理组件逻辑的进程.</li>
+<li>Task: worker中 每个 spout/bolt的线程成为一个task,在strom0.8之后,task不再与物理线程对应,同一个spout/bolt的task可能会共享一个物理线程,该线程成为executor.</li>
+</ul>
+<h4 id="2-2-storm编程模型"><a href="#2-2-storm编程模型" class="headerlink" title="2.2 storm编程模型"></a>2.2 storm编程模型</h4><p><img src="https://i.imgur.com/pJwGW3k.png" alt=""></p>
+<ul>
+<li>Topology: storm中运行的一个实时应用程序,因为各个组件之间的消息流动形成逻辑上的一个拓扑结构</li>
+<li>Spout: 在一个topology中产生源数据流的组件.通常情况下,spout会从外部数据源中读取数据,然后转换为topology内部的源数据.Spout是一个主动的角色,其接口中 nextTuple()函数,strom框架会不停的调用此函数,用户只要在其中生成源数据即可.</li>
+<li>Bolt: 在一个togology中接收数据然后执行处理的组件.Bolt可以执行过滤,函数操作,合并,写数据库等操作.Bolt是一个被动的角色,其接口中有个execute(Tuple input)函数,在接收到消息后会调用此函数,用户可以在其中执行自己想要的操作.</li>
+<li>Tuple: 一次消息传递的基本单元. 本是key-value中的map,但由于各个组件之间传递的tuple的字段名称已经事先定义好,所有tuple中只要按照顺序填入各个value即可,所有就是一个value list.</li>
+<li>Stream: 源源不断的tuple就形成了stream.</li>
+</ul>
+<h4 id="2-3-Stream-grouping"><a href="#2-3-Stream-grouping" class="headerlink" title="2.3 Stream grouping"></a>2.3 Stream grouping</h4><p>Streamgrouping：即消息的partition方法。</p>
+<p>StreamGrouping定义了一个流在Bolt任务间该如何被切分。这里有Storm提供的6个StreamGrouping类型：</p>
+<ol>
+<li>随机分组(Shuffle grouping)：随机分发tuple到Bolt的任务，保证每个任务获得相等数量的tuple。<a href=""> <strong>跨服务器通信，浪费网络资源，尽量不适用</strong></a></li>
+<li>字段分组(Fields grouping)：根据指定字段分割数据流，并分组。例如，根据“user-id”字段，相同“user-id”的元组总是分发到同一个任务，不同“user-id”的元组可能分发到不同的任务。  <strong>跨服务器，除非有必要，才使用这种方式。</strong></li>
+<li>全部分组(All grouping)：tuple被复制到bolt的所有任务。这种类型需要谨慎使用。 <strong>人手一份，完全不必要</strong></li>
+<li>全局分组(Global grouping)：全部流都分配到bolt的同一个任务。明确地说，是分配给ID最小的那个task。 <strong>欺负新人</strong></li>
+<li>无分组(None grouping)：你不需要关心流是如何分组。目前，无分组等效于随机分组。但最终，Storm将把无分组的Bolts放到Bolts或Spouts订阅它们的同一线程去执行(如果可能)。</li>
+<li>直接分组(Direct grouping)：这是一个特别的分组类型。元组生产者决定tuple由哪个元组处理者任务接收。<strong> 点名分配   AckerBolt 消息容错</strong></li>
+</ol>
+<p>7.LocalOrShuffle 分组。 优先将数据发送到本地的Task，节约网络通信的资源。</p>
+<h4 id="2-4-流式计算整体结构"><a href="#2-4-流式计算整体结构" class="headerlink" title="2.4 流式计算整体结构"></a>2.4 流式计算整体结构</h4><p>网站系统&lt;—-Flume集群—-&gt;kafka集群—–&gt;Strom集群—-&gt;Redis集群</p>
+<ul>
+<li>flume 获取数据</li>
+<li>kafka 临时保存数据</li>
+<li>storm计算数据</li>
+<li>Redis 内存数据库,保存数据</li>
+</ul>
+<h3 id="3-Strom案例分析"><a href="#3-Strom案例分析" class="headerlink" title="3. Strom案例分析"></a>3. Strom案例分析</h3><p>略…</p>
+<h3 id="4-storm集群安装部署"><a href="#4-storm集群安装部署" class="headerlink" title="4. storm集群安装部署"></a>4. storm集群安装部署</h3><ul>
+<li><p>jdk</p>
+</li>
+<li><p>zookeeper</p>
+</li>
+<li><p>strom</p>
+<ul>
+<li><p>下载安装包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget    http://124.202.164.6/files/1139000006794ECA/apache.fayea.com/storm/apache-storm-0.9.5/apache-storm-0.9.5.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压安装包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-storm-0.9.5.tar.gz -C /export/servers/</span><br><span class="line">cd /export/servers/</span><br><span class="line">ln -s apache-storm-0.9.5 storm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /export/servers/storm/conf/storm.yaml /export/servers/storm/conf/storm.yaml.bak</span><br><span class="line">vi /export/servers/storm/conf/storm.yaml</span><br></pre></td></tr></table></figure>
+<p>输入一下内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>指定storm使用的zk集群</span><br><span class="line">storm.zookeeper.servers:</span><br><span class="line">     - "zk01"</span><br><span class="line">     - "zk02"</span><br><span class="line">     - "zk03"</span><br><span class="line"><span class="meta">#</span>指定storm集群中的nimbus节点所在的服务器</span><br><span class="line">nimbus.host: "storm01"</span><br><span class="line"><span class="meta">#</span>指定nimbus启动JVM最大可用内存大小</span><br><span class="line">nimbus.childopts: "-Xmx1024m"</span><br><span class="line"><span class="meta">#</span>指定supervisor启动JVM最大可用内存大小</span><br><span class="line">supervisor.childopts: "-Xmx1024m"</span><br><span class="line"><span class="meta">#</span>指定supervisor节点上，每个worker启动JVM最大可用内存大小</span><br><span class="line">worker.childopts: "-Xmx768m"</span><br><span class="line"><span class="meta">#</span>指定ui启动JVM最大可用内存大小，ui服务一般与nimbus同在一个节点上。</span><br><span class="line">ui.childopts: "-Xmx768m"</span><br><span class="line"><span class="meta">#</span>指定supervisor节点上，启动worker时对应的端口号，每个端口对应槽，每个槽位对应一个worker</span><br><span class="line">supervisor.slots.ports:</span><br><span class="line">    - 6700</span><br><span class="line">    - 6701</span><br><span class="line">    - 6702</span><br><span class="line">    - 6703</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分发安装包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scp -r/export/servers/apache-storm-0.9.5 storm02:/export/servers</span><br><span class="line"></span><br><span class="line">然后分别在各机器上创建软连接</span><br><span class="line"></span><br><span class="line">cd/export/servers/</span><br><span class="line"></span><br><span class="line">ln -sapache-storm-0.9.5 storm</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>启动集群</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> 在nimbus.host所属的机器上启动 nimbus服务</span><br><span class="line">  cd /export/servers/storm/bin/</span><br><span class="line">  nohup ./storm nimbus &amp;</span><br><span class="line">  黑洞: nohup ./strom nimbus &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line">  </span><br><span class="line">在nimbus.host所属的机器上启动ui服务</span><br><span class="line">  cd /export/servers/storm/bin/</span><br><span class="line">  nohup ./storm ui &amp;</span><br><span class="line">  黑洞: nohup ./strom ui &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line">  </span><br><span class="line">在其它个点击上启动supervisor服务</span><br><span class="line">  cd /export/servers/storm/bin/</span><br><span class="line">  nohup ./storm supervisor &amp;</span><br><span class="line">  黑洞: nohup ./strom supervisor &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励就是对我最大的帮助<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/aaa.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,387 +314,118 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/22/storm学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/22/storm源码编译问题/" class="archive-article-date">
-  	<time datetime="2017-12-22T13:22:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/22/storm源码编译问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">storm源码编译问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/22/storm源码编译问题/">storm源码编译问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">storm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是storm"><span class="toc-number">1.</span> <span class="toc-text">1. 什么是storm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-什么是离线数据"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 什么是离线数据?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-什么是流式计算"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 什么是流式计算?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-离线计算与实时计算的区别"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 离线计算与实时计算的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-storm的核心组件"><span class="toc-number">2.</span> <span class="toc-text">2. storm的核心组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-storm架构"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 storm架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-storm编程模型"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 storm编程模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-Stream-grouping"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Stream grouping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-流式计算整体结构"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 流式计算整体结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Strom案例分析"><span class="toc-number">3.</span> <span class="toc-text">3. Strom案例分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-storm集群安装部署"><span class="toc-number">4.</span> <span class="toc-text">4. storm集群安装部署</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/19/kafka简单学习/" class="archive-article-date">
-  	<time datetime="2017-12-19T13:49:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/19/kafka简单学习/">kafka简单学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka,实时计算</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hadoop-ha-搭建/" class="archive-article-date">
-  	<time datetime="2017-12-11T08:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hadoop-ha-搭建/">hadoop ha 搭建</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/mysql-linux-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:34:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/mysql-linux-安装/">mysql-linux-安装</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hive基础学习-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:31:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hive基础学习-安装/">hive基础学习--安装</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/Hive基础学习/" class="archive-article-date">
-  	<time datetime="2017-12-11T03:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/Hive基础学习/">Hive基础学习----建表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/05/Hadoop-2-x-集群搭建/" class="archive-article-date">
-  	<time datetime="2017-12-05T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/05/Hadoop-2-x-集群搭建/">Hadoop 2.x 集群搭建</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/05/hadoop编译/" class="archive-article-date">
-  	<time datetime="2017-12-05T07:05:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/05/hadoop编译/">hadoop编译</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/25/zookeeper集群搭建/" class="archive-article-date">
-  	<time datetime="2017-11-25T08:01:10.138Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/25/zookeeper集群搭建/">Zookeeper集群简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/zookeeper//" class="article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -593,8 +449,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
