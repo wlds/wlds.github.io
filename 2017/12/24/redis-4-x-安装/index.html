@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>angular倒计时简单实现 | wlds</title>
+  <title>redis-4.x 安装 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="实现步骤 定义秒数 allsecond  = 564231657856;  定义一个方法,将秒数转换成 X天 时分秒的格式">
-<meta name="keywords" content="angular">
+  <meta name="description" content="01 安装GCC1yum -y install gcc gcc-c++ libstdc++-devel tcl -y 02 下载安装包">
+<meta name="keywords" content="redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular倒计时简单实现">
-<meta property="og:url" content="http://yoursite.com/2017/11/20/angular倒计时/index.html">
+<meta property="og:title" content="redis-4.x 安装">
+<meta property="og:url" content="http://yoursite.com/2017/12/24/redis-4-x-安装/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="实现步骤 定义秒数 allsecond  = 564231657856;  定义一个方法,将秒数转换成 X天 时分秒的格式">
+<meta property="og:description" content="01 安装GCC1yum -y install gcc gcc-c++ libstdc++-devel tcl -y 02 下载安装包">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-25T03:32:00.216Z">
+<meta property="og:updated_time" content="2017-12-24T07:30:50.040Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular倒计时简单实现">
-<meta name="twitter:description" content="实现步骤 定义秒数 allsecond  = 564231657856;  定义一个方法,将秒数转换成 X天 时分秒的格式">
+<meta name="twitter:title" content="redis-4.x 安装">
+<meta name="twitter:description" content="01 安装GCC1yum -y install gcc gcc-c++ libstdc++-devel tcl -y 02 下载安装包">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -153,80 +153,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-angular倒计时" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-redis-4-x-安装" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      angular倒计时简单实现
+      redis-4.x 安装
     </h1>
   
 
         
-        <a href="/2017/11/20/angular倒计时/" class="archive-article-date">
-  	<time datetime="2017-11-20T10:01:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
+        <a href="/2017/12/24/redis-4-x-安装/" class="archive-article-date">
+  	<time datetime="2017-12-24T07:29:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ul>
-<li><p>定义秒数</p>
-<pre><code>allsecond  = 564231657856;
-</code></pre></li>
-<li><p>定义一个方法,将秒数转换成 X天 时分秒的格式</p>
-</li>
-</ul>
-<a id="more"></a>
-<pre><code>convertTimeString = function(allsecond){
-    var days = Math.floor( allsecond/(3600*24) ); // 天数
-    var hours = Math.floor( (allsecond -days*3600*24)/3600 ); // 小时数
-    var minutes = Math.floor( (allsecond - days*3600*24 - hours*3600)/60 ); //分钟数
-    var seconds = allsecond - days*3600*24 - hours*3600 - minutes*60 ; // 秒
-    var timeString = &quot;&quot;;
-    var hoursString = &quot;&quot;;
-    var minutesString = &quot;&quot;;
-    var secondString = &quot;&quot;;
-    if(days&gt;0){
-        timeString += days;
-    }
-    if (hours&lt;10) {
-        hoursString += &quot;0&quot;;
-    }
-    if (minutes&lt;10) {
-        minutesString += &quot;0&quot;;
-    }
-    if (seconds&lt;10) {
-        secondString += &quot;0&quot;;
-    }
-
-    return     timeString + &quot;天   &quot; + hoursString + hours+&quot;:&quot;+ minutesString +minutes+&quot;:&quot;+ secondString +seconds;
-}
-</code></pre><ul>
-<li>定义方法</li>
-</ul>
-<pre><code>$scope.show = function() {        
-    time= $interval(function(){ 
-          if(allsecond&gt;0){ 
-              allsecond =allsecond-1;
-            $scope.timeString=convertTimeString(allsecond);//转换时间字符串
-          }else{
-              $interval.cancel(time);           
-              alert(&quot;结束&quot;);
-          }
-        },1000);    
-
-
-}
-</code></pre><ul>
-<li><p>页面调用</p>
-<pre><code>{{timeString}}
-</code></pre></li>
-</ul>
-
+        <h3 id="01-安装GCC"><a href="#01-安装GCC" class="headerlink" title="01 安装GCC"></a>01 安装GCC</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ libstdc++-devel tcl -y</span><br></pre></td></tr></table></figure>
+<h3 id="02-下载安装包"><a href="#02-下载安装包" class="headerlink" title="02 下载安装包"></a>02 下载安装包</h3><a id="more"></a>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /export/software/</span><br><span class="line">wget http://219.238.7.71/files/403400000ABE0C0C/download.redis.io/releases/redis-4.0.2.tar.gz</span><br><span class="line">tar -zxvf redis-4.0.2.tar.gz  -C ../servers</span><br><span class="line">cd /export/servers/</span><br><span class="line">mv redis-4.0.2 redis</span><br></pre></td></tr></table></figure>
+<h3 id="03-编译Redis"><a href="#03-编译Redis" class="headerlink" title="03 编译Redis"></a>03 编译Redis</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/redis/</span><br><span class="line">make MALLOC=libc</span><br><span class="line">make PREFIX=/usr/local/redis install</span><br></pre></td></tr></table></figure>
+<h3 id="04-准备配置文件"><a href="#04-准备配置文件" class="headerlink" title="04 准备配置文件"></a>04 准备配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/redis/bin/</span><br><span class="line">cd /usr/local/redis</span><br><span class="line">mkdir conf</span><br><span class="line">vi redis_6379.conf</span><br></pre></td></tr></table></figure>
+<p>配置文件如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">bind 127.0.0.1</span><br><span class="line">protected-mode yes</span><br><span class="line">port 6379</span><br><span class="line">tcp-backlog 511</span><br><span class="line">timeout 0</span><br><span class="line">tcp-keepalive 300</span><br><span class="line">daemonize yes</span><br><span class="line">supervised no</span><br><span class="line">pidfile /export/data/redis/6379/redis_6379.pid</span><br><span class="line">loglevel notice</span><br><span class="line">logfile "/export/data/redis/6379/log.log"</span><br><span class="line">databases 16</span><br><span class="line">always-show-logo yes</span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line">rdbcompression yes</span><br><span class="line">rdbchecksum yes</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line">dir /export/data/redis/6379/</span><br><span class="line">slave-serve-stale-data yes</span><br><span class="line">slave-read-only yes</span><br><span class="line">repl-diskless-sync no</span><br><span class="line">repl-diskless-sync-delay 5</span><br><span class="line">repl-disable-tcp-nodelay no</span><br><span class="line">slave-priority 100</span><br><span class="line">lazyfree-lazy-eviction no</span><br><span class="line">lazyfree-lazy-expire no</span><br><span class="line">lazyfree-lazy-server-del no</span><br><span class="line">slave-lazy-flush no</span><br><span class="line">appendonly yes</span><br><span class="line">appendfilename "appendonly.aof"</span><br><span class="line">appendfsync everysec</span><br><span class="line">no-appendfsync-on-rewrite no</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line">aof-load-truncated yes</span><br><span class="line">aof-use-rdb-preamble no</span><br><span class="line">lua-time-limit 5000</span><br><span class="line">slowlog-log-slower-than 10000</span><br><span class="line">slowlog-max-len 128</span><br><span class="line">latency-monitor-threshold 0</span><br><span class="line">notify-keyspace-events ""</span><br><span class="line">hash-max-ziplist-entries 512</span><br><span class="line">hash-max-ziplist-value 64</span><br><span class="line">list-max-ziplist-size -2</span><br><span class="line">list-compress-depth 0</span><br><span class="line">set-max-intset-entries 512</span><br><span class="line">zset-max-ziplist-entries 128</span><br><span class="line">zset-max-ziplist-value 64</span><br><span class="line">hll-sparse-max-bytes 3000</span><br><span class="line">activerehashing yes</span><br><span class="line">client-output-buffer-limit normal 0 0 0</span><br><span class="line">client-output-buffer-limit slave 256mb 64mb 60</span><br><span class="line">client-output-buffer-limit pubsub 32mb 8mb 60</span><br><span class="line">hz 10</span><br><span class="line">aof-rewrite-incremental-fsync yes</span><br></pre></td></tr></table></figure>
+<h3 id="05-启动服务"><a href="#05-启动服务" class="headerlink" title="05 启动服务"></a>05 启动服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /export/data/redis/6379/</span><br><span class="line">cd /usr/local/redis/bin/</span><br><span class="line">./redis-server ../conf/redis_6379.conf</span><br></pre></td></tr></table></figure>
+<h3 id="06-使用客户端连接"><a href="#06-使用客户端连接" class="headerlink" title="06 使用客户端连接"></a>06 使用客户端连接</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/redis/bin/</span><br><span class="line">./redis-cli </span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
       
 
       
@@ -265,7 +220,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -321,7 +276,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/20/angular倒计时/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/24/redis-4-x-安装/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -335,18 +290,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/25/solr集群搭建/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          solr集群搭建
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/15/dubbo/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Dubbo学习</div>
+    <a href="/2017/12/22/storm学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">storm学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -373,7 +319,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现步骤"><span class="toc-number">1.</span> <span class="toc-text">实现步骤</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-安装GCC"><span class="toc-number">1.</span> <span class="toc-text">01 安装GCC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-下载安装包"><span class="toc-number">2.</span> <span class="toc-text">02 下载安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03-编译Redis"><span class="toc-number">3.</span> <span class="toc-text">03 编译Redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04-准备配置文件"><span class="toc-number">4.</span> <span class="toc-text">04 准备配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05-启动服务"><span class="toc-number">5.</span> <span class="toc-text">05 启动服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#06-使用客户端连接"><span class="toc-number">6.</span> <span class="toc-text">06 使用客户端连接</span></a></li></ol>
                     </div>
                 </span>
             </div>
