@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hadoop 2.x 集群搭建 | wlds</title>
+  <title>Archives: 2017/12 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
-<meta name="keywords" content="hadoop">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop 2.x 集群搭建">
-<meta property="og:url" content="http://yoursite.com/2017/12/05/Hadoop-2-x-集群搭建/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="wlds">
+<meta property="og:url" content="http://yoursite.com/archives/2017/12/page/2/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-05T08:49:33.616Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop 2.x 集群搭建">
-<meta name="twitter:description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
+<meta name="twitter:title" content="wlds">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -153,234 +148,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hadoop-2-x-集群搭建" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Hadoop 2.x 集群搭建
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/12/05/hadoop编译/" class="archive-article-date">
+  	<time datetime="2017-12-05T07:05:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/12/05/hadoop编译/">hadoop编译</a>
     </h1>
   
 
-        
-        <a href="/2017/12/05/Hadoop-2-x-集群搭建/" class="archive-article-date">
-  	<time datetime="2017-12-05T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###1.准备Linux环境</p>
-<p>1.0 配置好各虚拟机的网络（采用NAT联网模式）</p>
-<ul>
-<li><p>第一种：通过Linux图形界面进行修改(桌面版本Centos)</p>
-<p>  进入Linux图形界面 -&gt; 右键点击右上方的两个小电脑 -&gt; 点击Edit connections</p>
-<pre><code>-&gt; 选中当前网络System eth0 -&gt; 点击edit按钮 -&gt; 选择IPv4 -&gt; method选择为manual -&gt;
-</code></pre><a id="more"></a>
-<p>点击add按钮 -&gt; 添加IP：192.168.1.101 子网掩码：255.255.255.0 网关：192.168.1.1 -&gt; apply</p>
-</li>
-<li><p>第二种：修改配置文件方式</p>
-</li>
-</ul>
-<pre><code>        vi /etc/sysconfig/network-scripts/ifcfg-eth0
-        DEVICE=&quot;eth0&quot;
-        BOOTPROTO=&quot;static&quot;               ###
-        HWADDR=&quot;00:0C:29:3C:BF:E7&quot;
-        IPV6INIT=&quot;yes&quot;
-        NM_CONTROLLED=&quot;yes&quot;
-        ONBOOT=&quot;yes&quot;
-        TYPE=&quot;Ethernet&quot;
-        UUID=&quot;ce22eeca-ecde-4536-8cc2-ef0dc36d4a8c&quot;
-        IPADDR=&quot;192.168.1.101&quot;           ###
-        NETMASK=&quot;255.255.255.0&quot;          ###
-        GATEWAY=&quot;192.168.1.1&quot;            ###
-
- 1.1修改各个虚拟机主机名 
-
-        vi /etc/sysconfig/network
-
-        NETWORKING=yes
-        HOSTNAME=node-1   
-
- 1.2修改主机名和IP的映射关系
-
-        vi /etc/hosts
-
-        192.168.1.101    node-1
-        192.168.1.102    node-2
-        192.168.1.103    node-3
-
- 1.3关闭防火墙
-
-
-        #查看防火墙状态
-        service iptables status
-        #关闭防火墙
-        service iptables stop
-        #查看防火墙开机启动状态
-        chkconfig iptables --list
-        #关闭防火墙开机启动
-        chkconfig iptables off
-
- 1.4.配置ssh免登陆
-
-        #生成ssh免登陆密钥
-        ssh-keygen -t rsa （四个回车）
-
-执行完这个命令后，会生成两个文件id_rsa（私钥）、id_rsa.pub（公钥）
-将公钥拷贝到要免密登陆的目标机器上
-
-        ssh-copy-id node-2
-
-1.5 同步集群时间
-
-常用的手动进行时间的同步
-
-    date -s &quot;2017-03-03 03:03:03&quot;
-
-或者网络同步：
-
-    yum install ntpdate
-    ntpdate cn.pool.ntp.org
-</code></pre><hr>
-<p>###2.安装JDK</p>
-<p>2.1上传jdk</p>
-<pre><code>rz jdk-8u65-linux-x64.tar.gz
-</code></pre><p>2.2解压jdk</p>
-<pre><code>tar -zxvf jdk-8u65-linux-x64.tar.gz -C /root/apps
-</code></pre><p>2.3将java添加到环境变量中</p>
-<pre><code>vim /etc/profile
-#在文件最后添加
-export JAVA_HOME=/root/apps/jdk1.8.0_65
-export PATH=$PATH:$JAVA_HOME/bin
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-
-#刷新配置
-source /etc/profile
-</code></pre><hr>
-<p>###3.安装hadoop2.7.4</p>
-<p>上传hadoop的安装包到服务器</p>
-<pre><code>hadoop-2.7.4-with-centos-6.7.tar.gz
-</code></pre><p>解压安装包</p>
-<pre><code>tar zxvf hadoop-2.7.4-with-centos-6.7.tar.gz
-</code></pre><p>注意：hadoop2.x的配置文件目录：$HADOOP_HOME/etc/hadoop</p>
-<hr>
-<p>####3.1 配置hadoop</p>
-<p>第一个：hadoop-env.sh</p>
-<pre><code>vi hadoop-env.sh
-export JAVA_HOME=/root/apps/jdk1.8.0_65
-</code></pre><hr>
-<p>第二个：core-site.xml</p>
-<pre><code>&lt;!-- 指定HADOOP所使用的文件系统schema（URI），HDFS的老大（NameNode）的地址 --&gt;
-&lt;property&gt;
-    &lt;name&gt;fs.defaultFS&lt;/name&gt;
-    &lt;value&gt;hdfs://node-1:9000&lt;/value&gt;
-&lt;/property&gt;
-
-&lt;!-- 指定hadoop运行时产生文件的存储目录,默认/tmp/hadoop-${user.name} --&gt;
-&lt;property&gt;
-    &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
-    &lt;value&gt;/home/hadoop/hadoop-2.4.1/tmp&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><hr>
-<p>第三个：hdfs-site.xml   </p>
-<pre><code>&lt;!-- 指定HDFS副本的数量 --&gt;
-&lt;property&gt;
-    &lt;name&gt;dfs.replication&lt;/name&gt;
-    &lt;value&gt;2&lt;/value&gt;
-&lt;/property&gt;
-
-&lt;property&gt;
-     &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
-      &lt;value&gt;node-22:50090&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><hr>
-<p>第四个：mapred-site.xml </p>
-<p>mv mapred-site.xml.template mapred-site.xml</p>
-<p>vi mapred-site.xml</p>
-<pre><code>&lt;!-- 指定mr运行时框架，这里指定在yarn上，默认是local --&gt;
-&lt;property&gt;
-    &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
-    &lt;value&gt;yarn&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><hr>
-<p>第五个：yarn-site.xml</p>
-<pre><code>&lt;!-- 指定YARN的老大（ResourceManager）的地址 --&gt;
-&lt;property&gt;
-    &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
-    &lt;value&gt;node-21&lt;/value&gt;
-&lt;/property&gt;
-
-&lt;!-- NodeManager上运行的附属服务。需配置成mapreduce_shuffle，才可运行MapReduce程序默认值：&quot;&quot; --&gt;
-&lt;property&gt;
-    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
-    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><p>第六个：slaves文件，里面写上从节点所在的主机名字</p>
-<pre><code>vi slaves
-node-21
-node-22
-node-23
-</code></pre><p>####3.2 将hadoop添加到环境变量</p>
-<pre><code>vim /etc/proflie
-    export JAVA_HOME=/root/apps/jdk1.8.0_65
-    export HADOOP_HOME=/root/apps/hadoop-2.7.4
-    export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-
-source /etc/profile
-</code></pre><h4 id="3-3-格式化namenode（本质是对namenode进行初始化）"><a href="#3-3-格式化namenode（本质是对namenode进行初始化）" class="headerlink" title="3.3 格式化namenode（本质是对namenode进行初始化）"></a>3.3 格式化namenode（本质是对namenode进行初始化）</h4><pre><code>hdfs namenode -format (hadoop namenode -format)
-</code></pre><h4 id="3-4启动hadoop"><a href="#3-4启动hadoop" class="headerlink" title="3.4启动hadoop"></a>3.4启动hadoop</h4><pre><code>先启动HDFS
-sbin/start-dfs.sh
-
-再启动YARN
-sbin/start-yarn.sh
-</code></pre><h4 id="3-5验证是否启动成功"><a href="#3-5验证是否启动成功" class="headerlink" title="3.5验证是否启动成功"></a>3.5验证是否启动成功</h4><pre><code>使用jps命令验证
-    27408 NameNode
-    28218 Jps
-    27643 SecondaryNameNode   (secondarynamenode)
-    28066 NodeManager
-    27803 ResourceManager
-    27512 DataNode
-
-    http://192.168.1.101:50070 （HDFS管理界面）
-    http://192.168.1.101:8088 （MR管理界面）
-</code></pre>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励就是对我最大的帮助<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/aaa.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -392,127 +189,22 @@ sbin/start-yarn.sh
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/05/Hadoop-2-x-集群搭建/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/12/11/Hive基础学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hive基础学习----建表
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/12/05/hadoop编译/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hadoop编译</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-格式化namenode（本质是对namenode进行初始化）"><span class="toc-number">1.</span> <span class="toc-text">3.3 格式化namenode（本质是对namenode进行初始化）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4启动hadoop"><span class="toc-number">2.</span> <span class="toc-text">3.4启动hadoop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5验证是否启动成功"><span class="toc-number">3.</span> <span class="toc-text">3.5验证是否启动成功</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2017/12/">&laquo; Prev</a><a class="page-number" href="/archives/2017/12/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -536,8 +228,8 @@ sbin/start-yarn.sh
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

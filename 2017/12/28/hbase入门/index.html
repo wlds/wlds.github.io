@@ -6,20 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hadoop 2.x 集群搭建 | wlds</title>
+  <title>hbase入门 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
-<meta name="keywords" content="hadoop">
+  <meta name="description" content="1、HBase基础1.1 基本概念官方地址  hbase是bigtable的开源java版本，是建立在hdfs之上。  提供高可靠性、高性能、列存储、可伸缩、实时读写nosql的数据库系统。  它介于nosql和RDBMS之间，仅能通过主键(row key)和主键的range来检索数据，仅支持单行事务(可通过hive支持来实现多表join等复杂操作)。  主要用来存储结构化和半结构化的松散数据。">
+<meta name="keywords" content="Hbase">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop 2.x 集群搭建">
-<meta property="og:url" content="http://yoursite.com/2017/12/05/Hadoop-2-x-集群搭建/index.html">
+<meta property="og:title" content="hbase入门">
+<meta property="og:url" content="http://yoursite.com/2017/12/28/hbase入门/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
+<meta property="og:description" content="1、HBase基础1.1 基本概念官方地址  hbase是bigtable的开源java版本，是建立在hdfs之上。  提供高可靠性、高性能、列存储、可伸缩、实时读写nosql的数据库系统。  它介于nosql和RDBMS之间，仅能通过主键(row key)和主键的range来检索数据，仅支持单行事务(可通过hive支持来实现多表join等复杂操作)。  主要用来存储结构化和半结构化的松散数据。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-05T08:49:33.616Z">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_180515.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_192040.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_192757.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_180706.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_231532.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_230552.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_230420.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_192757.jpg">
+<meta property="og:updated_time" content="2017-12-28T13:36:25.258Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop 2.x 集群搭建">
-<meta name="twitter:description" content="###1.准备Linux环境 1.0 配置好各虚拟机的网络（采用NAT联网模式）  第一种：通过Linux图形界面进行修改(桌面版本Centos)   进入Linux图形界面 -&amp;gt; 右键点击右上方的两个小电脑 -&amp;gt; 点击Edit connections -&amp;gt; 选中当前网络System eth0 -&amp;gt; 点击edit按钮 -&amp;gt; 选择IPv4 -&amp;gt; method选择为">
+<meta name="twitter:title" content="hbase入门">
+<meta name="twitter:description" content="1、HBase基础1.1 基本概念官方地址  hbase是bigtable的开源java版本，是建立在hdfs之上。  提供高可靠性、高性能、列存储、可伸缩、实时读写nosql的数据库系统。  它介于nosql和RDBMS之间，仅能通过主键(row key)和主键的range来检索数据，仅支持单行事务(可通过hive支持来实现多表join等复杂操作)。  主要用来存储结构化和半结构化的松散数据。">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/28/hbase入门/img/2017-12-27_180515.jpg">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -153,201 +162,200 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hadoop-2-x-集群搭建" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hbase入门" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hadoop 2.x 集群搭建
+      hbase入门
     </h1>
   
 
         
-        <a href="/2017/12/05/Hadoop-2-x-集群搭建/" class="archive-article-date">
-  	<time datetime="2017-12-05T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+        <a href="/2017/12/28/hbase入门/" class="archive-article-date">
+  	<time datetime="2017-12-28T13:35:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###1.准备Linux环境</p>
-<p>1.0 配置好各虚拟机的网络（采用NAT联网模式）</p>
+        <h2 id="1、HBase基础"><a href="#1、HBase基础" class="headerlink" title="1、HBase基础"></a>1、HBase基础</h2><h3 id="1-1-基本概念"><a href="#1-1-基本概念" class="headerlink" title="1.1 基本概念"></a>1.1 基本概念</h3><p><a href="http://hbase.apache.org/" target="_blank" rel="external">官方地址</a></p>
 <ul>
-<li><p>第一种：通过Linux图形界面进行修改(桌面版本Centos)</p>
-<p>  进入Linux图形界面 -&gt; 右键点击右上方的两个小电脑 -&gt; 点击Edit connections</p>
-<pre><code>-&gt; 选中当前网络System eth0 -&gt; 点击edit按钮 -&gt; 选择IPv4 -&gt; method选择为manual -&gt;
-</code></pre><a id="more"></a>
-<p>点击add按钮 -&gt; 添加IP：192.168.1.101 子网掩码：255.255.255.0 网关：192.168.1.1 -&gt; apply</p>
+<li><p>hbase是bigtable的开源java版本，是建立在hdfs之上。</p>
 </li>
-<li><p>第二种：修改配置文件方式</p>
+<li><p>提供高可靠性、高性能、列存储、可伸缩、实时读写nosql的数据库系统。</p>
+<ul>
+<li><p>它介于nosql和RDBMS之间，仅能通过主键(row key)和主键的range来检索数据，仅支持单行事务(可通过hive支持来实现多表join等复杂操作)。</p>
+</li>
+<li><p>主要用来存储结构化和半结构化的松散数据。</p>
+<ul>
+<li>Hbase查询数据功能很简单，不支持join等复杂操作，不支持复杂的事务（行级的事务）</li>
+<li>Hbase中支持的数据类型：byte[]<a id="more"></a></li>
+</ul>
 </li>
 </ul>
-<pre><code>        vi /etc/sysconfig/network-scripts/ifcfg-eth0
-        DEVICE=&quot;eth0&quot;
-        BOOTPROTO=&quot;static&quot;               ###
-        HWADDR=&quot;00:0C:29:3C:BF:E7&quot;
-        IPV6INIT=&quot;yes&quot;
-        NM_CONTROLLED=&quot;yes&quot;
-        ONBOOT=&quot;yes&quot;
-        TYPE=&quot;Ethernet&quot;
-        UUID=&quot;ce22eeca-ecde-4536-8cc2-ef0dc36d4a8c&quot;
-        IPADDR=&quot;192.168.1.101&quot;           ###
-        NETMASK=&quot;255.255.255.0&quot;          ###
-        GATEWAY=&quot;192.168.1.1&quot;            ###
+</li>
+</ul>
+<pre><code>- 与hadoop一样，Hbase目标主要依靠横向扩展，通过不断增加廉价的商用服务器，来增加计算和存储能力。
+</code></pre><ul>
+<li><p>HBase中的表一般有这样的特点：</p>
+<ul>
+<li>大：一个表可以有上十亿行，上百万列</li>
+<li>面向列:面向列(族)的存储和权限控制，列(族)独立检索。</li>
+<li>稀疏:对于为空(null)的列，并不占用存储空间，因此，表可以设计的非常稀疏。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-Hbase表结构"><a href="#1-2-Hbase表结构" class="headerlink" title="1.2 Hbase表结构"></a>1.2 Hbase表结构</h3><p><img src="img/2017-12-27_180515.jpg" alt=""></p>
+<ul>
+<li>表(table)：用于存储管理数据，具有稀疏的、面向列的特点。HBase中的每一张表，就是所谓的大表(Bigtable)，可以有上亿行，上百万列。对于为值为空的列，并不占用存储空间，因此表可以设计的非常稀疏。</li>
+<li>行键(RowKey)：类似于MySQL中的主键，HBase根据行键来快速检索数据，一个行键对应一条记录。与MySQL主键不同的是，HBase的行键是天然固有的，每一行数据都存在行键。</li>
+<li>列族(ColumnFamily)：是列的集合。列族在表定义时需要指定，而列在插入数据时动态指定。列中的数据都是以二进制形式存在，没有数据类型。在物理存储结构上，每个表中的每个列族单独以一个文件存储(参见图1.2)。</li>
+<li>时间戳(TimeStamp)：是列的一个属性，是一个64位整数。由行键和列确定的单元格，可以存储多个数据，每个数据含有时间戳属性，数据具有版本特性。可根据版本(VERSIONS)或时间戳来指定查询历史版本数据，如果都不指定，则默认返回最新版本的数据。</li>
+<li>区域(Region)：HBase自动把表水平划分成的多个区域，划分的区域随着数据的增大而增多。</li>
+</ul>
+<p>动手实践：将以下用户的信息保存到Hbase中</p>
+<p><img src="img/2017-12-27_192040.jpg" alt=""></p>
+<p>​    </p>
+<p>​                <img src="img/2017-12-27_192757.jpg" alt=""></p>
+<p>​        </p>
+<h3 id="1-3-Hbase整体结构"><a href="#1-3-Hbase整体结构" class="headerlink" title="1.3 Hbase整体结构"></a>1.3 Hbase整体结构</h3><p><img src="img/2017-12-27_180706.jpg" alt=""></p>
+<h4 id="1-3-1-Client"><a href="#1-3-1-Client" class="headerlink" title="1.3.1 Client"></a>1.3.1 Client</h4><ul>
+<li>①使用HBase RPC机制与HMaster和HRegionServer进行通信；</li>
+<li>②Client与HMaster进行通信进行管理类操作；</li>
+<li>③Client与HRegionServer进行数据读写类操作。</li>
+</ul>
+<h4 id="1-3-2-Zookeeper"><a href="#1-3-2-Zookeeper" class="headerlink" title="1.3.2 Zookeeper"></a>1.3.2 Zookeeper</h4><ul>
+<li>①保证任何时候，集群中只有一个running master，避免单点问题；</li>
+<li>②存贮所有Region的寻址入口，包括-ROOT-表地址、HMaster地址；</li>
+<li>③实时监控Region Server的状态，将Region server的上线和下线信息，实时通知给Master；</li>
+<li>④存储Hbase的schema，包括有哪些table，每个table有哪些column family。</li>
+</ul>
+<h4 id="1-3-3-HMaster"><a href="#1-3-3-HMaster" class="headerlink" title="1.3.3 HMaster"></a>1.3.3 HMaster</h4><p>可以启动多个HMaster，通过Zookeeper的Master Election机制保证总有一个Master运行。</p>
+<p>角色功能：</p>
+<ul>
+<li>①为Region server分配region；</li>
+<li>②负责region server的负载均衡；</li>
+<li>③发现失效的region serve并重新分配其上的region；</li>
+<li>④GFS上的垃圾文件回收；</li>
+<li>⑤处理用户对标的增删改查操作。</li>
+</ul>
+<h4 id="1-3-4-HRegionServer"><a href="#1-3-4-HRegionServer" class="headerlink" title="1.3.4 HRegionServer"></a>1.3.4 HRegionServer</h4><p>HBase中最核心的模块，主要负责响应用户I/O请求，向HDFS文件系统中读写数据。</p>
+<p>作用：</p>
+<ul>
+<li>①维护Master分配给它的region，处理对这些region的IO请求；</li>
+<li>②负责切分在运行过程中变得过大的region。</li>
+<li>此外，HRegionServer管理一些列HRegion对象，每个HRegion对应Table中一个Region，HRegion由多个HStore组成，每个HStore对应Table中一个Column Family的存储，Column Family就是一个集中的存储单元，故将具有相同IO特性的Column放在一个Column Family会更高效。</li>
+</ul>
+<h4 id="1-3-4-HStore"><a href="#1-3-4-HStore" class="headerlink" title="1.3.4 HStore"></a>1.3.4 HStore</h4><p>HBase存储的核心，由MemStore和StoreFile组成。</p>
+<p>用户写入数据的流程为：client写入 -&gt; 存入MemStore，一直到MemStore满 -&gt; Flush成一个StoreFile，直至增长到一定阈值 -&gt; 触发Compact合并操作 -&gt; 多个StoreFile合并成一个StoreFile，同时进行版本合并和数据删除 -&gt; 当StoreFiles Compact后，逐步形成越来越大的StoreFile -&gt; 单个StoreFile大小超过一定阈值后，触发Split操作，把当前Region Split成2个Region，Region会下线，新Split出的2个孩子Region会被HMaster分配到相应的HRegionServer上，使得原先1个Region的压力得以分流到2个Region上，如图所示。</p>
+<p><img src="img/2017-12-27_231532.jpg" alt=""></p>
+<h4 id="1-3-6-HRegion"><a href="#1-3-6-HRegion" class="headerlink" title="1.3.6 HRegion"></a>1.3.6 HRegion</h4><p>​    一个表最开始存储的时候，是一个region。</p>
+<p>​    一个Region中会有个多个store，每个store用来存储一个列簇。如果只有一个column family，就只有一个store。</p>
+<p>​    region会随着插入的数据越来越多，会进行拆分。默认大小是10G一个。</p>
+<h4 id="1-3-7-HLog"><a href="#1-3-7-HLog" class="headerlink" title="1.3.7 HLog"></a>1.3.7 HLog</h4><p>在分布式系统环境中，无法避免系统出错或者宕机，一旦HRegionServer意外退出，MemStore中的内存数据就会丢失，引入HLog就是防止这种情况。</p>
+<p>工作机制：每个HRegionServer中都会有一个HLog对象，HLog是一个实现Write Ahead Log的类，每次用户操作写入Memstore的同时，也会写一份数据到HLog文件，HLog文件定期会滚动出新，并删除旧的文件(已持久化到StoreFile中的数据)。当HRegionServer意外终止后，HMaster会通过Zookeeper感知，HMaster首先处理遗留的HLog文件，将不同region的log数据拆分，分别放到相应region目录下，然后再将失效的region重新分配，领取到这些region的HRegionServer在Load Region的过程中，会发现有历史HLog需要处理，因此会Replay HLog中的数据到MemStore中，然后flush到StoreFiles，完成数据恢复。</p>
+<h3 id="1-4-查询路由"><a href="#1-4-查询路由" class="headerlink" title="1.4 查询路由"></a>1.4 查询路由</h3><p>  HBase中存有两张特殊的表，-ROOT-和.META.。</p>
+<ul>
+<li><p>.META.：记录了用户表的Region信息，.META.可以有多个regoin。</p>
+</li>
+<li><p>-ROOT-：记录了.META.表的Region信息，-ROOT-只有一个region。Zookeeper中记录了-ROOT-表的location。</p>
+<p>Client访问用户数据之前需要首先访问zookeeper，然后访问-ROOT-表，接着访问.META.表，最后才能找到用户数据的位置去访问</p>
+</li>
+</ul>
+<p><img src="img/2017-12-27_230552.jpg" alt=""></p>
+<h2 id="2、Hbase集群部署"><a href="#2、Hbase集群部署" class="headerlink" title="2、Hbase集群部署"></a>2、Hbase集群部署</h2><p><a href="http://mirrors.hust.edu.cn/apache/hbase/1.3.1/hbase-1.3.1-bin.tar.gz" target="_blank" rel="external">下载地址</a></p>
+<p>操作步骤说明：</p>
+<ul>
+<li>下载安装包</li>
+<li>修改配置文件<ul>
+<li>regionservers</li>
+<li>hbase-site.xml</li>
+<li>hbase-env.sh</li>
+<li>拷贝hadoop配置文件</li>
+</ul>
+</li>
+<li>分发配置文件</li>
+<li>启动集群</li>
+</ul>
+<h3 id="2-1-下载安装包"><a href="#2-1-下载安装包" class="headerlink" title="2.1 下载安装包"></a>2.1 下载安装包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirrors.hust.edu.cn/apache/hbase/1.3.1/hbase-1.3.1-bin.tar.gz</span><br><span class="line">tar -zxvf hbase-1.3.1-bin.tar.gz -C /export/servers/</span><br><span class="line">cd ../servers/</span><br><span class="line">mv hbase-1.3.1 hbase</span><br><span class="line">vi /etc/profile</span><br><span class="line">-</span><br><span class="line">export HBASE_HOME=/export/servers/hbase</span><br><span class="line">export PATH=$&#123;HBASE_HOME&#125;/bin:$PATH</span><br><span class="line">-</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-修改配置文件"><a href="#2-2-修改配置文件" class="headerlink" title="2.2 修改配置文件"></a>2.2 修改配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">进入配置文件所在的目录</span><br><span class="line">cd /export/servers/hbase/conf/</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改第一个配置文件  regionservers </span><br><span class="line">vi regionservers </span><br><span class="line">-</span><br><span class="line">node02</span><br><span class="line">node03</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">修改第二个配置文件 hbase-site.xml </span><br><span class="line"></span><br><span class="line">注意：以下配置集成的是hadoop ha集群。</span><br><span class="line">如果您的集群没有配置ha，hbase.rootdir 配置项目需要修改：hdfs://master:9000/hbase</span><br><span class="line">vi hbase-site.xml </span><br><span class="line">-</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.rootdir&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;hdfs://ns1/hbase&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">     &lt;name&gt;hbase.master.port&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;16000&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;/export/data/zk/&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;node01,node02,node03&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hbase.zookeeper.property.clientPort&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;2181&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">修改第三个配置文件 hbase-env.sh</span><br><span class="line"></span><br><span class="line">HBASE_MANAGES_ZK=false 表示，hbase和大家伙公用一个zookeeper集群，而不是自己管理集群。</span><br><span class="line"></span><br><span class="line">vi hbase-env.sh</span><br><span class="line">-</span><br><span class="line">export JAVA_HOME=/export/servers/jdk</span><br><span class="line">export HBASE_MANAGES_ZK=false</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修改第四个配置文件 拷贝hadoop配置文件</span><br><span class="line"></span><br><span class="line">拷贝hadoop的配置文件到hbase的配置文件目录</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-分发安装文件并启动"><a href="#2-3-分发安装文件并启动" class="headerlink" title="2.3 分发安装文件并启动"></a>2.3 分发安装文件并启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">分发配置文件</span><br><span class="line">scp -r /export/servers/hbase/ node02:/export/servers/</span><br><span class="line">scp -r /export/servers/hbase/ node03:/export/servers/</span><br><span class="line"></span><br><span class="line">启动集群</span><br><span class="line">startzk.sh</span><br><span class="line">start-dfs.sh</span><br><span class="line">start-hbase.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">启动异常：</span><br><span class="line">2017-12-27 06:27:54,882 INFO  [node01:16000.activeMasterManager] master.ServerManager: Waiting for region servers count to settle; currently checked in 0, slept for 67247 ms, expecting minimum of 1, maximum of 2147483647, timeout of 4500 ms, interval of 1500 ms.</span><br><span class="line"></span><br><span class="line">解决办法：</span><br><span class="line">保证每台机器时间一致。</span><br><span class="line">ntpdate -u 0.uk.pool.ntp.org</span><br><span class="line">ntpdate -u 1.uk.pool.ntp.org</span><br></pre></td></tr></table></figure>
+<h2 id="3、Hbase-Shell操作"><a href="#3、Hbase-Shell操作" class="headerlink" title="3、Hbase Shell操作"></a>3、Hbase Shell操作</h2><h4 id="3-1-连接集群"><a href="#3-1-连接集群" class="headerlink" title="3.1 连接集群"></a>3.1 连接集群</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbase shell</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-创建表"><a href="#3-2-创建表" class="headerlink" title="3.2 创建表"></a>3.2 创建表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create &apos;user&apos;,&apos;base_info&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-插入数据"><a href="#3-3-插入数据" class="headerlink" title="3.3 插入数据"></a>3.3 插入数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">put &apos;user&apos;,&apos;rowkey_10&apos;,&apos;base_info:username&apos;,&apos;张三&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_10&apos;,&apos;base_info:birthday&apos;,&apos;2014-07-10&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_10&apos;,&apos;base_info:sex&apos;,&apos;1&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_10&apos;,&apos;base_info:address&apos;,&apos;北京市&apos;</span><br><span class="line"></span><br><span class="line">put &apos;user&apos;,&apos;rowkey_16&apos;,&apos;base_info:username&apos;,&apos;张小明&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_16&apos;,&apos;base_info:birthday&apos;,&apos;2014-07-10&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_16&apos;,&apos;base_info:sex&apos;,&apos;1&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_16&apos;,&apos;base_info:address&apos;,&apos;北京&apos;</span><br><span class="line"></span><br><span class="line">put &apos;user&apos;,&apos;rowkey_22&apos;,&apos;base_info:username&apos;,&apos;陈小明&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_22&apos;,&apos;base_info:birthday&apos;,&apos;2014-07-10&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_22&apos;,&apos;base_info:sex&apos;,&apos;1&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_22&apos;,&apos;base_info:address&apos;,&apos;上海&apos;</span><br><span class="line"></span><br><span class="line">put &apos;user&apos;,&apos;rowkey_24&apos;,&apos;base_info:username&apos;,&apos;张三丰&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_24&apos;,&apos;base_info:birthday&apos;,&apos;2014-07-10&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_24&apos;,&apos;base_info:sex&apos;,&apos;1&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_24&apos;,&apos;base_info:address&apos;,&apos;河南&apos;</span><br><span class="line"></span><br><span class="line">put &apos;user&apos;,&apos;rowkey_25&apos;,&apos;base_info:username&apos;,&apos;陈大明&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_25&apos;,&apos;base_info:birthday&apos;,&apos;2014-07-10&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_25&apos;,&apos;base_info:sex&apos;,&apos;1&apos;</span><br><span class="line">put &apos;user&apos;,&apos;rowkey_25&apos;,&apos;base_info:address&apos;,&apos;西安&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-4-查询表中的所有数据"><a href="#3-4-查询表中的所有数据" class="headerlink" title="3.4 查询表中的所有数据"></a>3.4 查询表中的所有数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan &apos;user&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-5-查询某个rowkey的数据"><a href="#3-5-查询某个rowkey的数据" class="headerlink" title="3.5 查询某个rowkey的数据"></a>3.5 查询某个rowkey的数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get &apos;user&apos;,&apos;rowkey_16&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-6-查询某个列簇的数据"><a href="#3-6-查询某个列簇的数据" class="headerlink" title="3.6 查询某个列簇的数据"></a>3.6 查询某个列簇的数据</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get 'user','rowkey_16','base_info'</span><br><span class="line">get 'user','rowkey_16','base_info:username'</span><br><span class="line">get 'user', 'rowkey_16', &#123;COLUMN =&gt; ['base_info:username','base_info:sex']&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-7-删除表中的数据"><a href="#3-7-删除表中的数据" class="headerlink" title="3.7 删除表中的数据"></a>3.7 删除表中的数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete &apos;user&apos;, &apos;rowkey_16&apos;, &apos;base_info:username&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-8-清空数据"><a href="#3-8-清空数据" class="headerlink" title="3.8 清空数据"></a>3.8 清空数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truncate &apos;user&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-9-操作列簇"><a href="#3-9-操作列簇" class="headerlink" title="3.9  操作列簇"></a>3.9  操作列簇</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter &apos;user&apos;, NAME =&gt; &apos;f2&apos;</span><br><span class="line">alter &apos;user&apos;, &apos;delete&apos; =&gt; &apos;f2&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-10-删除表"><a href="#3-10-删除表" class="headerlink" title="3.10 删除表"></a>3.10 删除表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">disable &apos;user&apos;</span><br><span class="line">drop &apos;user&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-11-命令表"><a href="#3-11-命令表" class="headerlink" title="3.11 命令表"></a>3.11 命令表</h4><p><img src="img/2017-12-27_230420.jpg" alt=""></p>
+<h2 id="4、HBase-Java-API"><a href="#4、HBase-Java-API" class="headerlink" title="4、HBase Java API"></a>4、HBase Java API</h2><h4 id="4-1-导入pom依赖"><a href="#4-1-导入pom依赖" class="headerlink" title="4.1 导入pom依赖"></a>4.1 导入pom依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hbase<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hbase-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-2-添加配置文件"><a href="#4-2-添加配置文件" class="headerlink" title="4.2 添加配置文件"></a>4.2 添加配置文件</h4><p>在resource目录下创建hbase-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>zk01,zk02,zk03<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>The directory shared by region servers.</span><br><span class="line">        <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-3-连接Hbase"><a href="#4-3-连接Hbase" class="headerlink" title="4.3 连接Hbase"></a>4.3 连接Hbase</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  hbase的两种连接方式：1）读取配置文件 只需要配置zookeeper </span></span><br><span class="line">        Configuration config = HBaseConfiguration.create();</span><br><span class="line">        Connection connection = ConnectionFactory.createConnection(config);</span><br><span class="line"><span class="comment">//2）通过代码配置</span></span><br><span class="line">	    Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">        configuration.set(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"zk01:2181,zk02:2181,zk03:2181"</span>);</span><br><span class="line">        connection = ConnectionFactory.createConnection();</span><br></pre></td></tr></table></figure>
+<h4 id="4-4-创建表"><a href="#4-4-创建表" class="headerlink" title="4.4 创建表"></a>4.4 创建表</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       <span class="comment">// 1.连接HBase</span></span><br><span class="line">       <span class="comment">// 1.1 HBaseConfiguration.create(); </span></span><br><span class="line">       Configuration config = HBaseConfiguration.create();</span><br><span class="line">       <span class="comment">// 1.2 创建一个连接</span></span><br><span class="line">       Connection connection = ConnectionFactory.createConnection(config);</span><br><span class="line">       <span class="comment">// 1.3 从连接中获得一个Admin对象</span></span><br><span class="line">       Admin admin = connection.getAdmin();</span><br><span class="line">       <span class="comment">// 2.创建表</span></span><br><span class="line">       <span class="comment">// 2.1 判断表是否存在</span></span><br><span class="line">       TableName tableName = TableName.valueOf(<span class="string">"user"</span>);</span><br><span class="line">       <span class="keyword">if</span> (!admin.tableExists(tableName)) &#123;</span><br><span class="line">           <span class="comment">//2.2 如果表不存在就创建一个表</span></span><br><span class="line">           HTableDescriptor hTableDescriptor = <span class="keyword">new</span> HTableDescriptor(tableName);</span><br><span class="line">           hTableDescriptor.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">"base_info"</span>));</span><br><span class="line">           admin.createTable(hTableDescriptor);</span><br><span class="line">           System.out.println(<span class="string">"创建表"</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-5-打印表的信息"><a href="#4-5-打印表的信息" class="headerlink" title="4.5 打印表的信息"></a>4.5 打印表的信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initConnection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            connection = ConnectionFactory.createConnection(config);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"连接数据库失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tableInfo</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1.定义表的名称</span></span><br><span class="line">        TableName tableName = TableName.valueOf(<span class="string">"user"</span>);</span><br><span class="line">        <span class="comment">// 2.获取表</span></span><br><span class="line">        Table table = connection.getTable(tableName);</span><br><span class="line">        <span class="comment">// 3.获取表的描述信息</span></span><br><span class="line">        HTableDescriptor tableDescriptor = table.getTableDescriptor();</span><br><span class="line">        <span class="comment">// 4.获取表的列簇信息</span></span><br><span class="line">        HColumnDescriptor[] columnFamilies = tableDescriptor.getColumnFamilies();</span><br><span class="line">        <span class="keyword">for</span> (HColumnDescriptor columnFamily : columnFamilies) &#123;</span><br><span class="line">            <span class="comment">// 5.获取表的columFamily的字节数组</span></span><br><span class="line">            <span class="keyword">byte</span>[] name = columnFamily.getName();</span><br><span class="line">            <span class="comment">// 6.使用hbase自带的bytes工具类转成string</span></span><br><span class="line">            String value = Bytes.toString(name);</span><br><span class="line">            <span class="comment">// 7.打印</span></span><br><span class="line">            System.out.println(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-6-添加数据-PUT"><a href="#4-6-添加数据-PUT" class="headerlink" title="4.6 添加数据(PUT)"></a>4.6 添加数据(PUT)</h4><p><img src="img/2017-12-27_192757.jpg" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initConnection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            connection = ConnectionFactory.createConnection(config);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"连接数据库失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1.定义表的名称</span></span><br><span class="line">        TableName tableName = TableName.valueOf(<span class="string">"user"</span>);</span><br><span class="line">        <span class="comment">// 2.获取表</span></span><br><span class="line">        Table table = connection.getTable(tableName);</span><br><span class="line">        <span class="comment">// 3.准备数据</span></span><br><span class="line">        String rowKey = <span class="string">"rowkey_10"</span>;</span><br><span class="line">        Put zhangsan = <span class="keyword">new</span> Put(Bytes.toBytes(rowKey));</span><br><span class="line">        zhangsan.addColumn(Bytes.toBytes(<span class="string">"base_info"</span>), Bytes.toBytes(<span class="string">"username"</span>), Bytes.toBytes(<span class="string">"张三"</span>));</span><br><span class="line">        zhangsan.addColumn(Bytes.toBytes(<span class="string">"base_info"</span>), Bytes.toBytes(<span class="string">"sex"</span>), Bytes.toBytes(<span class="string">"1"</span>));</span><br><span class="line">        zhangsan.addColumn(Bytes.toBytes(<span class="string">"base_info"</span>), Bytes.toBytes(<span class="string">"address"</span>), Bytes.toBytes(<span class="string">"北京市"</span>));</span><br><span class="line">        zhangsan.addColumn(Bytes.toBytes(<span class="string">"base_info"</span>), Bytes.toBytes(<span class="string">"birthday"</span>), Bytes.toBytes(<span class="string">"2014-07-10"</span>));</span><br><span class="line">        <span class="comment">// 4. 添加数据</span></span><br><span class="line">        table.put(zhangsan);</span><br><span class="line">        table.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-7-获取数据-Get"><a href="#4-7-获取数据-Get" class="headerlink" title="4.7 获取数据(Get)"></a>4.7 获取数据(Get)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> @Test</span><br><span class="line">public void get() throws IOException &#123;</span><br><span class="line">        // 1.定义表的名称</span><br><span class="line">        TableName tableName = TableName.valueOf(&quot;user&quot;);</span><br><span class="line">        // 2.获取表</span><br><span class="line">        Table table = connection.getTable(tableName);</span><br><span class="line">        // 3.准备数据</span><br><span class="line">        String rowKey = &quot;rowkey_10&quot;;</span><br><span class="line">        // 4.拼装查询条件</span><br><span class="line">        Get get = new Get(Bytes.toBytes(rowKey));</span><br><span class="line">        // 5.查询数据</span><br><span class="line">        Result result = table.get(get);</span><br><span class="line">        // 6.打印数据 获取所有的单元格</span><br><span class="line">        List&lt;Cell&gt; cells = result.listCells();</span><br><span class="line">        for (Cell cell : cells) &#123;</span><br><span class="line">            // 打印rowkey,family,qualifier,value</span><br><span class="line">            System.out.println(Bytes.toString(CellUtil.cloneRow(cell))</span><br><span class="line">                    + &quot;==&gt; &quot; + Bytes.toString(CellUtil.cloneFamily(cell))</span><br><span class="line">                    + &quot;&#123;&quot; + Bytes.toString(CellUtil.cloneQualifier(cell))</span><br><span class="line">                    + &quot;:&quot; + Bytes.toString(CellUtil.cloneValue(cell)) + &quot;&#125;&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-8-全表扫描（scan-慎用）"><a href="#4-8-全表扫描（scan-慎用）" class="headerlink" title="4.8 全表扫描（scan 慎用）"></a>4.8 全表扫描（scan 慎用）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void scan() throws IOException &#123;</span><br><span class="line">        // 1.定义表的名称</span><br><span class="line">        TableName tableName = TableName.valueOf(&quot;user&quot;);</span><br><span class="line">        // 2.获取表</span><br><span class="line">        Table table = connection.getTable(tableName);</span><br><span class="line">        // 3.全表扫描</span><br><span class="line">        Scan scan = new Scan();</span><br><span class="line">        // 4.获取扫描结果</span><br><span class="line">        ResultScanner scanner = table.getScanner(scan);</span><br><span class="line">        Result result = null;</span><br><span class="line">        // 5. 迭代数据</span><br><span class="line">        while ((result = scanner.next()) != null) &#123;</span><br><span class="line">            // 6.打印数据 获取所有的单元格</span><br><span class="line">            List&lt;Cell&gt; cells = result.listCells();</span><br><span class="line">            for (Cell cell : cells) &#123;</span><br><span class="line">                // 打印rowkey,family,qualifier,value</span><br><span class="line">                System.out.println(Bytes.toString(CellUtil.cloneRow(cell))</span><br><span class="line">                        + &quot;==&gt; &quot; + Bytes.toString(CellUtil.cloneFamily(cell))</span><br><span class="line">                        + &quot;&#123;&quot; + Bytes.toString(CellUtil.cloneQualifier(cell))</span><br><span class="line">                        + &quot;:&quot; + Bytes.toString(CellUtil.cloneValue(cell)) + &quot;&#125;&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-9-范围查询（开始行-结束行）"><a href="#4-9-范围查询（开始行-结束行）" class="headerlink" title="4.9 范围查询（开始行-结束行）"></a>4.9 范围查询（开始行-结束行）</h4><p>在4.8的基础上修改代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Scan scan = new Scan();</span><br><span class="line">scan.setStartRow(Bytes.toBytes(&quot;rowkey_1&quot;));</span><br><span class="line">scan.setStopRow(Bytes.toBytes(&quot;rowkey_2&quot;));</span><br></pre></td></tr></table></figure>
+<h3 id="5、使用过滤器进行查询"><a href="#5、使用过滤器进行查询" class="headerlink" title="5、使用过滤器进行查询"></a>5、使用过滤器进行查询</h3><h4 id="5-1-比较过滤器有几种？"><a href="#5-1-比较过滤器有几种？" class="headerlink" title="5.1 比较过滤器有几种？"></a>5.1 比较过滤器有几种？</h4><ul>
+<li>RowFilter   基于RowKey的过滤</li>
+<li>FamilyFilter 基于列簇的过滤</li>
+<li>QualifierFilter 基于字段的过滤</li>
+<li>ValueFilter 基于值的过滤</li>
+<li>DependentColumnFilter 参考值过滤器</li>
+</ul>
+<h4 id="5-2-比较运算符？"><a href="#5-2-比较运算符？" class="headerlink" title="5.2 比较运算符？"></a>5.2 比较运算符？</h4><ul>
+<li>LESS 匹配小于设定值的值</li>
+<li>LESS_OR_EQUAL 匹配小于或等于设定值的值</li>
+<li>EQUAL 匹配等于设定值的值</li>
+<li>NOT_EQUAL 匹配与设定值不相等的值</li>
+<li>GREATER_OR_EQUAL 匹配大于或等于设定值的值</li>
+<li>GREATER 匹配大于设定值的值</li>
+<li>NO_OP 排除一切值</li>
+</ul>
+<h4 id="5-3-比较器有哪些？"><a href="#5-3-比较器有哪些？" class="headerlink" title="5.3 比较器有哪些？"></a>5.3 比较器有哪些？</h4><ul>
+<li>BinaryComparator 使用Bytes.compareTo()比较当前的阈值</li>
+<li>BinaryPrefixComparator 与上面的相似，使用Bytes.compareTo()进行匹配，但是是从左端开始前缀匹配</li>
+<li>NullComparator 不做匹配，只判断当前值不是null</li>
+<li>BitComparator 通过BitWiseOp类提供的按位与（AND）、或（OR）、异或（XOR）操作执行位级比较。</li>
+<li>RegexStringComparator 根据一个正则表达式，在实例化这个比较器的时候去匹配表中的数据。</li>
+<li>SubStringComparator 把阈值和表中数据String实例，同时通过contains()操作匹配字符串</li>
+</ul>
+<h4 id="5-4-示例代码"><a href="#5-4-示例代码" class="headerlink" title="5.4 示例代码"></a>5.4 示例代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建RowFilter过滤器</span></span><br><span class="line"> RowFilter rowFilter = <span class="keyword">new</span> RowFilter(CompareFilter.CompareOp.EQUAL</span><br><span class="line">                , <span class="keyword">new</span> BinaryComparator(<span class="string">"rowkey_10"</span>.getBytes()));</span><br><span class="line"><span class="comment">//创建familyFilter过滤器</span></span><br><span class="line">FamilyFilter familyFilter = <span class="keyword">new</span> FamilyFilter(CompareFilter.CompareOp.NO_OP,</span><br><span class="line">                <span class="keyword">new</span> BinaryComparator(<span class="string">"base_Info"</span>.getBytes()));</span><br><span class="line"><span class="comment">//创建qualifierFilter过滤器</span></span><br><span class="line">QualifierFilter qualifierFilter = <span class="keyword">new</span> QualifierFilter(CompareFilter.CompareOp.EQUAL,</span><br><span class="line">                <span class="keyword">new</span> BinaryComparator(<span class="string">"username"</span>.getBytes()));</span><br><span class="line">        <span class="comment">//创建valueFilter过滤器</span></span><br><span class="line">ValueFilter valueFilter = <span class="keyword">new</span> ValueFilter(CompareFilter.CompareOp.EQUAL,</span><br><span class="line">                <span class="keyword">new</span> BinaryComparator(<span class="string">"张三"</span>.getBytes()));</span><br></pre></td></tr></table></figure>
+<h4 id="5-5、查询值等于张三的所有数据"><a href="#5-5、查询值等于张三的所有数据" class="headerlink" title="5.5、查询值等于张三的所有数据"></a>5.5、查询值等于张三的所有数据</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tesValueFilter</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//1、创建过滤器</span></span><br><span class="line">        ValueFilter filter = <span class="keyword">new</span> ValueFilter(CompareFilter.CompareOp.EQUAL, <span class="keyword">new</span> BinaryComparator(<span class="string">"张三"</span>.getBytes()));</span><br><span class="line">        <span class="comment">//2、创建扫描器</span></span><br><span class="line">        Scan scan = <span class="keyword">new</span> Scan();</span><br><span class="line">        <span class="comment">//3、将过滤器设置到扫描器中</span></span><br><span class="line">        scan.setFilter(filter);</span><br><span class="line">        <span class="comment">//4、获取HBase的表</span></span><br><span class="line">        Table table = connection.getTable(TableName.valueOf(<span class="string">"user"</span>));</span><br><span class="line">        <span class="comment">//5、扫描HBase的表（注意过滤操作是在服务器进行的，也即是在regionServer进行的）</span></span><br><span class="line">        ResultScanner scanner = table.getScanner(scan);</span><br><span class="line">        <span class="keyword">for</span> (Result result : scanner) &#123;</span><br><span class="line">            <span class="comment">// 6.打印数据 获取所有的单元格</span></span><br><span class="line">            List&lt;Cell&gt; cells = result.listCells();</span><br><span class="line">            <span class="keyword">for</span> (Cell cell : cells) &#123;</span><br><span class="line">                <span class="comment">// 打印rowkey,family,qualifier,value</span></span><br><span class="line">                System.out.println(Bytes.toString(CellUtil.cloneRow(cell))</span><br><span class="line">                        + <span class="string">"==&gt; "</span> + Bytes.toString(CellUtil.cloneFamily(cell))</span><br><span class="line">                        + <span class="string">"&#123;"</span> + Bytes.toString(CellUtil.cloneQualifier(cell))</span><br><span class="line">                        + <span class="string">":"</span> + Bytes.toString(CellUtil.cloneValue(cell)) + <span class="string">"&#125;"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6、HBase的rowkey的设计原则"><a href="#6、HBase的rowkey的设计原则" class="headerlink" title="6、HBase的rowkey的设计原则"></a>6、HBase的rowkey的设计原则</h3><p>HBase是三维有序存储的，通过rowkey（行键），column key（column family和qualifier）和TimeStamp（时间戳）这个三个维度可以对HBase中的数据进行快速定位。</p>
+<p>HBase中rowkey可以唯一标识一行记录，三种查询方式</p>
+<ul>
+<li>通过get方式，指定rowkey获取唯一一条记录</li>
+<li>通过scan方式，设置startRow和stopRow参数进行范围匹配</li>
+<li>全表扫描，即直接扫描整张表中所有行记录</li>
+</ul>
+<h4 id="6-1-Rowkey长度原则"><a href="#6-1-Rowkey长度原则" class="headerlink" title="6.1 Rowkey长度原则"></a>6.1 Rowkey长度原则</h4><p>rowkey是一个二进制码流，可以是任意字符串，最大长度64kb，实际应用中一般为10-100bytes，以byte[]形式保存，一般设计成定长。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">建议越短越好，不要超过16个字节</span><br></pre></td></tr></table></figure>
+<p>数据的持久化文件HFile中是按照KeyValue存储的，如果rowkey过长，比如超过100字节，1000w行数据，光rowkey就要占用100*1000w=10亿个字节，将近1G数据，这样会极大影响HFile的存储效率；<br>MemStore将缓存部分数据到内存，如果rowkey字段过长，内存的有效利用率就会降低，系统不能缓存更多的数据，这样会降低检索效率。<br>目前操作系统都是64位系统，内存8字节对齐，控制在16个字节，8字节的整数倍利用了操作系统的最佳特性。</p>
+<h4 id="6-2-Rowkey-散列原则"><a href="#6-2-Rowkey-散列原则" class="headerlink" title="6.2 Rowkey 散列原则"></a>6.2 Rowkey 散列原则</h4><p>如果rowkey按照时间戳的方式递增，不要将时间放在二进制码的前面，建议将rowkey的高位作为散列字段，由程序随机生成，低位放时间字段，这样将提高数据均衡分布在每个RegionServer，以实现负载均衡的几率。如果没有散列字段，首字段直接是时间信息，所有的数据都会集中在一个RegionServer上，这样在数据检索的时候负载会集中在个别的RegionServer上，造成热点问题，会降低查询效率。</p>
+<h4 id="6-3-Rowkey唯一原则"><a href="#6-3-Rowkey唯一原则" class="headerlink" title="6.3 Rowkey唯一原则"></a>6.3 Rowkey唯一原则</h4><p>必须在设计上保证其唯一性，rowkey是按照字典顺序排序存储的，因此，设计rowkey的时候，要充分利用这个排序的特点，将经常读取的数据存储到一块，将最近可能会被访问的数据放到一块。</p>
+<h4 id="6-4-什么是热点"><a href="#6-4-什么是热点" class="headerlink" title="6.4 什么是热点"></a>6.4 什么是热点</h4><p>HBase中的行是按照rowkey的字典顺序排序的，这种设计优化了scan操作，可以将相关的行以及会被一起读取的行存取在临近位置，便于scan。然而糟糕的rowkey设计是热点的源头。热点发生在大量的client直接访问集群的一个或极少数个节点（访问可能是读，写或者其他操作）。大量访问会使热点region所在的单个机器超出自身承受能力，引起性能下降甚至region不可用，这也会影响同一个RegionServer上的其他region，由于主机无法服务其他region的请求。设计良好的数据访问模式以使集群被充分，均衡的利用。<br>为了避免写热点，设计rowkey使得不同行在同一个region，但是在更多数据情况下，数据应该被写入集群的多个region，而不是一个。</p>
+<h4 id="6-5-避免热点"><a href="#6-5-避免热点" class="headerlink" title="6.5 避免热点"></a>6.5 避免热点</h4><h5 id="6-5-1-加盐"><a href="#6-5-1-加盐" class="headerlink" title="6.5.1 加盐"></a>6.5.1 加盐</h5><p>这里所说的加盐不是密码学中的加盐，而是在rowkey的前面增加随机数，具体就是给rowkey分配一个随机前缀以使得它和之前的rowkey的开头不同。分配的前缀种类数量应该和你想使用数据分散到不同的region的数量一致。加盐之后的rowkey就会根据随机生成的前缀分散到各个region上，以避免热点。</p>
+<h5 id="6-5-2-哈希"><a href="#6-5-2-哈希" class="headerlink" title="6.5.2 哈希"></a>6.5.2 哈希</h5><p>哈希会使同一行永远用一个前缀加盐。哈希也可以使负载分散到整个集群，但是读却是可以预测的。使用确定的哈希可以让客户端重构完整的rowkey，可以使用get操作准确获取某一个行数据</p>
+<h5 id="6-5-3-反转"><a href="#6-5-3-反转" class="headerlink" title="6.5.3 反转"></a>6.5.3 反转</h5><p>第三种防止热点的方法时反转固定长度或者数字格式的rowkey。这样可以使得rowkey中经常改变的部分（最没有意义的部分）放在前面。这样可以有效的随机rowkey，但是牺牲了rowkey的有序性。</p>
+<p>以手机号为rowkey，可以将手机号反转后的字符串作为rowkey，这样的就避免了以手机号那样比较固定开头导致热点问题</p>
 
- 1.1修改各个虚拟机主机名 
-
-        vi /etc/sysconfig/network
-
-        NETWORKING=yes
-        HOSTNAME=node-1   
-
- 1.2修改主机名和IP的映射关系
-
-        vi /etc/hosts
-
-        192.168.1.101    node-1
-        192.168.1.102    node-2
-        192.168.1.103    node-3
-
- 1.3关闭防火墙
-
-
-        #查看防火墙状态
-        service iptables status
-        #关闭防火墙
-        service iptables stop
-        #查看防火墙开机启动状态
-        chkconfig iptables --list
-        #关闭防火墙开机启动
-        chkconfig iptables off
-
- 1.4.配置ssh免登陆
-
-        #生成ssh免登陆密钥
-        ssh-keygen -t rsa （四个回车）
-
-执行完这个命令后，会生成两个文件id_rsa（私钥）、id_rsa.pub（公钥）
-将公钥拷贝到要免密登陆的目标机器上
-
-        ssh-copy-id node-2
-
-1.5 同步集群时间
-
-常用的手动进行时间的同步
-
-    date -s &quot;2017-03-03 03:03:03&quot;
-
-或者网络同步：
-
-    yum install ntpdate
-    ntpdate cn.pool.ntp.org
-</code></pre><hr>
-<p>###2.安装JDK</p>
-<p>2.1上传jdk</p>
-<pre><code>rz jdk-8u65-linux-x64.tar.gz
-</code></pre><p>2.2解压jdk</p>
-<pre><code>tar -zxvf jdk-8u65-linux-x64.tar.gz -C /root/apps
-</code></pre><p>2.3将java添加到环境变量中</p>
-<pre><code>vim /etc/profile
-#在文件最后添加
-export JAVA_HOME=/root/apps/jdk1.8.0_65
-export PATH=$PATH:$JAVA_HOME/bin
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-
-#刷新配置
-source /etc/profile
-</code></pre><hr>
-<p>###3.安装hadoop2.7.4</p>
-<p>上传hadoop的安装包到服务器</p>
-<pre><code>hadoop-2.7.4-with-centos-6.7.tar.gz
-</code></pre><p>解压安装包</p>
-<pre><code>tar zxvf hadoop-2.7.4-with-centos-6.7.tar.gz
-</code></pre><p>注意：hadoop2.x的配置文件目录：$HADOOP_HOME/etc/hadoop</p>
-<hr>
-<p>####3.1 配置hadoop</p>
-<p>第一个：hadoop-env.sh</p>
-<pre><code>vi hadoop-env.sh
-export JAVA_HOME=/root/apps/jdk1.8.0_65
-</code></pre><hr>
-<p>第二个：core-site.xml</p>
-<pre><code>&lt;!-- 指定HADOOP所使用的文件系统schema（URI），HDFS的老大（NameNode）的地址 --&gt;
-&lt;property&gt;
-    &lt;name&gt;fs.defaultFS&lt;/name&gt;
-    &lt;value&gt;hdfs://node-1:9000&lt;/value&gt;
-&lt;/property&gt;
-
-&lt;!-- 指定hadoop运行时产生文件的存储目录,默认/tmp/hadoop-${user.name} --&gt;
-&lt;property&gt;
-    &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
-    &lt;value&gt;/home/hadoop/hadoop-2.4.1/tmp&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><hr>
-<p>第三个：hdfs-site.xml   </p>
-<pre><code>&lt;!-- 指定HDFS副本的数量 --&gt;
-&lt;property&gt;
-    &lt;name&gt;dfs.replication&lt;/name&gt;
-    &lt;value&gt;2&lt;/value&gt;
-&lt;/property&gt;
-
-&lt;property&gt;
-     &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
-      &lt;value&gt;node-22:50090&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><hr>
-<p>第四个：mapred-site.xml </p>
-<p>mv mapred-site.xml.template mapred-site.xml</p>
-<p>vi mapred-site.xml</p>
-<pre><code>&lt;!-- 指定mr运行时框架，这里指定在yarn上，默认是local --&gt;
-&lt;property&gt;
-    &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
-    &lt;value&gt;yarn&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><hr>
-<p>第五个：yarn-site.xml</p>
-<pre><code>&lt;!-- 指定YARN的老大（ResourceManager）的地址 --&gt;
-&lt;property&gt;
-    &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
-    &lt;value&gt;node-21&lt;/value&gt;
-&lt;/property&gt;
-
-&lt;!-- NodeManager上运行的附属服务。需配置成mapreduce_shuffle，才可运行MapReduce程序默认值：&quot;&quot; --&gt;
-&lt;property&gt;
-    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
-    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><p>第六个：slaves文件，里面写上从节点所在的主机名字</p>
-<pre><code>vi slaves
-node-21
-node-22
-node-23
-</code></pre><p>####3.2 将hadoop添加到环境变量</p>
-<pre><code>vim /etc/proflie
-    export JAVA_HOME=/root/apps/jdk1.8.0_65
-    export HADOOP_HOME=/root/apps/hadoop-2.7.4
-    export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-
-source /etc/profile
-</code></pre><h4 id="3-3-格式化namenode（本质是对namenode进行初始化）"><a href="#3-3-格式化namenode（本质是对namenode进行初始化）" class="headerlink" title="3.3 格式化namenode（本质是对namenode进行初始化）"></a>3.3 格式化namenode（本质是对namenode进行初始化）</h4><pre><code>hdfs namenode -format (hadoop namenode -format)
-</code></pre><h4 id="3-4启动hadoop"><a href="#3-4启动hadoop" class="headerlink" title="3.4启动hadoop"></a>3.4启动hadoop</h4><pre><code>先启动HDFS
-sbin/start-dfs.sh
-
-再启动YARN
-sbin/start-yarn.sh
-</code></pre><h4 id="3-5验证是否启动成功"><a href="#3-5验证是否启动成功" class="headerlink" title="3.5验证是否启动成功"></a>3.5验证是否启动成功</h4><pre><code>使用jps命令验证
-    27408 NameNode
-    28218 Jps
-    27643 SecondaryNameNode   (secondarynamenode)
-    28066 NodeManager
-    27803 ResourceManager
-    27512 DataNode
-
-    http://192.168.1.101:50070 （HDFS管理界面）
-    http://192.168.1.101:8088 （MR管理界面）
-</code></pre>
       
 
       
@@ -386,7 +394,7 @@ sbin/start-yarn.sh
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hbase</a>
         		</li>
       		
 		</ul>
@@ -442,7 +450,7 @@ sbin/start-yarn.sh
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/05/Hadoop-2-x-集群搭建/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/28/hbase入门/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -456,18 +464,9 @@ sbin/start-yarn.sh
   
 <nav id="article-nav">
   
-    <a href="/2017/12/11/Hive基础学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hive基础学习----建表
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/05/hadoop编译/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hadoop编译</div>
+    <a href="/2017/12/24/redis-4-x-安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis-4.x 安装</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -494,7 +493,7 @@ sbin/start-yarn.sh
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-格式化namenode（本质是对namenode进行初始化）"><span class="toc-number">1.</span> <span class="toc-text">3.3 格式化namenode（本质是对namenode进行初始化）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4启动hadoop"><span class="toc-number">2.</span> <span class="toc-text">3.4启动hadoop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5验证是否启动成功"><span class="toc-number">3.</span> <span class="toc-text">3.5验证是否启动成功</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、HBase基础"><span class="toc-number">1.</span> <span class="toc-text">1、HBase基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-基本概念"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Hbase表结构"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Hbase表结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Hbase整体结构"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 Hbase整体结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-Client"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 Client</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-Zookeeper"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 Zookeeper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-HMaster"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3 HMaster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-HRegionServer"><span class="toc-number">1.3.4.</span> <span class="toc-text">1.3.4 HRegionServer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-HStore"><span class="toc-number">1.3.5.</span> <span class="toc-text">1.3.4 HStore</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-6-HRegion"><span class="toc-number">1.3.6.</span> <span class="toc-text">1.3.6 HRegion</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-7-HLog"><span class="toc-number">1.3.7.</span> <span class="toc-text">1.3.7 HLog</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-查询路由"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 查询路由</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Hbase集群部署"><span class="toc-number">2.</span> <span class="toc-text">2、Hbase集群部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-下载安装包"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 下载安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-修改配置文件"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-分发安装文件并启动"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 分发安装文件并启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、Hbase-Shell操作"><span class="toc-number">3.</span> <span class="toc-text">3、Hbase Shell操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-连接集群"><span class="toc-number">3.0.1.</span> <span class="toc-text">3.1 连接集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-创建表"><span class="toc-number">3.0.2.</span> <span class="toc-text">3.2 创建表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-插入数据"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.3 插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-查询表中的所有数据"><span class="toc-number">3.0.4.</span> <span class="toc-text">3.4 查询表中的所有数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-查询某个rowkey的数据"><span class="toc-number">3.0.5.</span> <span class="toc-text">3.5 查询某个rowkey的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-查询某个列簇的数据"><span class="toc-number">3.0.6.</span> <span class="toc-text">3.6 查询某个列簇的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-删除表中的数据"><span class="toc-number">3.0.7.</span> <span class="toc-text">3.7 删除表中的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-清空数据"><span class="toc-number">3.0.8.</span> <span class="toc-text">3.8 清空数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-9-操作列簇"><span class="toc-number">3.0.9.</span> <span class="toc-text">3.9  操作列簇</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-10-删除表"><span class="toc-number">3.0.10.</span> <span class="toc-text">3.10 删除表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-11-命令表"><span class="toc-number">3.0.11.</span> <span class="toc-text">3.11 命令表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、HBase-Java-API"><span class="toc-number">4.</span> <span class="toc-text">4、HBase Java API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-导入pom依赖"><span class="toc-number">4.0.1.</span> <span class="toc-text">4.1 导入pom依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-添加配置文件"><span class="toc-number">4.0.2.</span> <span class="toc-text">4.2 添加配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-连接Hbase"><span class="toc-number">4.0.3.</span> <span class="toc-text">4.3 连接Hbase</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-创建表"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.4 创建表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-打印表的信息"><span class="toc-number">4.0.5.</span> <span class="toc-text">4.5 打印表的信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-添加数据-PUT"><span class="toc-number">4.0.6.</span> <span class="toc-text">4.6 添加数据(PUT)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-获取数据-Get"><span class="toc-number">4.0.7.</span> <span class="toc-text">4.7 获取数据(Get)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-8-全表扫描（scan-慎用）"><span class="toc-number">4.0.8.</span> <span class="toc-text">4.8 全表扫描（scan 慎用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-9-范围查询（开始行-结束行）"><span class="toc-number">4.0.9.</span> <span class="toc-text">4.9 范围查询（开始行-结束行）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、使用过滤器进行查询"><span class="toc-number">4.1.</span> <span class="toc-text">5、使用过滤器进行查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-比较过滤器有几种？"><span class="toc-number">4.1.1.</span> <span class="toc-text">5.1 比较过滤器有几种？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-比较运算符？"><span class="toc-number">4.1.2.</span> <span class="toc-text">5.2 比较运算符？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-比较器有哪些？"><span class="toc-number">4.1.3.</span> <span class="toc-text">5.3 比较器有哪些？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-示例代码"><span class="toc-number">4.1.4.</span> <span class="toc-text">5.4 示例代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5、查询值等于张三的所有数据"><span class="toc-number">4.1.5.</span> <span class="toc-text">5.5、查询值等于张三的所有数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、HBase的rowkey的设计原则"><span class="toc-number">4.2.</span> <span class="toc-text">6、HBase的rowkey的设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-Rowkey长度原则"><span class="toc-number">4.2.1.</span> <span class="toc-text">6.1 Rowkey长度原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-Rowkey-散列原则"><span class="toc-number">4.2.2.</span> <span class="toc-text">6.2 Rowkey 散列原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-Rowkey唯一原则"><span class="toc-number">4.2.3.</span> <span class="toc-text">6.3 Rowkey唯一原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-什么是热点"><span class="toc-number">4.2.4.</span> <span class="toc-text">6.4 什么是热点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-避免热点"><span class="toc-number">4.2.5.</span> <span class="toc-text">6.5 避免热点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-5-1-加盐"><span class="toc-number">4.2.5.1.</span> <span class="toc-text">6.5.1 加盐</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-5-2-哈希"><span class="toc-number">4.2.5.2.</span> <span class="toc-text">6.5.2 哈希</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-5-3-反转"><span class="toc-number">4.2.5.3.</span> <span class="toc-text">6.5.3 反转</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
