@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>常用命令 | wlds</title>
+  <title>Spark高级 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Windows常用操作查看端口进程：    netstat -ano | findstr “8086” 强制杀死进程：    tskill pid 根据进程id查询进程信息:    tasklist | findstr pid">
+  <meta name="description" content="一丶目标 RDD是什么 RDD的五大特性 RDD的常用算子操作 如何创建RDD RDD的缓存机制 划分stage 熟练使用RDD的算子完成计算 掌握RDD原理​      二丶 弹性分布式数据集2. 弹性分布式数据集RDD RDD(Resilient Distributed Dataset)​     Resilient: 弹性的 –&amp;gt; 表示最终数据可以保存在磁盘,也可以保存在内存中 Dis">
+<meta name="keywords" content="spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用命令">
-<meta property="og:url" content="http://yoursite.com/2017/11/08/changyong/index.html">
+<meta property="og:title" content="Spark高级">
+<meta property="og:url" content="http://yoursite.com/2018/01/07/Spark高级/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="Windows常用操作查看端口进程：    netstat -ano | findstr “8086” 强制杀死进程：    tskill pid 根据进程id查询进程信息:    tasklist | findstr pid">
+<meta property="og:description" content="一丶目标 RDD是什么 RDD的五大特性 RDD的常用算子操作 如何创建RDD RDD的缓存机制 划分stage 熟练使用RDD的算子完成计算 掌握RDD原理​      二丶 弹性分布式数据集2. 弹性分布式数据集RDD RDD(Resilient Distributed Dataset)​     Resilient: 弹性的 –&amp;gt; 表示最终数据可以保存在磁盘,也可以保存在内存中 Dis">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-30T11:59:40.531Z">
+<meta property="og:image" content="https://i.imgur.com/MWwrCEe.jpg">
+<meta property="og:image" content="https://i.imgur.com/PsPlCbH.jpg">
+<meta property="og:updated_time" content="2018-01-07T12:05:53.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用命令">
-<meta name="twitter:description" content="Windows常用操作查看端口进程：    netstat -ano | findstr “8086” 强制杀死进程：    tskill pid 根据进程id查询进程信息:    tasklist | findstr pid">
+<meta name="twitter:title" content="Spark高级">
+<meta name="twitter:description" content="一丶目标 RDD是什么 RDD的五大特性 RDD的常用算子操作 如何创建RDD RDD的缓存机制 划分stage 熟练使用RDD的算子完成计算 掌握RDD原理​      二丶 弹性分布式数据集2. 弹性分布式数据集RDD RDD(Resilient Distributed Dataset)​     Resilient: 弹性的 –&amp;gt; 表示最终数据可以保存在磁盘,也可以保存在内存中 Dis">
+<meta name="twitter:image" content="https://i.imgur.com/MWwrCEe.jpg">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -152,86 +156,160 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-changyong" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spark高级" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      常用命令
+      Spark高级
     </h1>
   
 
         
-        <a href="/2017/11/08/changyong/" class="archive-article-date">
-  	<time datetime="2017-11-08T13:31:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-08</time>
+        <a href="/2018/01/07/Spark高级/" class="archive-article-date">
+  	<time datetime="2018-01-07T12:04:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Windows常用操作"><a href="#Windows常用操作" class="headerlink" title="Windows常用操作"></a>Windows常用操作</h2><p>查看端口进程：    netstat -ano | findstr “8086”</p>
-<p>强制杀死进程：    tskill pid</p>
-<p>根据进程id查询进程信息:    tasklist | findstr pid</p>
-<a id="more"></a>
-<h2 id="IDEA快捷键及简单使用"><a href="#IDEA快捷键及简单使用" class="headerlink" title="IDEA快捷键及简单使用"></a>IDEA快捷键及简单使用</h2><p>file –&gt; new –&gt; module –&gt; java        java项目</p>
-<p>file –&gt; new –&gt; module –&gt; java Enterprise –&gt; web application        javaee项目</p>
-<p>file –&gt; new –&gt; module –&gt; maven –&gt; create from archetype (maven-archetype-quickstart)    </p>
-<p>file –&gt; new –&gt; module –&gt; maven –&gt; create from archetype (maven-archetype-webapp)    </p>
-<p>file –&gt; new –&gt; module –&gt; spring Initializr        spring boot项目</p>
-<p>file –&gt; settings –&gt; live templates 配置快捷键</p>
-<p>alt + enter    自动补全返回值 </p>
-<p>ctrl + k    页面字符串查找</p>
-<p>ctrl shift r  查找资源文件</p>
-<p>ctrl shift t  查找类</p>
-<p>alt + insert  pojo中快速重写方法</p>
-<p>ctrl h   全项目搜索字符串</p>
-<h2 id="Eclipse常用快捷键"><a href="#Eclipse常用快捷键" class="headerlink" title="Eclipse常用快捷键"></a>Eclipse常用快捷键</h2><p>ctrl+shift+c    :注释当前行</p>
-<p>ctrl+shift+i    :断点取值</p>
-<p>ctrl+shift+X/Y    :大小写转换</p>
-<p>ctrl+shift+l     :查看快捷键</p>
-<p>ctrl+shift+r    :快速复制一行</p>
-<p>ctrl+q            :回到上次编辑的位置</p>
-<p>ctrl+z/y        :撤销/反撤销</p>
-<p>ctrl+1            :自动补齐    ( ctrl 2 l )</p>
-<p>ctrl+shift+o    :快速导包</p>
-<p>f4                :找子类，看体系结构</p>
-<p>alt+shift+s        :source</p>
-<p>ctrl+w        :关闭当前类</p>
-<p>ctrl+shift+f    :代码格式化</p>
-<p>ctrl + alt + ↓（↑） 复制整行 </p>
-<p>alt + ↓（↑）        交换整行</p>
-<p>alt + ←（→） /  ctrl+tab    返回上（下）一个操作的类        </p>
-<p>ctrl+shift+t    :打开某个类</p>
-<p>搜索：ctrl + H（全项目搜索字符串） crtl + Shift +R（搜索类）    ctrl+F</p>
-<p>断点：F6（执行下一行代码） F8（进入下一个断点） F5（进入方法内）</p>
-<p>sqlyog中：    ctrl+a 全选；    f8/9 执行</p>
-<h2 id="Linux常用指令"><a href="#Linux常用指令" class="headerlink" title="Linux常用指令"></a>Linux常用指令</h2><p>显示网络进程：netstat -nplt</p>
-<p>查看端口占用：lsof -i:8080</p>
-<p>查看详细信息中带zookeeper的进程：ps -aux | grep zookeeper<br>            ps -ef | grep zookeeper</p>
-<p>杀死pid为2131的进程：kill -9 2131</p>
-<p>设置防火墙2181端口开放：/sbin/iptables -I INPUT -p tcp –dport 2181 -j ACCEPT</p>
-<p>保存防火墙配置：    /etc/rc.d/init.d/iptables save</p>
-<p>关闭防火墙：<br>        临时操作:service iptables status/start/stop</p>
-<pre><code>永久操作:chkconfig iptables --list
-        chkconfig iptables on/off
-</code></pre><p>/var/run/yum.pid已被锁定, 解决:    rm -f /var/run/yum.pid</p>
-<p>实时查看日志信息：tail -50f catalina.out</p>
-<p>系统间复制：    scp 文件名 ip://文件名</p>
-<p>查询当前路径及子路径下以bash开头的文件：find . -name ‘bash*’</p>
-<p>查看所有文件，包括隐藏文件：ls -a</p>
-<p>查看linux版本：    lsb_release -a</p>
-<p>查看linux位数:    getconf LONG_BIT</p>
-<p>列出本机所有java进程的pid:    jps</p>
-<h3 id="OpenSSH的使用"><a href="#OpenSSH的使用" class="headerlink" title="OpenSSH的使用"></a>OpenSSH的使用</h3><p>OpenSSH 是 SSH 协议的免费开源实现</p>
-<p>使用示例:  配置在node-1 至 node-2及其的免密登录</p>
-<p>a) 在node-1 机器上</p>
-<p> ssh-keygen -t rsa [dsa] 按四下回车</p>
-<p>b) 将公钥拷贝给node-2机器</p>
-<p>ssh-copy-id node-2</p>
-<p>首次连接后需要输入用户名密码,验证成功后 后续免密登录</p>
+        <h2 id="一丶目标"><a href="#一丶目标" class="headerlink" title="一丶目标"></a>一丶目标</h2><ul>
+<li>RDD是什么</li>
+<li>RDD的五大特性</li>
+<li>RDD的常用算子操作</li>
+<li>如何创建RDD</li>
+<li>RDD的缓存机制</li>
+<li>划分stage</li>
+<li>熟练使用RDD的算子完成计算</li>
+<li>掌握RDD原理<br>​    </li>
+</ul>
+<h2 id="二丶-弹性分布式数据集"><a href="#二丶-弹性分布式数据集" class="headerlink" title="二丶 弹性分布式数据集"></a>二丶 弹性分布式数据集</h2><h3 id="2-弹性分布式数据集RDD"><a href="#2-弹性分布式数据集RDD" class="headerlink" title="2. 弹性分布式数据集RDD"></a>2. 弹性分布式数据集RDD</h3><ul>
+<li>RDD(Resilient Distributed Dataset)<br>​    <ul>
+<li>Resilient: 弹性的 –&gt; 表示最终数据可以保存在磁盘,也可以保存在内存中</li>
+<li>Distributed: 数据分布式存储,并且可以做分布式计算</li>
+<li>Dataset: 数据集,可以理解为集合,存放数据</li>
+</ul>
+</li>
+</ul>
+<p>概述: </p>
+<ul>
+<li>分布式数据集,是Spark中最基本的数据抽象,代表一个不可变,可分区,里面的元素可并行计算的集合    </li>
+</ul>
+<ul>
+<li><p>自动容错,位置感知性调度,可伸缩性</p>
+<p>​        </p>
+</li>
+</ul>
+<h3 id="3-RDD的五大特性"><a href="#3-RDD的五大特性" class="headerlink" title="3.RDD的五大特性"></a>3.RDD的五大特性</h3><ul>
+<li>A list of partitions<br>每个RDD都有一个分区列表</li>
+<li>A function for computing each split<br>作用在每个分区上的函数</li>
+<li>A list of dependencies on other RDDs<br>一个RDD依赖其他多个RDD,重要</li>
+<li>Optionally, a Partitioner for key-value RDDs<br>可选项: 针对于kv键值对的RDD才具有该分区的特性</li>
+<li>Optionally, a list of preferred locations to compute each split on<br>可选项: 数据本地性,数据最优,选择尽量存储在worker节点上的数据节点<br>​        </li>
+</ul>
+<h3 id="4-创建RDD"><a href="#4-创建RDD" class="headerlink" title="4. 创建RDD"></a>4. 创建RDD</h3><ul>
+<li><p>由一个已经存在的scala集合创建</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>由外部存储系统的数据集创建</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd2 = sc.textFile(<span class="string">"/wc.txt"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>由一个RDD转换成一个新的RDD</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd3 = rdd2.flatMap</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-RDD算子的分类"><a href="#5-RDD算子的分类" class="headerlink" title="5. RDD算子的分类"></a>5. RDD算子的分类</h3><ul>
+<li>Transformation : 转换操作,将一个RDD转换成一个新的RDD(flatMap/map/reduceByKey),它属于懒加载,延迟执行,并不会立即出发任务的执行.</li>
+<li>Action : 此时才会真正出发任务的计算</li>
+</ul>
+<h3 id="6-RDD的两种依赖关系"><a href="#6-RDD的两种依赖关系" class="headerlink" title="6. RDD的两种依赖关系"></a>6. RDD的两种依赖关系</h3><ul>
+<li>窄依赖<ul>
+<li>每一个父RDD的Partition最多只被子RDD的一个Partition使用</li>
+</ul>
+</li>
+<li>宽依赖<ul>
+<li>子RDD的Partition会依赖于父RDD的多个Partition</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-Lineage-血统"><a href="#7-Lineage-血统" class="headerlink" title="7. Lineage(血统)"></a>7. Lineage(血统)</h3><p>RDD的Lineage会记录当前作用在RDD上的分区数据(元数据) 和一系列的转换行为,当子RDD中的某个分区数据丢失之后,只需要通过Lineage来重新计算恢复当前丢失数据的分区(Spark具备容错机制)</p>
+<h3 id="8-RDD的缓存"><a href="#8-RDD的缓存" class="headerlink" title="8. RDD的缓存"></a>8. RDD的缓存</h3><p>当持久化某个RDD后,每一个节点都将把计算的分片结果保存在内存中,并对此或衍生出的RDD进行其他动作中重用</p>
+<p>RDD的持久化和缓存,是Spark重要的特征之一,可以说,Spark是构建迭代算法和交互式查询的关键</p>
+<h4 id="8-1-RDD的缓存方式"><a href="#8-1-RDD的缓存方式" class="headerlink" title="8.1 RDD的缓存方式"></a>8.1 RDD的缓存方式</h4><p>通过执行cache和persist方法,可以将前面的计算结果缓存,但并不是在方法调用时缓存,而是在后面出发action时,该RDD被缓存在计算节点的内存中</p>
+<ul>
+<li>cache : 直接将RDD中的数据,保存在内存中,其本质是persist(StorageLevel.MEMORY_ONLY)</li>
+<li>persist : 可以有丰富的缓存界别</li>
+<li>当RDD设置了缓存之后,如果有需要用到该RDD数据的时候,就不需要重复计算,可以直接重缓存中得到.</li>
+</ul>
+<h3 id="9-DAG的生成"><a href="#9-DAG的生成" class="headerlink" title="9. DAG的生成"></a>9. DAG的生成</h3><ul>
+<li>DAG: 有向无环图, 原始的RDD进过一系列转换后形成DAG,根据RDD之间的依赖关系不同将DAG划分成不同的Stage</li>
+<li>宽依赖是划分DAG的依据</li>
+<li>根据DAG有向无环图,来划分stage<ul>
+<li>依据: <ul>
+<li>从最后一个算子往前推,依次判断当前算子是否是宽依赖,如果不是,继续往前推,如果遇到宽依赖的算子,就从对应这个宽依赖划分,把从最后一个算子,一直到第一个宽依赖算子,划分为一个stage.</li>
+<li>接下来继续按照这种方式往前推,直到最开始的算子操作</li>
+</ul>
+</li>
+<li>划分stage目的:<ul>
+<li>可以让每一个阶段并行的进行任务计算</li>
+</ul>
+</li>
+<li>后一个stage依赖与前一个stage</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-Spark任务调度"><a href="#10-Spark任务调度" class="headerlink" title="10. Spark任务调度"></a>10. Spark任务调度</h3><p><img src="https://i.imgur.com/MWwrCEe.jpg" alt=""></p>
+<p>各个RDD之间存在着依赖关系，这些依赖关系形成有向无环图DAG，DAGScheduler对这些依赖关系形成的DAG进行Stage划分，划分的规则很简单，从后往前回溯，遇到窄依赖加入本stage，遇见宽依赖进行Stage切分。完成了Stage的划分,DAGScheduler基于每个Stage生成TaskSet,并将TaskSet提交给TaskScheduler。TaskScheduler 负责具体的task调度,最后在Worker节点上启动task。</p>
+<h4 id="10-1-DAGScheduler"><a href="#10-1-DAGScheduler" class="headerlink" title="10.1 DAGScheduler"></a>10.1 DAGScheduler</h4><p>（1）DAGScheduler构建Stage</p>
+<p>（2）记录哪个RDD或者 Stage 输出被物化（缓存），通常在一个复杂的shuffle之后，通常物化一下(cache、persist)，方便之后的计算。</p>
+<p>（3）重新提交shuffle输出丢失的stage（stage内部计算出错）</p>
+<p>（4）将 Taskset 传给底层调度器</p>
+<p>​    a）– spark-cluster TaskScheduler</p>
+<p>​    b）– yarn-cluster YarnClusterScheduler</p>
+<p>​    c）– yarn-client YarnClientClusterScheduler</p>
+<h4 id="10-2-TaskScheduler"><a href="#10-2-TaskScheduler" class="headerlink" title="10.2 TaskScheduler"></a>10.2 TaskScheduler</h4><p>（1）为每一个TaskSet构建一个TaskSetManager 实例管理这个TaskSet 的生命周期</p>
+<p>（2）数据本地性决定每个Task最佳位置</p>
+<p>（3）提交 taskset( 一组task) 到集群运行并监控</p>
+<p>（4）推测执行，碰到 straggle（计算缓慢）任务需要放到别的节点上重试</p>
+<p>（5）重新提交Shuffle输出丢失的Stage给DAGScheduler</p>
+<h2 id="三丶RDD容错机制之checkpoint"><a href="#三丶RDD容错机制之checkpoint" class="headerlink" title="三丶RDD容错机制之checkpoint"></a>三丶RDD容错机制之checkpoint</h2><h3 id="11-checkpoint"><a href="#11-checkpoint" class="headerlink" title="11. checkpoint"></a>11. checkpoint</h3><ul>
+<li>会对数据进行持久化操作,保存在HDFS</li>
+<li>使用的时候:<ul>
+<li>需要sc.setCheckpointDir 来设置一个检查点目录</li>
+<li>对需要缓存的RDD调用checkpoint</li>
+<li>注意: 在执行数据缓存时,需要有对应action算子操作,才会真正出发持久化操作</li>
+</ul>
+</li>
+<li>在做checkPoint操作时,此时会先执行对应出发action算子的RDD的结果,计算完成之后,又会开辟一个新的job来计算你设置了checkPoint的RDD的结果</li>
+<li>在设置了checkpoint之后,对应的这个RDD会改变之前的依赖关系,如果当前数据丢失,只有重新计算得到.</li>
+</ul>
+<p>如何使用checkpoint?</p>
+<ul>
+<li>调用sparkContext的setCheckPoint方法,设置容错文件系统目录,比如hdfs</li>
+<li>对RDD调用checkPoint方法</li>
+<li>在RDD所处的job运行结束后,启动一个单独的job,将checkpoint过的数据写入文件系统持久化,进行高可用</li>
+</ul>
+<p>persist或者cache与checkpoint的区别?</p>
+<ul>
+<li>前者持久化只是将数据保存在BlockManager中但是其lineage是不变的*</li>
+<li>后者checkpoint执行完后，rdd已经没有依赖RDD，只有一个checkpointRDD，checkpoint之后，RDD的lineage就改变了。</li>
+<li>而且，持久化的数据丢失的可能性更大，因为可能磁盘或内存被清理，但是checkpoint的数据通常保存到hdfs上，放在了高容错文件系统。</li>
+</ul>
+<h2 id="四丶Spark运行架构"><a href="#四丶Spark运行架构" class="headerlink" title="四丶Spark运行架构"></a>四丶Spark运行架构</h2><h3 id="12-spark运行基本流程"><a href="#12-spark运行基本流程" class="headerlink" title="12. spark运行基本流程"></a>12. spark运行基本流程</h3><p><img src="https://i.imgur.com/PsPlCbH.jpg" alt=""></p>
+<p>1)      构建Spark Application的运行环境（启动SparkContext），SparkContext向资源管理器（可以是Standalone、Mesos或YARN）注册并申请运行Executor资源；</p>
+<p>2)     资源管理器分配Executor资源并启动StandaloneExecutorBackend，Executor运行情况将随着心跳发送到资源管理器上；</p>
+<p>3)    SparkContext构建成DAG图，将DAG图分解成Stage，并把Taskset发送给Task Scheduler。Executor向SparkContext申请Task，TaskScheduler将Task发放给Executor运行同时SparkContext将应用程序代码发放给Executor。</p>
+<p>4)    Task在Executor上运行，运行完毕释放所有资源。</p>
+<h3 id="13-Spark运行架构特点"><a href="#13-Spark运行架构特点" class="headerlink" title="13. Spark运行架构特点"></a>13. Spark运行架构特点</h3><p>Spark运行架构特点：</p>
+<ul>
+<li>每个Application获取专属的executor进程，该进程在Application期间一直驻留，并以多线程方式运行tasks。这种Application隔离机制有其优势的，无论是从调度角度看（每个Driver调度它自己的任务），还是从运行角度看（来自不同Application的Task运行在不同的JVM中）。当然，这也意味着Spark Application不能跨应用程序共享数据，除非将数据写入到外部存储系统。</li>
+<li>Spark与资源管理器无关，只要能够获取executor进程，并能保持相互通信就可以了。</li>
+<li>提交SparkContext的Client应该靠近Worker节点（运行Executor的节点)，最好是在同一个Rack里，因为Spark Application运行过程中SparkContext和Executor之间有大量的信息交换；如果想在远程集群中运行，最好使用RPC将SparkContext提交给集群，不要远离Worker运行SparkContext。</li>
+<li>Task采用了数据本地性和推测执行的优化机制。</li>
+</ul>
 
       
 
@@ -266,18 +344,18 @@
     <div class="article-info article-info-index">
       
       
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/windows//" class="article-tag-list-link color3">windows</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
         		</li>
       		
 		</ul>
 	</div>
 
+      
 
       
 
@@ -327,7 +405,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/08/changyong/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/01/07/Spark高级/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -341,15 +419,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/13/AngularJS/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/07/SparkRDD函数/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          AngularJS笔记
+          SparkRDD函数
         
       </div>
     </a>
   
+  
+    <a href="/2017/12/28/hbase入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hbase入门</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -374,7 +457,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows常用操作"><span class="toc-number">1.</span> <span class="toc-text">Windows常用操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA快捷键及简单使用"><span class="toc-number">2.</span> <span class="toc-text">IDEA快捷键及简单使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eclipse常用快捷键"><span class="toc-number">3.</span> <span class="toc-text">Eclipse常用快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux常用指令"><span class="toc-number">4.</span> <span class="toc-text">Linux常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSSH的使用"><span class="toc-number">4.1.</span> <span class="toc-text">OpenSSH的使用</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一丶目标"><span class="toc-number">1.</span> <span class="toc-text">一丶目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二丶-弹性分布式数据集"><span class="toc-number">2.</span> <span class="toc-text">二丶 弹性分布式数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-弹性分布式数据集RDD"><span class="toc-number">2.1.</span> <span class="toc-text">2. 弹性分布式数据集RDD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-RDD的五大特性"><span class="toc-number">2.2.</span> <span class="toc-text">3.RDD的五大特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-创建RDD"><span class="toc-number">2.3.</span> <span class="toc-text">4. 创建RDD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-RDD算子的分类"><span class="toc-number">2.4.</span> <span class="toc-text">5. RDD算子的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-RDD的两种依赖关系"><span class="toc-number">2.5.</span> <span class="toc-text">6. RDD的两种依赖关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Lineage-血统"><span class="toc-number">2.6.</span> <span class="toc-text">7. Lineage(血统)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-RDD的缓存"><span class="toc-number">2.7.</span> <span class="toc-text">8. RDD的缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1-RDD的缓存方式"><span class="toc-number">2.7.1.</span> <span class="toc-text">8.1 RDD的缓存方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-DAG的生成"><span class="toc-number">2.8.</span> <span class="toc-text">9. DAG的生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Spark任务调度"><span class="toc-number">2.9.</span> <span class="toc-text">10. Spark任务调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-1-DAGScheduler"><span class="toc-number">2.9.1.</span> <span class="toc-text">10.1 DAGScheduler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-TaskScheduler"><span class="toc-number">2.9.2.</span> <span class="toc-text">10.2 TaskScheduler</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三丶RDD容错机制之checkpoint"><span class="toc-number">3.</span> <span class="toc-text">三丶RDD容错机制之checkpoint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-checkpoint"><span class="toc-number">3.1.</span> <span class="toc-text">11. checkpoint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四丶Spark运行架构"><span class="toc-number">4.</span> <span class="toc-text">四丶Spark运行架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-spark运行基本流程"><span class="toc-number">4.1.</span> <span class="toc-text">12. spark运行基本流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Spark运行架构特点"><span class="toc-number">4.2.</span> <span class="toc-text">13. Spark运行架构特点</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
