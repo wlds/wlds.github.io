@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SparkRDD函数 | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##一丶RDD操作详解 启动spark-shell spark-shell –master spark://hdp-node-01:7077 ###1.1 基本转换 1) mapmap是对RDD中的每个元素都执行一个指定的函数来产生一个新的RDD。 任何原RDD中的元素在新RDD中都有且只有一个元素与之对应。 举例： 1234567891011scala&amp;gt; val a =sc.paralle">
+  <meta name="description" content="##一丶RDD操作详解 启动spark-shell spark-shell –master spark://hdp-node-01:7077 ###1.1 基本转换 1) mapmap是对RDD中的每个元素都执行一个指定的函数来产生一个新的RDD。 任何原RDD中的元素在新RDD中都有且只有一个元素与之对应。 举例：">
 <meta name="keywords" content="spark">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SparkRDD函数">
 <meta property="og:url" content="http://yoursite.com/2018/01/07/SparkRDD函数/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="##一丶RDD操作详解 启动spark-shell spark-shell –master spark://hdp-node-01:7077 ###1.1 基本转换 1) mapmap是对RDD中的每个元素都执行一个指定的函数来产生一个新的RDD。 任何原RDD中的元素在新RDD中都有且只有一个元素与之对应。 举例： 1234567891011scala&amp;gt; val a =sc.paralle">
+<meta property="og:description" content="##一丶RDD操作详解 启动spark-shell spark-shell –master spark://hdp-node-01:7077 ###1.1 基本转换 1) mapmap是对RDD中的每个元素都执行一个指定的函数来产生一个新的RDD。 任何原RDD中的元素在新RDD中都有且只有一个元素与之对应。 举例：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-07T12:16:32.343Z">
+<meta property="og:updated_time" content="2018-01-07T12:26:27.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SparkRDD函数">
-<meta name="twitter:description" content="##一丶RDD操作详解 启动spark-shell spark-shell –master spark://hdp-node-01:7077 ###1.1 基本转换 1) mapmap是对RDD中的每个元素都执行一个指定的函数来产生一个新的RDD。 任何原RDD中的元素在新RDD中都有且只有一个元素与之对应。 举例： 1234567891011scala&amp;gt; val a =sc.paralle">
+<meta name="twitter:description" content="##一丶RDD操作详解 启动spark-shell spark-shell –master spark://hdp-node-01:7077 ###1.1 基本转换 1) mapmap是对RDD中的每个元素都执行一个指定的函数来产生一个新的RDD。 任何原RDD中的元素在新RDD中都有且只有一个元素与之对应。 举例：">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -179,6 +179,7 @@
 <p>###1.1 基本转换</p>
 <h4 id="1-map"><a href="#1-map" class="headerlink" title="1) map"></a>1) map</h4><p>map是对RDD中的每个元素都执行一个指定的函数来产生一个新的RDD。 任何原RDD中的元素在新RDD中都有且只有一个元素与之对应。</p>
 <p>举例：</p>
+<a id="more"></a>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> a =sc.parallelize(<span class="number">1</span> to <span class="number">9</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> b =a.map(x =&gt; x*<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">scala&gt;a.collect</span><br><span class="line"></span><br><span class="line">res10: <span class="type">Array</span>[<span class="type">Int</span>]= <span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">scala&gt;b.collect</span><br><span class="line"></span><br><span class="line">res11: <span class="type">Array</span>[<span class="type">Int</span>]= <span class="type">Array</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>)</span><br></pre></td></tr></table></figure>
 <p>上述例子中把原RDD中每个元素都乘以2来产生一个新的RDD。</p>
 <p>####2)  filter</p>
@@ -1246,11 +1247,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hive</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color5">hive</a>
               </li>
              
               <li class="article-tag-list-item">
