@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hive基础学习----建表 | wlds</title>
+  <title>Spark SQL | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系">
-<meta name="keywords" content="hadoop,hive">
+  <meta name="description" content="一丶目标 掌握sparksql原理 掌握DataFrame和DataSet的数据结构和使用方式 使用spark sql进行相应的编程  shark">
+<meta name="keywords" content="spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hive基础学习----建表">
-<meta property="og:url" content="http://yoursite.com/2017/12/11/Hive基础学习/index.html">
+<meta property="og:title" content="Spark SQL">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/Spark-SQL/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系">
+<meta property="og:description" content="一丶目标 掌握sparksql原理 掌握DataFrame和DataSet的数据结构和使用方式 使用spark sql进行相应的编程  shark">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-11T03:45:36.720Z">
+<meta property="og:updated_time" content="2018-01-08T13:41:04.675Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hive基础学习----建表">
-<meta name="twitter:description" content="###Hive  ?  把一张表与已经处理的结构化数据产生映射关系 1 基于hadoop数据仓库的工具2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序映射关系">
+<meta name="twitter:title" content="Spark SQL">
+<meta name="twitter:description" content="一丶目标 掌握sparksql原理 掌握DataFrame和DataSet的数据结构和使用方式 使用spark sql进行相应的编程  shark">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -153,106 +153,141 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hive基础学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spark-SQL" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hive基础学习----建表
+      Spark SQL
     </h1>
   
 
         
-        <a href="/2017/12/11/Hive基础学习/" class="archive-article-date">
-  	<time datetime="2017-12-11T03:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
+        <a href="/2018/01/08/Spark-SQL/" class="archive-article-date">
+  	<time datetime="2018-01-08T13:40:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###Hive  ?  把一张表与已经处理的结构化数据产生映射关系</p>
-<h3 id="1-基于hadoop数据仓库的工具"><a href="#1-基于hadoop数据仓库的工具" class="headerlink" title="1 基于hadoop数据仓库的工具"></a>1 基于hadoop数据仓库的工具</h3><h3 id="2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序"><a href="#2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序" class="headerlink" title="2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序"></a>2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序</h3><p>映射关系</p>
+        <h2 id="一丶目标"><a href="#一丶目标" class="headerlink" title="一丶目标"></a>一丶目标</h2><ul>
+<li>掌握sparksql原理</li>
+<li>掌握DataFrame和DataSet的数据结构和使用方式</li>
+<li>使用spark sql进行相应的编程</li>
+</ul>
+<p>shark</p>
 <a id="more"></a>
-<h3 id="3-hive-表-hdfs上的一组结构化数据产生映射关系"><a href="#3-hive-表-hdfs上的一组结构化数据产生映射关系" class="headerlink" title="3 hive  表:hdfs上的一组结构化数据产生映射关系"></a>3 hive  表:hdfs上的一组结构化数据产生映射关系</h3><p>  表:对应路径 /user/hive/warehouse   默认路径</p>
-<p>  数据库 —&gt; 文件夹</p>
-<p>  表—&gt;子文件夹</p>
-<p> 注意: </p>
-<p>1) .表的字段个数和类型跟结构化数据中的字段个数和类型一致</p>
-<p>2) .建表时,指定本次映射的结构化数据中的分隔符</p>
-<h4 id="3-1-内部表、外部表"><a href="#3-1-内部表、外部表" class="headerlink" title="3.1 内部表、外部表"></a>3.1 内部表、外部表</h4><p>建内部表</p>
-<pre><code>create table student(Sno int,Sname string,Sex string,Sage int,Sdept string) row format delimited fields terminated by &apos;,&apos;;
-
-create table source_table(id int,name string) row format delimited fields terminated by &apos;,&apos;; 
-</code></pre><p>建外部表</p>
-<pre><code>create external table student_ext(Sno int,Sname string,Sex string,Sage int,Sdept string) row format delimited fields terminated by &apos;,&apos; location &apos;/stu&apos;;
-</code></pre><p>内、外部表加载数据：</p>
-<pre><code>load data local inpath &apos;/root/hivedata/students.txt&apos; overwrite into table student;
-
-load data inpath &apos;/stu&apos; into table student_ext;
-</code></pre><p>location 外部表指定表数据加载位置</p>
-<p>####3.2 ROW FORMAT DELIMITED（指定分隔符） </p>
-<pre><code>create table day_table (id int, content string) partitioned by (dt string) row format delimited fields terminated by &apos;,&apos;;   ---指定分隔符创建分区表
-</code></pre><p>复杂类型的数据表指定分隔符</p>
-<pre><code>create table complex_array(name string,work_locations array&lt;string&gt;) ROW FORMAT DELIMITED FIELDS TERMINATED BY &apos;\t&apos; COLLECTION ITEMS TERMINATED BY &apos;,&apos;;
-</code></pre><p>数据如下：</p>
-<pre><code>zhangsan   beijing,shanghai,tianjin,hangzhou
-wangwu   shanghai,chengdu,wuhan,haerbin
-</code></pre><p>建表语句</p>
-<pre><code>create table t_map(id int,name string,hobby map&lt;string,string&gt;)
-row format delimited 
-fields terminated by &apos;,&apos;
-collection items terminated by &apos;-&apos;
-map keys terminated by &apos;:&apos; ;
-</code></pre><p>数据：</p>
-<pre><code>1,zhangsan,唱歌:非常喜欢-跳舞:喜欢-游泳:一般般
-2,lisi,打游戏:非常喜欢-篮球:不喜欢
-</code></pre><h3 id="4-分区-PARTITIONED"><a href="#4-分区-PARTITIONED" class="headerlink" title="4 分区(PARTITIONED):"></a>4 分区(PARTITIONED):</h3><pre><code>本地模式
-set hive.exec.mode.local.auto=true;
-</code></pre><ul>
-<li><p>hive中的分区字段,不能是表中已经存在的字段</p>
+<ul>
+<li>基于spark的大数据规模底层数据仓库</li>
+<li>依赖于hive底层代码,依赖于spark的版本</li>
+<li>随着hive和spark版本的升级,对于shark的优化和维护带来了很大的影响</li>
+</ul>
+<h2 id="二丶-Spark-SQL"><a href="#二丶-Spark-SQL" class="headerlink" title="二丶 Spark SQL"></a>二丶 Spark SQL</h2><h3 id="1-spark-SQL介绍"><a href="#1-spark-SQL介绍" class="headerlink" title="1. spark SQL介绍"></a>1. spark SQL介绍</h3><p>概述</p>
+<ul>
+<li>Spark SQL 是spark用来处理结构化数据的一个模块,提供了一个编程抽象DataFrame,并且可以做为分布式SQL查询引擎的作用</li>
+<li>使用: SQL丶 DataFrame API丶 Datasets API</li>
+</ul>
+<p>特性</p>
+<ul>
+<li>Intergrated (易整合)<ul>
+<li>可以使用sql,dataFrame,dataSet来操作</li>
+<li>也可以使用4种语言来编程(java/scala/phthon/R)</li>
+</ul>
 </li>
-<li><p>分区字段是一个虚拟的字段,不存放任何数据,值来自装载分区表时指定的    目录层面</p>
+<li>Uniform Data Access (统一的数据访问方式)</li>
+<li>Hive Intergration (兼容 Hive)</li>
+<li>Standard Connectivity (标准的数据库链接)</li>
+</ul>
+<h3 id="2-DataFrame"><a href="#2-DataFrame" class="headerlink" title="2. DataFrame"></a>2. DataFrame</h3><p>概述</p>
+<ul>
+<li>DataFrame是sparksql的底层抽象.可以理解为关系数据库中的二维表格,具有schema描述信息.spark1.3引入</li>
+</ul>
+<ul>
+<li>在spark中,DataFrame是一种以RDD为基础的分布式数据集</li>
+</ul>
+<h4 id="DataFrame与RDD的优缺点比较"><a href="#DataFrame与RDD的优缺点比较" class="headerlink" title="DataFrame与RDD的优缺点比较"></a>DataFrame与RDD的优缺点比较</h4><p>RDD</p>
+<ul>
+<li>优点<ol>
+<li>编译时类型安全</li>
+<li>面相对象的编程风格</li>
+</ol>
+</li>
+<li>缺点<ol>
+<li>序列化和反序列化的性能开销大  — 无论是集群间的通信或者是IO操作,都会进行数据和结构的序列化和反序列化操作</li>
+<li>GC的性能开销 —  频繁的创建和销毁对象</li>
+</ol>
 </li>
 </ul>
-<p>分区建表分为2种，一种是单分区，也就是说在表文件夹目录下只有一级文件夹目录。另外一种是多分区，表文件夹下出现多文件夹嵌套模式。</p>
-<h6 id="单分区建表语句："><a href="#单分区建表语句：" class="headerlink" title="单分区建表语句："></a>单分区建表语句：</h6><pre><code>create table day_table (id int, content string) partitioned by (dt string);
-</code></pre><p>单分区表，按天分区，在表结构中存在id，content，dt三列。</p>
-<p>######双分区建表语句：</p>
-<pre><code>create table day_hour_table (id int, content string) partitioned by (dt string, hour string);
-</code></pre><p>双分区表，按天和小时分区，在表结构中新增加了dt和hour两列。</p>
-<p> 导入数据</p>
-<pre><code>LOAD DATA local INPATH &apos;/root/hivedata/dat_table.txt&apos; INTO TABLE day_table partition(dt=&apos;2017-07-07&apos;);
-
-LOAD DATA local INPATH &apos;/root/hivedata/dat_table.txt&apos; INTO TABLE day_hour_table PARTITION(dt=&apos;2017-07-07&apos;, hour=&apos;08&apos;);
-</code></pre><p> 基于分区的查询：</p>
-<pre><code>SELECT day_table.* FROM day_table WHERE day_table.dt = &apos;2017-07-07&apos;;
-</code></pre><p>  查看分区：</p>
-<pre><code>show partitions day_hour_table;  
-</code></pre><p> 总的说来partition就是辅助查询，缩小查询范围，加快数据的检索速度和对数据按照一定的规格和条件进行管理。</p>
-<p>###5 分桶(CLUSTERED): </p>
+<p>DataFrame</p>
+<ul>
+<li>通过引入<strong>schema</strong>和<strong>off-heap</strong>(指不在堆的内存,使用操作系统上的内存),解决了RDD的缺点</li>
+<li>Spark通过schema就能读懂数据,在通信和IO时只需要序列化和反序列化,二结构的部分可以省略</li>
+<li>通过off-heap可以快速操作数据,避免大量的GC</li>
+<li>但是丢失了RDD的优点,DataFrame是类型不安全的,API也不是面向对象风格</li>
+</ul>
+<h4 id="DataFrame创建方式"><a href="#DataFrame创建方式" class="headerlink" title="DataFrame创建方式"></a>DataFrame创建方式</h4><p>​    <strong>准备数据</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">person.txt</span><br><span class="line">    1 zhangsan 20</span><br><span class="line">    2 lisi 29</span><br><span class="line">    3 wangwu 25</span><br><span class="line">    4 zhaoliu 30</span><br><span class="line">    5 tianqi 35</span><br><span class="line">    5 kobe 40</span><br><span class="line">上传到hdfs</span><br><span class="line">	hdfs dfs -put person.txt /</span><br></pre></td></tr></table></figure>
 <ol>
-<li><p>hive中的分桶字段,必须是表中已经存在的字段</p>
+<li><p>读取文本文件创建DataFrame</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.textFile(<span class="string">"person.txt"</span>).map(_.split(<span class="string">" "</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span>(<span class="params">id:<span class="type">Int</span>,name:<span class="type">String</span>,age:<span class="type">Int</span></span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">//rdd1</span> <span class="title">与样例类关联</span></span></span><br><span class="line"><span class="class"><span class="title">val</span> <span class="title">rdd2</span> </span>= rdd1.map(x=&gt;<span class="type">People</span>(x(<span class="number">0</span>).toInt,x(<span class="number">1</span>),x(<span class="number">2</span>).toInt))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将RDD转换成DataFrame</span></span><br><span class="line"><span class="keyword">val</span> dataFrame = rdd2.toDF</span><br><span class="line"></span><br><span class="line"><span class="comment">//DataFrame处理</span></span><br><span class="line">dataFrame.show</span><br><span class="line">dataFrame.printSchema</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种方式,利用sparkSession </span></span><br><span class="line"><span class="keyword">val</span> df = spark.read.text(<span class="string">"xx.txt"</span>).show()</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>分桶表的数据插入,  insert + select 方式</p>
-<p> 分桶一定要执行mr,对应mr中的partitioner                文件层面</p>
-<p> 桶默认关闭*</p>
+<li><p>读取jaon文件 创建DataFrame</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.read.json("xx.json").show()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取 parquet文件 创建DataFrame</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.read.parquet("xx.parquet").show()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Spark session创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.createDataSpark()</span><br></pre></td></tr></table></figure>
+<p>​</p>
 </li>
 </ol>
-<p>`#指定开启分桶</p>
-<pre><code>set hive.enforce.bucketing = true;
-set mapreduce.job.reduces=4;    
-</code></pre><p>动态分区</p>
-<p> 开启动态分区</p>
-<pre><code>set hive.exec.dynamic.partition=true;    #是否开启动态分区功能，默认false关闭。
-
-set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默认strict，表示必须指定至少一个分区为静态分区，nonstrict模式表示允许所有的分区字段都可以使用动态分区。
-</code></pre><p>cluster by(字段) :     分组+排序(按照分组字段排序)    正序</p>
-<p>sort by(字段 asc|desc) : 只排序 (自定义字段排序)</p>
-<p>distribute by(字段) : 只分组</p>
-<p>order by(字段)  全局排序  只有一个reducer</p>
+<h3 id="3-DataFrame常用操作"><a href="#3-DataFrame常用操作" class="headerlink" title="3. DataFrame常用操作"></a>3. DataFrame常用操作</h3><ul>
+<li>DSL : 特定领域的语言</li>
+<li>SQL :<ul>
+<li>需要将dataframe注册成一张表 registerTemple</li>
+<li>spark.sql(“sql语句”)</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Dataset"><a href="#4-Dataset" class="headerlink" title="4. Dataset"></a>4. Dataset</h3><h4 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1 概述"></a>4.1 概述</h4><ul>
+<li>分布式数据集合,在spark1.6中添加的新的接口</li>
+<li>集中了RDD的优点(强类型和可以用lambda函数)</li>
+</ul>
+<h4 id="4-2-DataFrame丶Dataset丶RDD的区别"><a href="#4-2-DataFrame丶Dataset丶RDD的区别" class="headerlink" title="4.2 DataFrame丶Dataset丶RDD的区别"></a>4.2 DataFrame丶Dataset丶RDD的区别</h4><p>Dataset包含了DataFrame的功能,在spark2.0 中两者统一,DataFrame表示为Dataset[Row],即DataSet的子集</p>
+<ol>
+<li>DataSet可以在编译时检查</li>
+<li>面相对象的编程接口</li>
+</ol>
+<h4 id="4-3-DataFrame和Dataset相互转换"><a href="#4-3-DataFrame和Dataset相互转换" class="headerlink" title="4.3 DataFrame和Dataset相互转换"></a>4.3 DataFrame和Dataset相互转换</h4><ul>
+<li><p>DataFrame转为DataSet</p>
+<p>df.as[ElementType]</p>
+</li>
+<li><p>Dataset转为DataFrame</p>
+<p>ds.toDF()</p>
+</li>
+</ul>
+<h4 id="4-4-创建Dataset"><a href="#4-4-创建Dataset" class="headerlink" title="4.4 创建Dataset"></a>4.4 创建Dataset</h4><ol>
+<li>通过spark.createDataset创建</li>
+<li>通toDS方法生成DataSet</li>
+<li>通过DataFrame转换</li>
+</ol>
+<h2 id="三丶-以编程的方式执行Spark-SQL查询"><a href="#三丶-以编程的方式执行Spark-SQL查询" class="headerlink" title="三丶 以编程的方式执行Spark SQL查询"></a>三丶 以编程的方式执行Spark SQL查询</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><p><strong>通过反射机制</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//todo: 利用sparkSQL来创建DataFrame---反射机制(case class)</span></span><br><span class="line"><span class="comment">// 1丶创建sparkSession</span></span><br><span class="line"><span class="keyword">val</span> spark: <span class="type">SparkSession</span> = <span class="type">SparkSession</span>.builder().appName(<span class="string">"xxx"</span>).master(<span class="string">"local[2]"</span>).getOrCreate()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2丶获取sparkContext对象</span></span><br><span class="line"><span class="keyword">val</span> sc: <span class="type">SparkContext</span> = spark.sparkContext</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3丶读取数据文件</span></span><br><span class="line"><span class="keyword">val</span> dataRDD :<span class="type">RDD</span>[<span class="type">Array</span>[<span class="type">String</span>]] = sc.textFile(<span class="string">"xxx"</span>).map(_.split(<span class="string">" "</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4丶将RDD与样例类进行关联</span></span><br><span class="line"><span class="keyword">val</span> peopleRDD : <span class="type">RDD</span>[<span class="type">People</span>] = dataRDD.map(x=&gt;<span class="type">People</span>(x(<span class="number">0</span>).toInt,x(<span class="number">1</span>),x(<span class="number">2</span>).toInt))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5丶将RDD转换为DataFrame</span></span><br><span class="line"><span class="comment">// 手动导入隐式转换</span></span><br><span class="line"><span class="keyword">import</span> spark.implicits._</span><br><span class="line"><span class="keyword">val</span> peopleDF : <span class="type">DataFrame</span> = peopleRDD.toDF()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6丶打印schema</span></span><br><span class="line">peopleDF.printSchema()</span><br><span class="line">peopleDF.show() <span class="comment">// 默认返回20条记录, boolean:表示当前超过20字符列名称的结果进行一个截取 默认返回true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------DSL语法 ---------------------</span></span><br><span class="line">peopleDF.select(<span class="string">"name"</span>).show() <span class="comment">//查询一列</span></span><br><span class="line">peopleDF.filter($<span class="string">"age"</span> &gt; <span class="number">30</span>)  <span class="comment">//条件过滤</span></span><br><span class="line">peopleDF.groupBy(<span class="string">"age"</span>).count().show()  <span class="comment">// 分组统计</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------------SQL 语法 --------------------</span></span><br><span class="line"><span class="comment">// 将DataFrame注册成一张临时表</span></span><br><span class="line">peopleDF.createTempView(<span class="string">"t_people"</span>)</span><br><span class="line"><span class="comment">// sparkSession.sql(sql)</span></span><br><span class="line">spark.sql(<span class="string">"select * from t_people"</span>).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 7丶关闭</span></span><br><span class="line">sc.stop()</span><br><span class="line">spark.stop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 样例类</span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span>(<span class="params">id:<span class="type">Int</span>,name:<span class="type">String</span>,age:<span class="type">Int</span></span>)</span></span><br></pre></td></tr></table></figure>
+<p><strong>通过StructType直接指定Schema</strong></p>
+<ol>
+<li>将RDD转换为包含ROW对象的RDD</li>
+<li>基于structType类型创建schema,与第一步创建的RDD相匹配</li>
+<li>通过sparkSession的createDataFrame</li>
+</ol>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//todo: 利用sparkSql 将RDD转换为DataFrame --- 通过StructType直接指定Schema</span></span><br><span class="line"><span class="comment">// 1丶创建sparkSession</span></span><br><span class="line"><span class="keyword">val</span> spark: <span class="type">SparkSession</span> = <span class="type">SparkSession</span>.builder().appName(<span class="string">"xxx"</span>).master(<span class="string">"local[2]"</span>).getOrCreate()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2丶获取sparkContext对象</span></span><br><span class="line"><span class="keyword">val</span> sc: <span class="type">SparkContext</span> = spark.sparkContext</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3丶读取数据文件</span></span><br><span class="line"><span class="keyword">val</span> dataRDD :<span class="type">RDD</span>[<span class="type">Array</span>[<span class="type">String</span>]] = sc.textFile(<span class="string">"xxx"</span>).map(_.split(<span class="string">" "</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4丶 创建rowRDD</span></span><br><span class="line"><span class="keyword">val</span> rowRDD : <span class="type">RDD</span>[<span class="type">Row</span>] = dataRDD.map(x=&gt;<span class="type">Row</span>(x(<span class="number">0</span>).toInt,x(<span class="number">1</span>),x(<span class="number">2</span>).toInt))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5丶指定DataFrame中的schema,用到StructType对象</span></span><br><span class="line"><span class="keyword">val</span> schema = <span class="type">StructType</span>(<span class="type">StructField</span>(<span class="string">"id"</span>,<span class="type">IntegerType</span>,<span class="literal">false</span>)::<span class="type">StructField</span>(<span class="string">"name"</span>,<span class="type">StringType</span>,<span class="literal">false</span>)::<span class="type">StructField</span>(<span class="string">"age"</span>,<span class="type">IntegerType</span>,<span class="literal">false</span>)::<span class="type">Nil</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6丶调用createDataFrame方法,生成DataFrame</span></span><br><span class="line"><span class="keyword">val</span> df : <span class="type">DataFrame</span> = spark.createDataFrame(rowRDD,structType)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 7丶打印schema</span></span><br><span class="line">peopleDF.printSchema()</span><br><span class="line">peopleDF.show() </span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭</span></span><br><span class="line">sc.stop()</span><br><span class="line">spark.stop()</span><br></pre></td></tr></table></figure>
+<h3 id="2-利用sparkSQL操作HIVE-SQL"><a href="#2-利用sparkSQL操作HIVE-SQL" class="headerlink" title="2. 利用sparkSQL操作HIVE SQL"></a>2. 利用sparkSQL操作HIVE SQL</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> warehouseLocation = <span class="string">"D:\\workSpace_IDEA_NEW\\day2017-10-12\\spark-warehouse"</span></span><br><span class="line">     <span class="comment">//todo:1、创建sparkSession</span></span><br><span class="line">    <span class="keyword">val</span> spark: <span class="type">SparkSession</span> = <span class="type">SparkSession</span>.builder()</span><br><span class="line">     									.appName(<span class="string">"HiveSupport"</span>)</span><br><span class="line">     			 						.master(<span class="string">"local[2]"</span>)</span><br><span class="line">     									.config(<span class="string">"spark.sql.warehouse.dir"</span>, warehouseLocation)</span><br><span class="line">     		 							.enableHiveSupport() <span class="comment">//开启支持hive</span></span><br><span class="line">     		 							.getOrCreate()</span><br><span class="line">   spark.sparkContext.setLogLevel(<span class="string">"WARN"</span>)  <span class="comment">//设置日志输出级别</span></span><br><span class="line">   <span class="keyword">import</span> spark.implicits._</span><br><span class="line">   <span class="keyword">import</span> spark.sql</span><br><span class="line"></span><br><span class="line">   <span class="comment">//todo:2、操作sql语句</span></span><br><span class="line">   sql(<span class="string">"CREATE TABLE IF NOT EXISTS person (id int, name string, age int) row format delimited fields terminated by ' '"</span>)</span><br><span class="line">   sql(<span class="string">"LOAD DATA LOCAL INPATH '/person.txt' INTO TABLE person"</span>)</span><br><span class="line">   sql(<span class="string">"select * from person "</span>).show()</span><br><span class="line">   spark.stop()</span><br></pre></td></tr></table></figure>
+<h2 id="四丶数据源"><a href="#四丶数据源" class="headerlink" title="四丶数据源"></a>四丶数据源</h2><h3 id="1-sparkSQL从mysql中加载数据"><a href="#1-sparkSQL从mysql中加载数据" class="headerlink" title="1. sparkSQL从mysql中加载数据"></a>1. sparkSQL从mysql中加载数据</h3><p>​    </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//todo:1、创建sparkSession对象</span></span><br><span class="line">      <span class="keyword">val</span> spark: <span class="type">SparkSession</span> = <span class="type">SparkSession</span>.builder()</span><br><span class="line">        .appName(<span class="string">"DataFromMysql"</span>)</span><br><span class="line">        .master(<span class="string">"local[2]"</span>)</span><br><span class="line">        .getOrCreate()</span><br><span class="line"><span class="comment">//todo:2、创建Properties对象，设置连接mysql的用户名和密码</span></span><br><span class="line"><span class="keyword">val</span> properties: <span class="type">Properties</span> =<span class="keyword">new</span> <span class="type">Properties</span>()</span><br><span class="line">properties.setProperty(<span class="string">"user"</span>,<span class="string">"root"</span>)</span><br><span class="line">properties.setProperty(<span class="string">"password"</span>,<span class="string">"123456"</span>)</span><br><span class="line"><span class="comment">//todo:3、读取mysql中的数据</span></span><br><span class="line"><span class="keyword">val</span> mysqlDF: <span class="type">DataFrame</span> = spark.read.jdbc(<span class="string">"jdbc:mysql://192.168.200.150:3306/spark"</span>,<span class="string">"iplocaltion"</span>,properties)</span><br><span class="line"><span class="comment">//todo:4、显示mysql中表的数据</span></span><br><span class="line">mysqlDF.show()</span><br><span class="line">spark.stop()</span><br></pre></td></tr></table></figure>
+<h3 id="2-sparkSQL将数据写入到mysql中"><a href="#2-sparkSQL将数据写入到mysql中" class="headerlink" title="2. sparkSQL将数据写入到mysql中"></a>2. sparkSQL将数据写入到mysql中</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//todo:1、创建sparkSession对象</span></span><br><span class="line"><span class="keyword">val</span> spark: <span class="type">SparkSession</span> = <span class="type">SparkSession</span>.builder()</span><br><span class="line">        .appName(<span class="string">"SparkSqlToMysql"</span>)</span><br><span class="line">        .getOrCreate()</span><br><span class="line"><span class="comment">//todo:2、读取数据</span></span><br><span class="line"><span class="keyword">val</span> data: <span class="type">RDD</span>[<span class="type">String</span>] = spark.sparkContext.textFile(args(<span class="number">0</span>))</span><br><span class="line"><span class="comment">//todo:3、切分每一行,</span></span><br><span class="line"><span class="keyword">val</span> arrRDD: <span class="type">RDD</span>[<span class="type">Array</span>[<span class="type">String</span>]] = data.map(_.split(<span class="string">" "</span>))</span><br><span class="line"><span class="comment">//todo:4、RDD关联Student</span></span><br><span class="line"><span class="keyword">val</span> studentRDD: <span class="type">RDD</span>[<span class="type">Student</span>] = arrRDD.map(x=&gt;<span class="type">Student</span>(x(<span class="number">0</span>).toInt,x(<span class="number">1</span>),x(<span class="number">2</span>).toInt))</span><br><span class="line"><span class="comment">//todo:导入隐式转换</span></span><br><span class="line"><span class="keyword">import</span> spark.implicits._</span><br><span class="line"><span class="comment">//todo:5、将RDD转换成DataFrame</span></span><br><span class="line"><span class="keyword">val</span> studentDF: <span class="type">DataFrame</span> = studentRDD.toDF()</span><br><span class="line"><span class="comment">//todo:6、将DataFrame注册成表</span></span><br><span class="line">studentDF.createOrReplaceTempView(<span class="string">"student"</span>)</span><br><span class="line"><span class="comment">//todo:7、操作student表 ,按照年龄进行降序排列</span></span><br><span class="line"><span class="keyword">val</span> resultDF: <span class="type">DataFrame</span> = spark.sql(<span class="string">"select * from student order by age desc"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//todo:8、把结果保存在mysql表中</span></span><br><span class="line"><span class="comment">//todo:创建Properties对象，配置连接mysql的用户名和密码</span></span><br><span class="line"><span class="keyword">val</span> prop =<span class="keyword">new</span> <span class="type">Properties</span>()</span><br><span class="line">prop.setProperty(<span class="string">"user"</span>,<span class="string">"root"</span>)</span><br><span class="line">prop.setProperty(<span class="string">"password"</span>,<span class="string">"123456"</span>)</span><br><span class="line"></span><br><span class="line">resultDF.write.jdbc(<span class="string">"jdbc:mysql://192.168.200.150:3306/spark"</span>,<span class="string">"student"</span>,prop)</span><br><span class="line"></span><br><span class="line"><span class="comment">//todo:写入mysql时，可以配置插入mode，overwrite覆盖，append追加，ignore忽略，error默认表存在报错</span></span><br><span class="line">   <span class="comment">//resultDF.write.mode(SaveMode.Overwrite).jdbc("jdbc:mysql://192.168.200.150:3306/spark","student",prop)</span></span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//todo:创建样例类Student</span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span>(<span class="params">id:<span class="type">Int</span>,name:<span class="type">String</span>,age:<span class="type">Int</span></span>)</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -292,11 +327,7 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
         		</li>
       		
 		</ul>
@@ -352,7 +383,7 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/11/Hive基础学习/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/01/08/Spark-SQL/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -366,18 +397,9 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
   
 <nav id="article-nav">
   
-    <a href="/2017/12/11/hive基础学习-安装/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hive基础学习--安装
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/05/Hadoop-2-x-集群搭建/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hadoop 2.x 集群搭建</div>
+    <a href="/2018/01/07/SparkRDD函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SparkRDD函数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -404,7 +426,7 @@ set hive.exec.dynamic.partition.mode=nonstrict;   #动态分区的模式，默�
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-基于hadoop数据仓库的工具"><span class="toc-number">1.</span> <span class="toc-text">1 基于hadoop数据仓库的工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序"><span class="toc-number">2.</span> <span class="toc-text">2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-hive-表-hdfs上的一组结构化数据产生映射关系"><span class="toc-number">3.</span> <span class="toc-text">3 hive  表:hdfs上的一组结构化数据产生映射关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-内部表、外部表"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 内部表、外部表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-分区-PARTITIONED"><span class="toc-number">4.</span> <span class="toc-text">4 分区(PARTITIONED):</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#单分区建表语句："><span class="toc-number">4.0.0.1.</span> <span class="toc-text">单分区建表语句：</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一丶目标"><span class="toc-number">1.</span> <span class="toc-text">一丶目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二丶-Spark-SQL"><span class="toc-number">2.</span> <span class="toc-text">二丶 Spark SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-spark-SQL介绍"><span class="toc-number">2.1.</span> <span class="toc-text">1. spark SQL介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DataFrame"><span class="toc-number">2.2.</span> <span class="toc-text">2. DataFrame</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DataFrame与RDD的优缺点比较"><span class="toc-number">2.2.1.</span> <span class="toc-text">DataFrame与RDD的优缺点比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataFrame创建方式"><span class="toc-number">2.2.2.</span> <span class="toc-text">DataFrame创建方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DataFrame常用操作"><span class="toc-number">2.3.</span> <span class="toc-text">3. DataFrame常用操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Dataset"><span class="toc-number">2.4.</span> <span class="toc-text">4. Dataset</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-概述"><span class="toc-number">2.4.1.</span> <span class="toc-text">4.1 概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-DataFrame丶Dataset丶RDD的区别"><span class="toc-number">2.4.2.</span> <span class="toc-text">4.2 DataFrame丶Dataset丶RDD的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-DataFrame和Dataset相互转换"><span class="toc-number">2.4.3.</span> <span class="toc-text">4.3 DataFrame和Dataset相互转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-创建Dataset"><span class="toc-number">2.4.4.</span> <span class="toc-text">4.4 创建Dataset</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三丶-以编程的方式执行Spark-SQL查询"><span class="toc-number">3.</span> <span class="toc-text">三丶 以编程的方式执行Spark SQL查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">3.1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-利用sparkSQL操作HIVE-SQL"><span class="toc-number">3.2.</span> <span class="toc-text">2. 利用sparkSQL操作HIVE SQL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四丶数据源"><span class="toc-number">4.</span> <span class="toc-text">四丶数据源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-sparkSQL从mysql中加载数据"><span class="toc-number">4.1.</span> <span class="toc-text">1. sparkSQL从mysql中加载数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-sparkSQL将数据写入到mysql中"><span class="toc-number">4.2.</span> <span class="toc-text">2. sparkSQL将数据写入到mysql中</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
