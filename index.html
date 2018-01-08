@@ -150,6 +150,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-spark-on-hive" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/08/spark-on-hive/">spark on hive</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/08/spark-on-hive/" class="archive-article-date">
+  	<time datetime="2018-01-08T13:42:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、spark-on-hive介绍"><a href="#1、spark-on-hive介绍" class="headerlink" title="1、spark on hive介绍"></a>1、spark on hive介绍</h2><ul>
+<li>（1）就是通过sparksql，加载hive的配置文件，获取到hive的元数据信息</li>
+<li>（2）spark sql获取到hive的元数据信息之后就可以拿到hive的所有表的数据</li>
+<li>（3）接下来就可以通过spark sql来操作hive表中的数据</li>
+<li>spark on hive步骤：<ul>
+<li>将hive-site.xml文件拷贝到所有spark安装目录下conf文件夹下</li>
+<li>需要将mysql驱动包，拷贝到所有spark安装目录下的jars</li>
+</ul>
+</li>
+<li>如果是spark2.0之前，这个时候是已经将sparksql 与hive整合了。</li>
+<li>如果是spark2.0之后，此时并没有完全整合，<ul>
+<li>spark-sql –master spark://node1:7077 –executor-memory 1g –total-executor-cores 2 –conf spark.sql.warehouse.dir=hdfs://node1:9000/user/hive/warehouse</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、spark-on-hive-配置"><a href="#2、spark-on-hive-配置" class="headerlink" title="2、spark on hive 配置"></a>2、spark on hive 配置</h2><ul>
+<li>（1）将hive安装目录下conf/hive-site.xml拷贝到spark的conf目录下<br><em>（2）同时把hive安装目录下lib目录中的mysql驱动包，拷贝到spark的jars目录下
+</em>（3）分发所有配置和拷贝mysql驱动到spark的其他节点<br><em>（4） 启动spark-sql 就可以操作hive的sql语句了。
+</em>注意需要添加配置<ul>
+<li>–conf spark.sql.warehouse.dir=hdfs://node1:9000/user/hive/warehouse</li>
+</ul>
+</li>
+</ul>
+<h2 id="3、操作实例"><a href="#3、操作实例" class="headerlink" title="3、操作实例"></a>3、操作实例</h2><ul>
+<li>执行命令：spark-sql –master spark://node1:7077 –executor-memory 1g –total–executor-cores 2 –conf spark.sql.warehouse.dir=hdfs://node1:9000/user/hive/warehouse</li>
+<li>操作：<ul>
+<li>show databases; </li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/08/spark-on-hive/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spark-SQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -888,86 +991,6 @@
 
 
   
-    <article id="post-mysql-linux-安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/mysql-linux-安装/">mysql-linux-安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/mysql-linux-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:34:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一丶-yum在线安装"><a href="#一丶-yum在线安装" class="headerlink" title="一丶 yum在线安装"></a>一丶 yum在线安装</h3><p>mysql</p>
-<pre><code>yum install mysql mysql-server mysql-devel 
-</code></pre><p>完成后，用  /etc/init.d/mysqld start    启动mysql</p>
-<p>启动mysql控制台： </p>
-<p>   mysql<br>
-        
-          <a class="article-more-a" href="/2017/12/11/mysql-linux-安装/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/mysql-linux-安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1061,7 +1084,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spark</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1073,11 +1100,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hive</a>
+                <a href="javascript:void(0)" class="js-tag color1">spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1105,15 +1128,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">storm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集群</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">storm</a>
               </li>
              
               <li class="article-tag-list-item">
