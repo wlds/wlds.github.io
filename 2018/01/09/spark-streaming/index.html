@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>wlds</title>
+  <title>spark streaming | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wlds">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="Spark Streaming流式处理目标 掌握Spark Streaming的原理架构 掌握DStream的相关操作 实现spark streaming 与 flume的整合 实现spark streaming 与 kafka的整合">
+<meta name="keywords" content="spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark streaming">
+<meta property="og:url" content="http://yoursite.com/2018/01/09/spark-streaming/index.html">
 <meta property="og:site_name" content="wlds">
+<meta property="og:description" content="Spark Streaming流式处理目标 掌握Spark Streaming的原理架构 掌握DStream的相关操作 实现spark streaming 与 flume的整合 实现spark streaming 与 kafka的整合">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/R68tYKF.jpg">
+<meta property="og:image" content="https://i.imgur.com/LHvg1tP.png">
+<meta property="og:image" content="https://i.imgur.com/lvqG2CV.png">
+<meta property="og:image" content="https://i.imgur.com/3x81iH6.png">
+<meta property="og:image" content="https://i.imgur.com/skIE5mF.png">
+<meta property="og:updated_time" content="2018-01-09T13:14:04.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wlds">
+<meta name="twitter:title" content="spark streaming">
+<meta name="twitter:description" content="Spark Streaming流式处理目标 掌握Spark Streaming的原理架构 掌握DStream的相关操作 实现spark streaming 与 flume的整合 实现spark streaming 与 kafka的整合">
+<meta name="twitter:image" content="https://i.imgur.com/R68tYKF.jpg">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -148,807 +159,149 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-hadoop-ha-搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-spark-streaming" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/hadoop-ha-搭建/">hadoop ha 搭建</a>
+    <h1 class="article-title" itemprop="name">
+      spark streaming
     </h1>
   
 
         
-        <a href="/2017/12/11/hadoop-ha-搭建/" class="archive-article-date">
-  	<time datetime="2017-12-11T08:20:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
+        <a href="/2018/01/09/spark-streaming/" class="archive-article-date">
+  	<time datetime="2018-01-09T13:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.修改Linux主机名</p>
-<p>2.修改IP</p>
-<p>3.修改主机名和IP的映射关系 /etc/hosts</p>
-<pre><code>---------注意---------
-如果你们公司是租用的服务器或是使用的云主机（如华为用主机、阿里云主机等）
-/etc/hosts里面要配置的是内网IP地址和主机名的映射关系
-</code></pre><p>4.关闭防火墙<br>
-        
-          <a class="article-more-a" href="/2017/12/11/hadoop-ha-搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/hadoop-ha-搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-linux-安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/mysql-linux-安装/">mysql-linux-安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/mysql-linux-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:34:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一丶-yum在线安装"><a href="#一丶-yum在线安装" class="headerlink" title="一丶 yum在线安装"></a>一丶 yum在线安装</h3><p>mysql</p>
-<pre><code>yum install mysql mysql-server mysql-devel 
-</code></pre><p>完成后，用  /etc/init.d/mysqld start    启动mysql</p>
-<p>启动mysql控制台： </p>
-<p>   mysql<br>
-        
-          <a class="article-more-a" href="/2017/12/11/mysql-linux-安装/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/mysql-linux-安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hive基础学习-安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/hive基础学习-安装/">hive基础学习--安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/hive基础学习-安装/" class="archive-article-date">
-  	<time datetime="2017-12-11T06:31:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="1-上传tar包"><a href="#1-上传tar包" class="headerlink" title="1.上传tar包"></a>1.上传tar包</h4><pre><code>apache-hive-1.2.1-bin.tar.gz
-</code></pre><p>####2.解压<br>    tar -zxvf hive-1.2.1.tar.gz</p>
-<p>####3.安装mysql数据库</p>
-<p>   推荐yum 在线安装- 详细见 mysql-linux-安装<br>
-        
-          <a class="article-more-a" href="/2017/12/11/hive基础学习-安装/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/hive基础学习-安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hive基础学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/Hive基础学习/">Hive基础学习----建表</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/11/Hive基础学习/" class="archive-article-date">
-  	<time datetime="2017-12-11T03:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###Hive  ?  把一张表与已经处理的结构化数据产生映射关系</p>
-<h3 id="1-基于hadoop数据仓库的工具"><a href="#1-基于hadoop数据仓库的工具" class="headerlink" title="1 基于hadoop数据仓库的工具"></a>1 基于hadoop数据仓库的工具</h3><h3 id="2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序"><a href="#2-讲结构化的数据映射为一张数据库表-本质是讲sql转换为MapReduce程序" class="headerlink" title="2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序"></a>2 讲结构化的数据映射为一张数据库表  本质是讲sql转换为MapReduce程序</h3><p>映射关系</p>
-        
-          <a class="article-more-a" href="/2017/12/11/Hive基础学习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/Hive基础学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hadoop-2-x-集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/05/Hadoop-2-x-集群搭建/">Hadoop 2.x 集群搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/05/Hadoop-2-x-集群搭建/" class="archive-article-date">
-  	<time datetime="2017-12-05T08:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###1.准备Linux环境</p>
-<p>1.0 配置好各虚拟机的网络（采用NAT联网模式）</p>
+        <h1 id="Spark-Streaming流式处理"><a href="#Spark-Streaming流式处理" class="headerlink" title="Spark Streaming流式处理"></a><em>Spark Streaming流式处理</em></h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol>
+<li>掌握Spark Streaming的原理架构</li>
+<li>掌握DStream的相关操作</li>
+<li>实现spark streaming 与 flume的整合</li>
+<li>实现spark streaming 与 kafka的整合</li>
+</ol>
+<a id="more"></a>
+<h2 id="1丶-Spark-Streaming"><a href="#1丶-Spark-Streaming" class="headerlink" title="1丶 Spark Streaming"></a>1丶 Spark Streaming</h2><p><strong>概述</strong></p>
 <ul>
-<li><p>第一种：通过Linux图形界面进行修改(桌面版本Centos)</p>
-<p>  进入Linux图形界面 -&gt; 右键点击右上方的两个小电脑 -&gt; 点击Edit connections</p>
-<pre><code>-&gt; 选中当前网络System eth0 -&gt; 点击edit按钮 -&gt; 选择IPv4 -&gt; method选择为manual -&gt;
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/12/05/Hadoop-2-x-集群搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/05/Hadoop-2-x-集群搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hadoop编译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/05/hadoop编译/">hadoop编译</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/05/hadoop编译/" class="archive-article-date">
-  	<time datetime="2017-12-05T07:05:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、准备的资料"><a href="#一、准备的资料" class="headerlink" title="一、准备的资料"></a>一、准备的资料</h3><p>源码根目录下有个BUILDINT.txt，打开即可看见里面关于编译hadoop的一些环境要求　
-　</p>
-<ul>
-<li>64位linux系统CentOS 6.7。</li>
-<li>JDK 1.7+。</li>
-<li>maven-3.2.5。 一个项目管理综合工具, 使用标准的目录结构和默认构建生命周期</li>
-<li>protobuf 2.5.0  google的一种数据交换的格式，它独立于语言，独立于平台</li>
-<li>hadoop-2.x.x-src 　　 </li>
-<li>ant-1.9.7　　将软件编译、测试、部署等步骤联系在一起加以自动化的一个工具
-        
-          <a class="article-more-a" href="/2017/12/05/hadoop编译/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/05/hadoop编译/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-zookeeper集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/zookeeper集群搭建/">Zookeeper集群简介</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/25/zookeeper集群搭建/" class="archive-article-date">
-  	<time datetime="2017-11-25T08:01:10.138Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-1-为什么搭建Zookeeper集群"><a href="#1-1-为什么搭建Zookeeper集群" class="headerlink" title="1.1 为什么搭建Zookeeper集群"></a>1.1 为什么搭建Zookeeper集群</h3><p>大部分分布式应用需要一个主控、协调器或者控制器来管理物理分布的子进程。目前，大多数都要开发私有的协调程序，缺乏一个通用机制，协调程序的反复编写浪费，且难以形成通用、伸缩性好的协调器，zookeeper提供通用的分布式锁服务，用以协调分布式应用。所以说zookeeper是分布式应用的协作服务。</p>
-        
-          <a class="article-more-a" href="/2017/11/25/zookeeper集群搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/zookeeper//" class="article-tag-list-link color5">zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/25/zookeeper集群搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-solr安装与配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/solr安装与配置/">solr的安装与配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/25/solr安装与配置/" class="archive-article-date">
-  	<time datetime="2017-11-25T07:42:54.398Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-什么是solr"><a href="#1-什么是solr" class="headerlink" title="1) 什么是solr"></a>1) 什么是solr</h3><ul>
-<li><p>大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。</p>
-</li>
-<li><p>这就是为什么转移负载到一个外部的搜索服务器是一个不错的主意，Apache Solr是一个流行的开源搜索服务器，它通过使用类似REST的HTTP API，这就确保你能从几乎任何编程语言来使用solr。</p>
+<li>类似于Storm,用于流式数据的处理</li>
+<li>高吞吐,容错能力强</li>
+<li>可扩展,支持多种数据源. Kafka丶Flume丶Twitter..</li>
+<li>Spark高度抽象操作. map丶reduce丶join..</li>
+</ul>
+<p><strong>特性</strong></p>
+<ol>
+<li>Ease of Use 易用性</li>
+<li>Fault Tolerance 容错</li>
+<li>Spark Integration 易整合到spark 体系中</li>
+</ol>
+<h2 id="2丶Spark-Streaming原理"><a href="#2丶Spark-Streaming原理" class="headerlink" title="2丶Spark Streaming原理*"></a>2丶Spark Streaming原理*</h2><h3 id="2-1-原理"><a href="#2-1-原理" class="headerlink" title="2.1 原理"></a>2.1 原理</h3><p>Spark Streaming<br>是基于spark的流式批处理引擎，其基本原理是把<strong><em>输入数据以某一时间间隔批量的处理</em></strong>，当批处理间隔缩短到秒级时，便可以用于处理实时数据流。</p>
+<h3 id="2-2-计算流程"><a href="#2-2-计算流程" class="headerlink" title="2.2 计算流程"></a>2.2 计算流程</h3><p>Spark Streaming是将流式计算分解成一系列短小的批处理作业。这里的批处理引擎是Spark Core，也就是把Spark Streaming的输入数据按照batch size（如1秒）分成一段一段的数据（Discretized Stream），每一段数据都转换成Spark中的RDD（Resilient Distributed Dataset），然后将Spark Streaming中对DStream的Transformation操作变为针对Spark中对RDD的Transformation操作，将RDD经过操作变成中间结果保存在内存中。整个流式计算根据业务的需求可以对中间的结果进行缓存或者存储到外部设备。下图显示了Spark Streaming的整个流程。</p>
+<h3 id="2-3-容错性"><a href="#2-3-容错性" class="headerlink" title="2.3 容错性"></a>2.3 容错性</h3><p>对于流式计算来说，容错性至关重要。首先我们要明确一下Spark中RDD的容错机制。每一个RDD都是一个不可变的分布式可重算的数据集，其记录着确定性的操作继承关系（lineage），所以只要输入数据是可容错的，那么任意一个RDD的分区（Partition）出错或不可用，都是可以利用原始输入数据通过转换操作而重新算出的。  </p>
+<p>对于SparkStreaming来说，其RDD的传承关系如下图所示：</p>
+<p><img src="https://i.imgur.com/R68tYKF.jpg" alt=""></p>
+<p>图中的每一个椭圆形表示一个RDD，椭圆形中的每个圆形代表一个RDD中的一个Partition，图中的每一列的多个RDD表示一个DStream（图中有三个DStream），而每一行最后一个RDD则表示每一个Batch Size所产生的中间结果RDD。我们可以看到图中的每一个RDD都是通过lineage相连接的，由于Spark Streaming输入数据可以来自于磁盘，例如HDFS（多份拷贝）或是来自于网络的数据流（Spark Streaming会将网络输入数据的每一个数据流拷贝两份到其他的机器）都能保证容错性，所以RDD中任意的Partition出错，都可以并行地在其他机器上将缺失的Partition计算出来。这个容错恢复方式比连续计算模型（如Storm）的效率更高。</p>
+<h3 id="2-4-实时性"><a href="#2-4-实时性" class="headerlink" title="2.4 实时性"></a>2.4 实时性</h3><p>对于实时性的讨论，会牵涉到流式处理框架的应用场景。Spark Streaming将流式计算分解成多个Spark Job，对于每一段数据的处理都会经过Spark DAG图分解以及Spark的任务集的调度过程。对于目前版本的Spark Streaming而言，其最小的Batch Size的选取在0.5~2秒钟之间（Storm目前最小的延迟是100ms左右），所以Spark Streaming能够满足除对实时性要求非常高（如高频实时交易）之外的所有流式准实时计算场景。</p>
+<h2 id="3丶-DStream"><a href="#3丶-DStream" class="headerlink" title="3丶 DStream"></a>3丶 DStream</h2><h3 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1 概述"></a>3.1 概述</h3><p>Discretized<br>Stream是Spark Streaming的基础抽象，代表持续性的数据流和经过各种Spark算子操作后的结果数据流。在内部实现上，DStream是一系列连续的RDD来表示。每个RDD含有一段时间间隔内的数据，如下图：</p>
+<p><img src="https://i.imgur.com/LHvg1tP.png" alt=""></p>
+<p>对数据的操作也是按照RDD为单位来进行的</p>
+<p><img src="https://i.imgur.com/lvqG2CV.png" alt=""></p>
+<p>Spark Streaming使用数据源产生的数据流创建DStream，也可以在已有的DStream上使用一些操作来创建新的DStream。</p>
+<p>它的工作流程像下面的图所示一样，接受到实时数据后，给数据分批次，然后传给Spark Engine处理最后生成该批次的结果。</p>
+<p><img src="https://i.imgur.com/3x81iH6.png" alt=""></p>
+<h3 id="3-2-DStream相关操作"><a href="#3-2-DStream相关操作" class="headerlink" title="3.2 DStream相关操作"></a>3.2 DStream相关操作</h3><ul>
+<li><p>Transformations on DStreams</p>
+<p>|        <strong>Transformation</strong>        |               <strong>Meaning</strong>                |<br>| :——————————: | :————————————–: |<br>|            map(func)             | 对DStream中的各个元素进行func函数操作，然后返回一个新的DStream |<br>|          flatMap(func)           |     与map方法类似，只不过各个输入项可以被输出为零个或多个输出项      |<br>|           filter(func)           | 过滤出所有函数func返回值为true的DStream元素并返回一个新的DStream |<br>|    repartition(numPartitions)    |    增加或减少DStream中的分区数，从而改变DStream的并行度     |<br>|        union(otherStream)        | 将源DStream和输入参数为otherDStream的元素合并，并返回一个新的DStream. |<br>|             count()              | 通过对DStream中的各个RDD中的元素进行计数，然后返回只有一个元素的RDD构成的DStream |<br>|           reduce(func)           | 对源DStream中的各个RDD中的元素利用func进行聚合操作，然后返回只有一个元素的RDD构成的新的DStream. |<br>|          countByValue()          | 对于元素类型为K的DStream，返回一个元素为（K,Long）键值对形式的新的DStream，Long对应的值为源DStream中各个RDD的key出现的次数 |<br>|  reduceByKey(func, [numTasks])   | 利用func函数对源DStream中的key进行聚合操作，然后返回新的（K，V）对构成的DStream |<br>|  join(otherStream, [numTasks])   | 输入为（K,V)、（K,W）类型的DStream，返回一个新的（K，（V，W）类型的DStream |<br>| cogroup(otherStream, [numTasks]) | 输入为（K,V)、（K,W）类型的DStream，返回一个新的 (K, Seq[V], Seq[W]) 元组类型的DStream |<br>|         transform(func)          | 通过RDD-to-RDD函数作用于DStream中的各个RDD，可以是任意的RDD操作，从而返回一个新的RDD |<br>|      updateStateByKey(func)      | 根据于key的前置状态和key的新值，对key进行更新，返回一个新状态的DStream |</p>
+<p><strong>特殊的Transformations</strong></p>
+<p>1) UpdateStateByKey Operation</p>
+<p>UpdateStateByKey用于记录历史记录，保存上次的状态</p>
 </li>
 </ul>
-        
-          <a class="article-more-a" href="/2017/11/25/solr安装与配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/solr//" class="article-tag-list-link color5">solr</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/25/solr安装与配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-solr集群搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/solr集群搭建/">solr集群搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/25/solr集群搭建/" class="archive-article-date">
-  	<time datetime="2017-11-25T07:41:16.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##</p>
-<h3 id="1-SolrCloud简介"><a href="#1-SolrCloud简介" class="headerlink" title="1. SolrCloud简介"></a>1. SolrCloud简介</h3><h4 id="1-1-什么是SolrCloud"><a href="#1-1-什么是SolrCloud" class="headerlink" title="1.1 什么是SolrCloud"></a>1.1 什么是SolrCloud</h4><p>SolrCloud(solr 云)是 Solr 提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用 SolrCloud。当一个系统的索引数据量少的时候是不需要使用 SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用 SolrCloud 来满足这些需求。</p>
-        
-          <a class="article-more-a" href="/2017/11/25/solr集群搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">solr</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集群</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/solr//" class="article-tag-list-link color5">solr</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/25/solr集群搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-angular倒计时" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/20/angular倒计时/">angular倒计时简单实现</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/20/angular倒计时/" class="archive-article-date">
-  	<time datetime="2017-11-20T10:01:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ul>
-<li><p>定义秒数</p>
-<pre><code>allsecond  = 564231657856;
-</code></pre></li>
-<li><p>定义一个方法,将秒数转换成 X天 时分秒的格式</p>
-</li>
+<p>  2) Window Operations(开窗函数)</p>
+<p>  滑动窗口转换操作:</p>
+<p>  滑动窗口转换操作的计算过程如下图所示，我们可以事先设定一个滑动窗口的长度（也就是窗口的持续时间），并且设定滑动窗口的时间间隔（每隔多长时间执行一次计算），然后，就可以让窗口按照指定时间间隔在源DStream上滑动，每次窗口停放的位置上，都会有一部分DStream被框入窗口内，形成一个小段的DStream，这时，就可以启动对这个小段DStream的计算。</p>
+<p>  <img src="https://i.imgur.com/skIE5mF.png" alt=""></p>
+<p>  ​</p>
+<p>  （1)红色的矩形就是一个窗口，窗口框住的是一段时间内的数据流。</p>
+<p>  （2）这里面每一个time都是时间单元，在官方的例子中，每隔window size是3 time unit, 而且每隔2个单位时间，窗口会slide一次。</p>
+<p>  所以基于窗口的操作，需要指定2个参数：</p>
+<p>  ·       <em>window length</em> - The duration of the window (3 in the figure)</p>
+<p>  ·       <em>slide interval</em> - The interval at which the window-based operation isperformed (2 in the figure).  </p>
+<p>  a.窗口大小，一段时间内数据的容器。</p>
+<p>  b.滑动间隔，每隔多久计算一次。</p>
+<h2 id="4丶-案例分析"><a href="#4丶-案例分析" class="headerlink" title="4丶 案例分析"></a>4丶 案例分析</h2><h3 id="案例一-利用spark-streaming实现socket数据流下的单词计数"><a href="#案例一-利用spark-streaming实现socket数据流下的单词计数" class="headerlink" title="案例一: 利用spark streaming实现socket数据流下的单词计数"></a>案例一: 利用spark streaming实现socket数据流下的单词计数</h3><p>SparkStreamingSocket.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 通过streamingContext对象获取socket流数据</span></span><br><span class="line">socketTextStream(<span class="string">"ip"</span>,port)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 单词计数</span></span><br><span class="line">...</span><br><span class="line">reduceByKey()</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line">result.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br></pre></td></tr></table></figure>
+<h3 id="案例二-利用spark-streaming接收socket数据-实现所有批次中单词计数累加"><a href="#案例二-利用spark-streaming接收socket数据-实现所有批次中单词计数累加" class="headerlink" title="案例二: 利用spark streaming接收socket数据,实现所有批次中单词计数累加"></a>案例二: 利用spark streaming接收socket数据,实现所有批次中单词计数累加</h3><p>SparkStreamingSocketTotal.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置checkpoint</span></span><br><span class="line">streamingContext.checkpoint(<span class="string">"目录"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 通过streamingContext对象获取socket流数据</span></span><br><span class="line">socketTextStream(<span class="string">"ip"</span>,port)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 单词计数</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">// 使用updateStateByKey 有状态记录之前所有批次中单词出现的次数</span></span><br><span class="line">updateStateByKey(updataFunc)</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line">result.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// currentValues : 当前批次中相同单词出现的次数 (hello,1)(hello,1)(hello,1) Seq(1,1,1)</span></span><br><span class="line"><span class="comment">// historyValues : 之前所有批次的累计结果</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">updataFunc</span></span>(currentValues:<span class="type">Seq</span>[<span class="type">Int</span>],historyValues:<span class="type">Option</span>[<span class="type">Int</span>]):<span class="type">Option</span>[<span class="type">Int</span>] = &#123;</span><br><span class="line">  <span class="keyword">val</span> newValue = currentValues.sum + historyValues.getOrElse(<span class="number">0</span>)</span><br><span class="line">  <span class="type">Some</span>(newValue)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="案例三-利用spark-streaming-开窗函数reduceByKeyAndWindow-实现单词计数"><a href="#案例三-利用spark-streaming-开窗函数reduceByKeyAndWindow-实现单词计数" class="headerlink" title="案例三: 利用spark streaming 开窗函数reduceByKeyAndWindow 实现单词计数"></a>案例三: 利用spark streaming 开窗函数reduceByKeyAndWindow 实现单词计数</h3><p>SparkStreamingSocketWindow.scala</p>
+<p>每隔十秒,统计之前二十秒中的数据单词出现的次数</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 通过streamingContext对象获取socket流数据</span></span><br><span class="line">socketTextStream(<span class="string">"ip"</span>,port)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 单词计数</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">// windowDuration : 当前窗口的长度 </span></span><br><span class="line"><span class="comment">// slideDuration : 当前滑动窗口的时间</span></span><br><span class="line">reduceByKeyAndWindow((x:<span class="type">Int</span>,y:<span class="type">Int</span>) =&gt; x+y ,<span class="type">Seconds</span>(<span class="number">10</span>) ,<span class="type">Seconds</span>(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line">result.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>窗口的长度 &gt; 滑动窗口的间隔 –&gt; 数据会被重复处理</li>
+<li>窗口的长度 &lt; 滑动窗口的间隔 –&gt; 数据会丢失</li>
 </ul>
-        
-          <a class="article-more-a" href="/2017/11/20/angular倒计时/#more">more >></a>
-        
+<p>当<strong>我们在正常使用窗口函数的时候</strong></p>
+<ol>
+<li>保证窗口长度和滑动时间的间隔相同</li>
+<li>窗口长度和滑动窗口的时间间隔,设置为批次时间的整数倍</li>
+</ol>
+<h3 id="案例四-利用spark-streaming实现socket数据-实现一定时间内的热门词汇"><a href="#案例四-利用spark-streaming实现socket数据-实现一定时间内的热门词汇" class="headerlink" title="案例四: 利用spark streaming实现socket数据,实现一定时间内的热门词汇"></a>案例四: 利用spark streaming实现socket数据,实现一定时间内的热门词汇</h3><p>SparkStreamingHotWords.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 通过streamingContext对象获取socket流数据</span></span><br><span class="line">socketTextStream(<span class="string">"ip"</span>,port)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 单词计数</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">// windowDuration : 当前窗口的长度 </span></span><br><span class="line"><span class="comment">// slideDuration : 当前滑动窗口的时间</span></span><br><span class="line">reduceByKeyAndWindow((x:<span class="type">Int</span>,y:<span class="type">Int</span>) =&gt; x+y ,<span class="type">Seconds</span>(<span class="number">10</span>) ,<span class="type">Seconds</span>(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取result中的RDD,排序后(降序)再获取其中的TopN元素</span></span><br><span class="line"><span class="keyword">val</span> finalResult = result.transform(rdd=&gt;&#123;</span><br><span class="line">  <span class="keyword">val</span> sortRDD =  rdd.sortBy(_._2,<span class="literal">false</span>)</span><br><span class="line">  <span class="comment">// 取前三位</span></span><br><span class="line">  <span class="keyword">val</span> sortResult = sortRDD.take(<span class="number">3</span>)</span><br><span class="line">  println(<span class="string">"------------前三位--------------------"</span>)</span><br><span class="line">  sortResult.foreach(println)</span><br><span class="line">  println(<span class="string">"-------------------------------------"</span>)</span><br><span class="line">  sortRDD</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line">finalResult.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br></pre></td></tr></table></figure>
+<h2 id="5丶-sparkstreaming-整合flume"><a href="#5丶-sparkstreaming-整合flume" class="headerlink" title="5丶 sparkstreaming 整合flume"></a>5丶 sparkstreaming 整合flume</h2><h3 id="5-1-Poll方式"><a href="#5-1-Poll方式" class="headerlink" title="5.1 Poll方式"></a>5.1 Poll方式</h3><p>需求: SparkStreaming与flume整合 —————- poll</p>
+<p>SparkStreamingPollFlume.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 通过FlumeUtils.createPollingStream 接收flume中的数据,注意 : 主机名与端口与flume配置文件保持一致</span></span><br><span class="line"><span class="keyword">val</span> pollingStream = <span class="type">FlumeUtils</span>.createPollingStream(streamingContext,<span class="string">"hostname"</span>,port)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 获取pollingStream中真实数据</span></span><br><span class="line"><span class="keyword">val</span> stream : <span class="type">DSteam</span>[<span class="type">String</span>] = pollingStream.map(x=&gt;<span class="keyword">new</span> <span class="type">String</span>(x.event.getBody.array()))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. 切分行,记为1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 7. 统计</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印结果</span></span><br><span class="line">result.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-Push方式"><a href="#5-2-Push方式" class="headerlink" title="5.2 Push方式"></a>5.2 Push方式</h3><p>需求: SparkStreaming与flume整合 —————push</p>
+<p>SparkStreamingPushFlume.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 通过FlumeUtils.createStream 接收flume中的数据,注意 : 主机名与端口与flume配置文件保持一致</span></span><br><span class="line"><span class="keyword">val</span> poshStream = <span class="type">FlumeUtils</span>.createStream(streamingContext,<span class="string">"hostname"</span>,port)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 获取pollingStream中真实数据</span></span><br><span class="line"><span class="keyword">val</span> stream : <span class="type">DSteam</span>[<span class="type">String</span>] = poshStream.map(x=&gt;<span class="keyword">new</span> <span class="type">String</span>(x.event.getBody.array()))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. 切分行,记为1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 7. 统计</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印结果</span></span><br><span class="line">result.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br></pre></td></tr></table></figure>
+<h2 id="6丶Spark-Streaming-与-kafka整合"><a href="#6丶Spark-Streaming-与-kafka整合" class="headerlink" title="6丶Spark Streaming 与 kafka整合"></a>6丶Spark Streaming 与 kafka整合</h2><h3 id="6-1-KafkaUtils-createDstream方式"><a href="#6-1-KafkaUtils-createDstream方式" class="headerlink" title="6.1 KafkaUtils.createDstream方式"></a>6.1 KafkaUtils.createDstream方式</h3><p><strong>需求: sparkStreaming 与 kafka整合 — Receiver 采用的是kafka的高级API(偏移量 由zk维护)</strong></p>
+<p>SparkStreamingKafka_Receiver.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line">set(<span class="string">"spark.streaming.receiver.writeAheadLog.enable"</span>,<span class="string">"true"</span>) <span class="comment">// WAL预写日志 可以解决数据丢失 , 无法解决重复消费</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 配置zk地址</span></span><br><span class="line"><span class="keyword">val</span> zkQuorum = <span class="string">"zk01:2181,zk02:2181,zk03:2181"</span></span><br><span class="line"><span class="comment">// 5. 配置消费者组</span></span><br><span class="line"><span class="keyword">val</span> groupId = <span class="string">"streamingContext"</span></span><br><span class="line"><span class="comment">// 6. 配置topic相关信息 Map of (topic_name -&gt; numPartitions) numPartitions: 是每个topic中每个分区需要几个线程去消费</span></span><br><span class="line"><span class="keyword">val</span> topics = <span class="type">Map</span>(<span class="string">"spark-kafka"</span>-&gt;<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 7. 通过KafkaUtils.createStream()读取kafka中的消息</span></span><br><span class="line"><span class="comment">// (string,string) 第一个表示当前topic的名称,第二个存放真实的数据</span></span><br><span class="line"><span class="keyword">val</span> kafkaDstream = <span class="type">KafkaUtils</span>.createStream(streamingContext,zkQuorum,groupId,topics)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 8. 获取kafka中 topic的数据</span></span><br><span class="line"><span class="keyword">val</span> topicDataDstream : <span class="type">DSteam</span>[<span class="type">String</span>] = kafkaDstream.map(_._2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 9. 切分行,记为1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 10. 统计</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印结果</span></span><br><span class="line">result.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-KafkaUtils-createDirectStream方式"><a href="#6-2-KafkaUtils-createDirectStream方式" class="headerlink" title="6.2 KafkaUtils.createDirectStream方式"></a>6.2 KafkaUtils.createDirectStream方式</h3><p>定期从kafka的topic下对应的partition中查询最新的偏移量,根据偏移量的范围…</p>
+<p>相比Receiver方式的优点</p>
+<p>A丶 简化并行</p>
+<p>​    不需要创建多个Kafka输入流,然后union,…spark中RDD的分区和和kafka中分区数是一一对应的</p>
+<p>B丶 高效</p>
+<p>​    …</p>
+<p>C丶 恰好一次语义</p>
+<p><strong>需求: sparkStreaming 与 kafka整合 — 不是基于receiver,采用kafka低级API,偏移量不会保存到zk</strong></p>
+<p>SparkStreamingKafka_Direct.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))      </span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 配置kafka信息</span></span><br><span class="line"><span class="keyword">val</span> kafkaParams = <span class="type">Map</span>(<span class="string">"metadata.broker.list"</span> -&gt; <span class="string">"node1:9092,node2:9092,node3:9092"</span>,<span class="string">"group.id"</span> -&gt; <span class="string">"spark-direct"</span>,<span class="string">"auto.offset.reset"</span> -&gt; <span class="string">"smallest"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 配置topics</span></span><br><span class="line"><span class="keyword">val</span> topics = <span class="type">Set</span>(<span class="string">"spark-kafka"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. KafkaUtils.createDirectStream 获取kafka中的数据</span></span><br><span class="line"><span class="keyword">val</span> directDstream = <span class="type">KafkaUtils</span>.createDirectStream[<span class="type">String</span>,<span class="type">String</span>,<span class="type">StringDecoder</span>,<span class="type">StringDecoder</span>](streamingContext,kafkaParams,topics)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 7. 获取kafka中 topic的数据</span></span><br><span class="line"><span class="keyword">val</span> topicDataDstream : <span class="type">DSteam</span>[<span class="type">String</span>] = directDstream.map(_._2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 8. 切分行,记为1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 9. 统计</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印结果</span></span><br><span class="line">result.print();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">streamingContext.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">streamingContext.awaitTermination()</span><br></pre></td></tr></table></figure>
+<p>//todo: 利用checkpoint目录来构建 StreamContext</p>
+<p>SparkStreamingKafka_Direct_Checkpoint.scala</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.  checkpoint目录</span></span><br><span class="line"><span class="keyword">val</span> checkpoint = <span class="string">"./kafka-spark-direct"</span></span><br><span class="line"><span class="comment">// 2. 从checkpoint目录中,构建StreamingContext,如果不存在checkpointPath,会通过caeateStreamingContext方法生成StreamingContext</span></span><br><span class="line"><span class="keyword">val</span> ssc :<span class="type">StreamingContext</span> = <span class="type">StreamingContext</span>.getOrCreate(checkpointPath,() =&gt; caeateStreamingContext(checkpointPath))</span><br><span class="line"><span class="comment">// 开启流式计算</span></span><br><span class="line">ssc.start()</span><br><span class="line"><span class="comment">// 不断接收数据,等待程序结束</span></span><br><span class="line">ssc.awaitTermination()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">caeateStreamingContext</span></span>(checkpointPath:<span class="type">String</span>) :<span class="type">StreamContetxt</span> = &#123;</span><br><span class="line"><span class="comment">// 1. 创建sparkConf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建SparkContext</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 构建streamingContext,需要两个参数 sparkContext, 以多长时间间隔划分批次</span></span><br><span class="line"><span class="type">StreamingContext</span>(<span class="type">SparkContext</span>,<span class="type">Seconds</span>(<span class="number">5</span>))      </span><br><span class="line"> </span><br><span class="line">streamingContext.checkpoint(checkpointPath)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 配置kafka信息</span></span><br><span class="line"><span class="keyword">val</span> kafkaParams = <span class="type">Map</span>(<span class="string">"metadata.broker.list"</span> -&gt; <span class="string">"node1:9092,node2:9092,node3:9092"</span>,<span class="string">"group.id"</span> -&gt; <span class="string">"spark-direct"</span>,<span class="string">"auto.offset.reset"</span> -&gt; <span class="string">"smallest"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 配置topics</span></span><br><span class="line"><span class="keyword">val</span> topics = <span class="type">Set</span>(<span class="string">"spark-kafka"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. KafkaUtils.createDirectStream 获取kafka中的数据</span></span><br><span class="line"><span class="keyword">val</span> directDstream = <span class="type">KafkaUtils</span>.createDirectStream[<span class="type">String</span>,<span class="type">String</span>,<span class="type">StringDecoder</span>,<span class="type">StringDecoder</span>](streamingContext,kafkaParams,topics)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 7. 获取kafka中 topic的数据</span></span><br><span class="line"><span class="keyword">val</span> topicDataDstream : <span class="type">DSteam</span>[<span class="type">String</span>] = directDstream.map(_._2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 8. 切分行,记为1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 9. 统计</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印结果</span></span><br><span class="line">result.print();</span><br><span class="line">  </span><br><span class="line">streamingContext</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的鼓励就是对我最大的帮助<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/aaa.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -959,7 +312,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
         		</li>
       		
 		</ul>
@@ -968,16 +321,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/20/angular倒计时/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/01/09/spark-streaming/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/08/spark-on-hive/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spark on hive</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -992,17 +404,32 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spark-Streaming流式处理"><span class="toc-number">1.</span> <span class="toc-text">Spark Streaming流式处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">1.1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1丶-Spark-Streaming"><span class="toc-number">1.2.</span> <span class="toc-text">1丶 Spark Streaming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2丶Spark-Streaming原理"><span class="toc-number">1.3.</span> <span class="toc-text">2丶Spark Streaming原理*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-原理"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-计算流程"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 计算流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-容错性"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3 容错性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-实时性"><span class="toc-number">1.3.4.</span> <span class="toc-text">2.4 实时性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3丶-DStream"><span class="toc-number">1.4.</span> <span class="toc-text">3丶 DStream</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-概述"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-DStream相关操作"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2 DStream相关操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4丶-案例分析"><span class="toc-number">1.5.</span> <span class="toc-text">4丶 案例分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#案例一-利用spark-streaming实现socket数据流下的单词计数"><span class="toc-number">1.5.1.</span> <span class="toc-text">案例一: 利用spark streaming实现socket数据流下的单词计数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例二-利用spark-streaming接收socket数据-实现所有批次中单词计数累加"><span class="toc-number">1.5.2.</span> <span class="toc-text">案例二: 利用spark streaming接收socket数据,实现所有批次中单词计数累加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例三-利用spark-streaming-开窗函数reduceByKeyAndWindow-实现单词计数"><span class="toc-number">1.5.3.</span> <span class="toc-text">案例三: 利用spark streaming 开窗函数reduceByKeyAndWindow 实现单词计数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例四-利用spark-streaming实现socket数据-实现一定时间内的热门词汇"><span class="toc-number">1.5.4.</span> <span class="toc-text">案例四: 利用spark streaming实现socket数据,实现一定时间内的热门词汇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5丶-sparkstreaming-整合flume"><span class="toc-number">1.6.</span> <span class="toc-text">5丶 sparkstreaming 整合flume</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Poll方式"><span class="toc-number">1.6.1.</span> <span class="toc-text">5.1 Poll方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Push方式"><span class="toc-number">1.6.2.</span> <span class="toc-text">5.2 Push方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6丶Spark-Streaming-与-kafka整合"><span class="toc-number">1.7.</span> <span class="toc-text">6丶Spark Streaming 与 kafka整合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-KafkaUtils-createDstream方式"><span class="toc-number">1.7.1.</span> <span class="toc-text">6.1 KafkaUtils.createDstream方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-KafkaUtils-createDirectStream方式"><span class="toc-number">1.7.2.</span> <span class="toc-text">6.2 KafkaUtils.createDirectStream方式</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
+
   
 
 
@@ -1025,8 +452,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
