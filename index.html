@@ -173,16 +173,10 @@
         <h1 id="Type-System"><a href="#Type-System" class="headerlink" title="Type System"></a>Type System</h1><h2 id="一、Type"><a href="#一、Type" class="headerlink" title="一、Type"></a>一、Type</h2><p>(可以理解为 “类”) –&gt; class</p>
 <p>定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合</p>
 <p>下面是在Atlas中定义的一个名为Hive表的类型，该类型包含了以下的属性：</p>
-<p>`</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Name:         hive_table</span><br><span class="line">TypeCategory: Entity</span><br><span class="line">SuperTypes:   DataSet</span><br><span class="line">Attributes:</span><br><span class="line">    name:             string</span><br><span class="line">    db:               hive_db</span><br><span class="line">    owner:            string</span><br><span class="line">    createTime:       date</span><br><span class="line">    lastAccessTime:   date</span><br><span class="line">    comment:          string</span><br><span class="line">    retention:        int</span><br><span class="line">    sd:               hive_storagedesc</span><br><span class="line">    partitionKeys:    array&lt;hive_column&gt;</span><br><span class="line">    aliases:          array&lt;string&gt;</span><br><span class="line">    columns:          array&lt;hive_column&gt;</span><br><span class="line">    parameters:       map&lt;string,string&gt;</span><br><span class="line">    viewOriginalText: string</span><br><span class="line">    viewExpandedText: string</span><br><span class="line">    tableType:        string</span><br><span class="line">    temporary:        boolean</span><br></pre></td></tr></table></figure>
-<p>`</p>
-<ul>
-<li>atlas中每个类型通过唯一名字来标识</li>
-<li>每个类型都有一个元类型</li>
-<li>entity &amp; classification(分类) 可以继承其他类型,被继承的类型成为superType。类型的集成可以获得超类型的属性，可以将公共属性定义在超类型中。例hive_db定义在DataSet中。</li>
-<li>具有‘entity’，‘Struct’（结构），‘classification’ or ‘relationship’元类型的类型可拥有一个属性集合</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2019/05/30/Atlas-Type-System/#more">more >></a>
+        
       
 
       
@@ -1104,11 +1098,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hive</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color5">hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1136,11 +1130,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
