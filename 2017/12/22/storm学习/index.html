@@ -256,7 +256,7 @@
 <li><p>修改配置文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /export/servers/storm/conf/storm.yaml /export/servers/storm/conf/storm.yaml.bak</span><br><span class="line">vi /export/servers/storm/conf/storm.yaml</span><br></pre></td></tr></table></figure>
 <p>输入一下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">指定storm使用的zk集群</span></span><br><span class="line">storm.zookeeper.servers:</span><br><span class="line">     - "zk01"</span><br><span class="line">     - "zk02"</span><br><span class="line">     - "zk03"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定storm集群中的nimbus节点所在的服务器</span></span><br><span class="line">nimbus.host: "storm01"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定nimbus启动JVM最大可用内存大小</span></span><br><span class="line">nimbus.childopts: "-Xmx1024m"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定supervisor启动JVM最大可用内存大小</span></span><br><span class="line">supervisor.childopts: "-Xmx1024m"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定supervisor节点上，每个worker启动JVM最大可用内存大小</span></span><br><span class="line">worker.childopts: "-Xmx768m"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定ui启动JVM最大可用内存大小，ui服务一般与nimbus同在一个节点上。</span></span><br><span class="line">ui.childopts: "-Xmx768m"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定supervisor节点上，启动worker时对应的端口号，每个端口对应槽，每个槽位对应一个worker</span></span><br><span class="line">supervisor.slots.ports:</span><br><span class="line">    - 6700</span><br><span class="line">    - 6701</span><br><span class="line">    - 6702</span><br><span class="line">    - 6703</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>指定storm使用的zk集群</span><br><span class="line">storm.zookeeper.servers:</span><br><span class="line">     - "zk01"</span><br><span class="line">     - "zk02"</span><br><span class="line">     - "zk03"</span><br><span class="line"><span class="meta">#</span>指定storm集群中的nimbus节点所在的服务器</span><br><span class="line">nimbus.host: "storm01"</span><br><span class="line"><span class="meta">#</span>指定nimbus启动JVM最大可用内存大小</span><br><span class="line">nimbus.childopts: "-Xmx1024m"</span><br><span class="line"><span class="meta">#</span>指定supervisor启动JVM最大可用内存大小</span><br><span class="line">supervisor.childopts: "-Xmx1024m"</span><br><span class="line"><span class="meta">#</span>指定supervisor节点上，每个worker启动JVM最大可用内存大小</span><br><span class="line">worker.childopts: "-Xmx768m"</span><br><span class="line"><span class="meta">#</span>指定ui启动JVM最大可用内存大小，ui服务一般与nimbus同在一个节点上。</span><br><span class="line">ui.childopts: "-Xmx768m"</span><br><span class="line"><span class="meta">#</span>指定supervisor节点上，启动worker时对应的端口号，每个端口对应槽，每个槽位对应一个worker</span><br><span class="line">supervisor.slots.ports:</span><br><span class="line">    - 6700</span><br><span class="line">    - 6701</span><br><span class="line">    - 6702</span><br><span class="line">    - 6703</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>分发安装包</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scp -r/export/servers/apache-storm-0.9.5 storm02:/export/servers</span><br><span class="line"></span><br><span class="line">然后分别在各机器上创建软连接</span><br><span class="line"></span><br><span class="line">cd/export/servers/</span><br><span class="line"></span><br><span class="line">ln -sapache-storm-0.9.5 storm</span><br></pre></td></tr></table></figure>
@@ -552,11 +552,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,19 +572,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集群</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集群</a>
               </li>
              
               <li class="article-tag-list-item">
