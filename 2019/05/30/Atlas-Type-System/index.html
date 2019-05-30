@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Atlas Type System | wlds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Type System一、Type(可以理解为 “类”) –&amp;gt; class 定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合 下面是在Atlas中定义的一个名为Hive表的类型，该类型包含了以下的属性： 1234567891011121314151617181920Name:         hive_tableTypeCategory: EntityS">
+  <meta name="description" content="Type System一、Type(可以理解为 “类”) –&amp;gt; class 定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合 可以通过该API获取Atlas的所有类型：http://atlas:21000/api/atlas/v2/types/typedefs 下面通过该API获取hive_table类型的定义：http://atlas:21000/ap">
 <meta name="keywords" content="Apache atlas,元数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Atlas Type System">
 <meta property="og:url" content="http://yoursite.com/2019/05/30/Atlas-Type-System/index.html">
 <meta property="og:site_name" content="wlds">
-<meta property="og:description" content="Type System一、Type(可以理解为 “类”) –&amp;gt; class 定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合 下面是在Atlas中定义的一个名为Hive表的类型，该类型包含了以下的属性： 1234567891011121314151617181920Name:         hive_tableTypeCategory: EntityS">
+<meta property="og:description" content="Type System一、Type(可以理解为 “类”) –&amp;gt; class 定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合 可以通过该API获取Atlas的所有类型：http://atlas:21000/api/atlas/v2/types/typedefs 下面通过该API获取hive_table类型的定义：http://atlas:21000/ap">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-30T03:33:17.549Z">
+<meta property="og:updated_time" content="2019-05-30T09:53:44.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Atlas Type System">
-<meta name="twitter:description" content="Type System一、Type(可以理解为 “类”) –&amp;gt; class 定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合 下面是在Atlas中定义的一个名为Hive表的类型，该类型包含了以下的属性： 1234567891011121314151617181920Name:         hive_tableTypeCategory: EntityS">
+<meta name="twitter:description" content="Type System一、Type(可以理解为 “类”) –&amp;gt; class 定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合 可以通过该API获取Atlas的所有类型：http://atlas:21000/api/atlas/v2/types/typedefs 下面通过该API获取hive_table类型的定义：http://atlas:21000/ap">
   
     <link rel="alternative" href="/atom.xml" title="wlds" type="application/atom+xml">
   
@@ -175,14 +175,56 @@
       
         <h1 id="Type-System"><a href="#Type-System" class="headerlink" title="Type System"></a>Type System</h1><h2 id="一、Type"><a href="#一、Type" class="headerlink" title="一、Type"></a>一、Type</h2><p>(可以理解为 “类”) –&gt; class</p>
 <p>定义了如何存储和访问特定类型的元数据对象,表示了 所定义 的元数据对象一个或多个的集合</p>
+<p>可以通过该API获取Atlas的所有类型：<a href="http://atlas:21000/api/atlas/v2/types/typedefs" target="_blank" rel="external">http://atlas:21000/api/atlas/v2/types/typedefs</a></p>
+<p>下面通过该API获取hive_table类型的定义：<a href="http://atlas:21000/api/atlas/v2/types/typedefs/typedef/name/hive_table" target="_blank" rel="external">http://atlas:21000/api/atlas/v2/types/typedefs/typedef/name/hive_table</a></p>
 <p>下面是在Atlas中定义的一个名为Hive表的类型，该类型包含了以下的属性：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Name:         hive_table</span><br><span class="line">TypeCategory: Entity</span><br><span class="line">SuperTypes:   DataSet</span><br><span class="line">Attributes:</span><br><span class="line">    name:             string</span><br><span class="line">    db:               hive_db</span><br><span class="line">    owner:            string</span><br><span class="line">    createTime:       date</span><br><span class="line">    lastAccessTime:   date</span><br><span class="line">    comment:          string</span><br><span class="line">    retention:        int</span><br><span class="line">    sd:               hive_storagedesc</span><br><span class="line">    partitionKeys:    array&lt;hive_column&gt;</span><br><span class="line">    aliases:          array&lt;string&gt;</span><br><span class="line">    columns:          array&lt;hive_column&gt;</span><br><span class="line">    parameters:       map&lt;string,string&gt;</span><br><span class="line">    viewOriginalText: string</span><br><span class="line">    viewExpandedText: string</span><br><span class="line">    tableType:        string</span><br><span class="line">    temporary:        boolean</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Name:         hive_table</span><br><span class="line">TypeCategory: Entity</span><br><span class="line">SuperTypes:   DataSet</span><br><span class="line">Attributes:</span><br><span class="line">    name:             string</span><br><span class="line">    db:               hive_db</span><br><span class="line">    owner:            string</span><br><span class="line">    createTime:       date</span><br><span class="line">    lastAccessTime:   date</span><br><span class="line">    comment:          string</span><br><span class="line">    retention:        int</span><br><span class="line">    sd:               hive_storagedesc</span><br><span class="line">    partitionKeys:    array&lt;hive_column&gt;</span><br><span class="line">    aliases:          array&lt;string&gt;</span><br><span class="line">    columns:          array&lt;hive_column&gt;</span><br><span class="line">    parameters:       map&lt;string,string&gt;</span><br><span class="line">    viewOriginalText: string</span><br><span class="line">    viewExpandedText: string</span><br><span class="line">    tableType:        string</span><br><span class="line">    temporary:        boolean</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <ul>
 <li>atlas中每个类型通过唯一名字来标识</li>
-<li>每个类型都有一个元类型</li>
+<li>每个类型都有一个元类型<ul>
+<li>基本元类型： Int，String，Boolean等</li>
+<li>枚举元类型</li>
+<li>集合元类型：Array，Map</li>
+<li>复合元类型：Class，Struct，Trait</li>
+</ul>
+</li>
 <li>entity &amp; classification(分类) 可以继承其他类型,被继承的类型成为superType。类型的集成可以获得超类型的属性，可以将公共属性定义在超类型中。例hive_db定义在DataSet中。</li>
 <li>具有‘entity’，‘Struct’（结构），‘classification’ or ‘relationship’元类型的类型可拥有一个属性集合</li>
+</ul>
+<h2 id="二、Entity"><a href="#二、Entity" class="headerlink" title="二、Entity"></a>二、Entity</h2><p>“类” Type的特定值或实例 –&gt;实际的元数据对象，即 在‘default’ 库中 有‘customers’的hive表，该表就是hive表类型的一个实体</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">guid:     "9ba387dd-fa76-429c-b791-ffc338d3c91f"</span><br><span class="line">typeName: "hive_table"</span><br><span class="line">status:   "ACTIVE"</span><br><span class="line">values:</span><br><span class="line">    name:             “customers”</span><br><span class="line">    db:               &#123; "guid": "b42c6cfc-c1e7-42fd-a9e6-890e0adf33bc", "typeName": "hive_db" &#125;</span><br><span class="line">    owner:            “admin”</span><br><span class="line">    createTime:       1490761686029</span><br><span class="line">    updateTime:       1516298102877</span><br><span class="line">    comment:          null</span><br><span class="line">    retention:        0</span><br><span class="line">    sd:               &#123; "guid": "ff58025f-6854-4195-9f75-3a3058dd8dcf", "typeName": "hive_storagedesc" &#125;</span><br><span class="line">    partitionKeys:    null</span><br><span class="line">    aliases:          null</span><br><span class="line">    columns:          [ &#123; "guid": ""65e2204f-6a23-4130-934a-9679af6a211f", "typeName": "hive_column" &#125;, &#123; "guid": ""d726de70-faca-46fb-9c99-cf04f6b579a6", "typeName": "hive_column" &#125;, ...]</span><br><span class="line">    parameters:       &#123; "transient_lastDdlTime": "1466403208"&#125;</span><br><span class="line">    viewOriginalText: null</span><br><span class="line">    viewExpandedText: null</span><br><span class="line">    tableType:        “MANAGED_TABLE”</span><br><span class="line">    temporary:        false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每个实体类型的实例都一个唯一标识，即GUID，有altas定义元数据对象时生成。</li>
+</ul>
+<ul>
+<li>一个实体的实例值是一个map，该map的key对应类型中定义属性名，value为属性值。</li>
+</ul>
+<ul>
+<li>属性的取值必须与类型中定义的属性类型保持一致。</li>
+</ul>
+<h2 id="三、Attributes"><a href="#三、Attributes" class="headerlink" title="三、Attributes"></a>三、Attributes</h2><p>定义了Type和Entity的具体属性</p>
+<p>一个属性拥有以下的内容：</p>
+<pre><code>name ：            string ，
+typeName ：        string ，
+isOptional ：    boolean ，
+isIndexable ：    boolean ，
+isUnique ：        boolean ，
+cardinality ：    enum 
+</code></pre><ul>
+<li>name - 属性的名称。</li>
+<li>typeName - 属性的元类型名称。</li>
+<li>isOptional - 这个标识了建模的考虑。如果一个属性被标记为复合的（composite），那么就表明这个属性不能脱离包含它的实体而存在。比如一个hive表的字段不能脱离表存在。一个复合属性必须在Atlas与包含的实体一起创建。</li>
+<li>isIndexable - 标识是否在该属性上建立了索引</li>
+<li>isUnique - 是否时唯一索引。任何标记设置为真的属性，都可以作为区分实体的主键。</li>
+<li>multiplicity - 值是该属性是必须的，可选的，多值的其中之一。</li>
+</ul>
+<h1 id="系统特殊类型"><a href="#系统特殊类型" class="headerlink" title="系统特殊类型"></a>系统特殊类型</h1><ul>
+<li><strong>Referenceable</strong>：该类型表示，它的所有实体都可以通过叫做qualifiedName的唯一属性查询到。 </li>
+<li><strong>Asset</strong>: 该类型扩展自Referenceable，并增加了诸如name，description和owner等属性。name是必选属性，其他为可选属性。Referenceable和Asset的目的是为建模者在定义和查询他们自定义类型时增强一致性。具有这些固定的属性集应用程序和用户界面就可以基于约定做出关于默认情况下它们可以期望类型的属性的假设。</li>
+<li><strong>Infrastructure</strong>：该类型扩展自Asset，一般可作为基础上设施元数据对象（如集群，主机等）的公用超类型。 </li>
+<li><strong>DataSet</strong>：该类型扩展自Referenceable。概念上，它用于描述一种存储数据的类型。在Atlas中，hive表，hbase表等都可以从DataSet扩展而来。从DataSet类型扩展而来的类型都将拥有一个模式（schema），即有一个属性定义了该数据集的列（字段或属性），比如hive表中columes字段。所有DataSet扩展类型的实体都会参与数据转换（transformation），而这种转换会通过Atlas的血缘图记录下来。</li>
+<li><strong>Process</strong>：该类型扩展自Asset。概念上，它用于描述任何数据转换的操作。例如，一个ETL处理过程可以是Process扩展类型的实例，而该ETL处理过程可将原始数据转换成存储到一个存放聚合数据的hive表中。Process类型有两个特别的属性，输入和输出。输入和输出都是DataSet实例数组类型的。因此，一个Process类型的实例可用输入和输出属性来展示数据的血缘关系。</li>
 </ul>
 
       
@@ -326,7 +368,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Type-System"><span class="toc-number">1.</span> <span class="toc-text">Type System</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Type"><span class="toc-number">1.1.</span> <span class="toc-text">一、Type</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Type-System"><span class="toc-number">1.</span> <span class="toc-text">Type System</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Type"><span class="toc-number">1.1.</span> <span class="toc-text">一、Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Entity"><span class="toc-number">1.2.</span> <span class="toc-text">二、Entity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Attributes"><span class="toc-number">1.3.</span> <span class="toc-text">三、Attributes</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#系统特殊类型"><span class="toc-number">2.</span> <span class="toc-text">系统特殊类型</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -434,18 +476,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Apache atlas</a>
               </li>
              
@@ -458,15 +488,23 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,6 +513,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kafka,实时计算</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
